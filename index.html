@@ -116,15 +116,27 @@
     /* HERO */
 
     .hero {
-      min-height: 90vh;
-      display: flex;
-      align-items: center;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      padding: 110px 0;
-    }
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding: 110px 0;
 
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(8,15,33,.12) 0%,
+      rgba(8,15,33,.18) 45%,
+      rgba(8,15,33,.88) 100%
+    ),
+    url("images/lunara-hero.png");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
     .hero-content {
       position: relative;
       z-index: 2;
@@ -428,7 +440,7 @@
 
     <section class="hero">
       <div class="container hero-content">
-        <div class="moon" aria-hidden="true"></div>
+        
 
         <p class="eyebrow">A Moment of Reflection</p>
 
