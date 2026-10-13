@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lunara offers elegant, personalized tarot readings designed to inspire reflection, clarity, and self-discovery.">
+  <title>LUNARA | The Art of Knowing Yourself</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #080f21;
+      --navy-light: #101b32;
+      --gold: #d9bc82;
+      --gold-light: #f1dfb6;
+      --ivory: #f6f0e5;
+      --muted: #b6b4bd;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--navy);
+      color: var(--ivory);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(217,188,130,.08), transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(104,117,178,.10), transparent 35%);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1150px, 90%);
+      margin: auto;
+    }
+
+    /* NAVIGATION */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8,15,33,.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(217,188,130,.15);
+    }
+
+    nav {
+      min-height: 85px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      letter-spacing: .22em;
+      color: var(--gold-light);
+    }
+
+    .logo span {
+      color: var(--gold);
+      margin-right: 8px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 35px;
+      align-items: center;
+      font-size: .85rem;
+      letter-spacing: .08em;
+    }
+
+    .nav-links a {
+      transition: color .3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .nav-cta {
+      border: 1px solid var(--gold);
+      padding: 11px 20px;
+      border-radius: 3px;
+      color: var(--gold-light);
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding: 110px 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: .35em;
+      font-size: .72rem;
+      color: var(--gold);
+      margin-bottom: 25px;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+    }
+
+    h1 {
+      font-size: clamp(3.7rem, 8vw, 7rem);
+      line-height: 1;
+      margin-bottom: 28px;
+    }
+
+    h1 em {
+      color: var(--gold-light);
+      font-weight: 400;
+    }
+
+    .hero-description {
+      max-width: 600px;
+      margin: 0 auto 35px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--gold);
+      color: #101321;
+      padding: 15px 34px;
+      font-size: .8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      border: 1px solid var(--gold);
+      transition: all .3s;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: transparent;
+      color: var(--gold-light);
+      transform: translateY(-3px);
+    }
+
+    .moon {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      margin: 0 auto 45px;
+      background:
+        radial-gradient(circle at 35% 35%, #fff8df, #c5a66b 65%, #776344);
+      box-shadow:
+        0 0 65px rgba(217,188,130,.20),
+        0 0 150px rgba(217,188,130,.10);
+      animation: float 7s ease-in-out infinite;
+      position: relative;
+    }
+
+    .moon::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 60% 35%, rgba(93,73,48,.13) 0 13%, transparent 14%),
+        radial-gradient(circle at 30% 70%, rgba(93,73,48,.10) 0 10%, transparent 11%);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    /* SECTIONS */
+
+    section {
+      padding: 110px 0;
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 60px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2.7rem, 5vw, 4.3rem);
+      margin-bottom: 18px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+    }
+
+    .readings {
+      background: rgba(255,255,255,.018);
+      border-top: 1px solid rgba(217,188,130,.1);
+      border-bottom: 1px solid rgba(217,188,130,.1);
+    }
+
+    .reading-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .reading-card {
+      background: linear-gradient(145deg, #142039, #0c1428);
+      border: 1px solid rgba(217,188,130,.2);
+      padding: 45px 25px;
+      text-align: center;
+      transition: transform .3s, border-color .3s;
+    }
+
+    .reading-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--gold);
+    }
+
+    .card-symbol {
+      font-size: 2.5rem;
+      color: var(--gold);
+      margin-bottom: 25px;
+    }
+
+    .reading-card h3 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    .reading-card p {
+      font-size: .9rem;
+      color: var(--muted);
+    }
+
+    /* HOW IT WORKS */
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 45px;
+      text-align: center;
+    }
+
+    .step-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      color: var(--gold);
+      margin-bottom: 15px;
+    }
+
+    .step h3 {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    /* OFFER */
+
+    .offer {
+      text-align: center;
+      background:
+        radial-gradient(circle at center, rgba(217,188,130,.09), transparent 55%),
+        #0b1428;
+    }
+
+    .offer-box {
+      max-width: 680px;
+      margin: auto;
+      border: 1px solid rgba(217,188,130,.4);
+      padding: 65px 35px;
+      background: rgba(255,255,255,.015);
+    }
+
+    .price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      color: var(--gold-light);
+      margin: 15px 0;
+    }
+
+    .price small {
+      font-family: 'DM Sans', sans-serif;
+      font-size: .85rem;
+      color: var(--muted);
+    }
+
+    .offer-box p {
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid rgba(217,188,130,.15);
+      text-align: center;
+      color: var(--muted);
+      font-size: .8rem;
+    }
+
+    footer .logo {
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 900px) {
+      .reading-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .steps {
+        gap: 25px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        min-height: 70px;
+      }
+
+      .nav-links {
+        gap: 12px;
+        font-size: .72rem;
+      }
+
+      .nav-links a:not(.nav-cta) {
+        display: none;
+      }
+
+      .hero {
+        padding: 75px 0;
+      }
+
+      .moon {
+        width: 170px;
+        height: 170px;
+      }
+
+      section {
+        padding: 75px 0;
+      }
+
+      .reading-grid,
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .offer-box {
+        padding: 45px 22px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav class="container">
+      <a href="#" class="logo"><span>☾</span>LUNARA</a>
+
+      <div class="nav-links">
+        <a href="#readings">Readings</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#experience">Experience</a>
+        <a href="#begin" class="nav-cta">Begin Your Journey</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="container hero-content">
+        <div class="moon" aria-hidden="true"></div>
+
+        <p class="eyebrow">A Moment of Reflection</p>
+
+        <h1>Discover the Wisdom <em>Within</em></h1>
+
+        <p class="hero-description">
+          Step into a world of intuition, symbolism, and self-discovery.
+          Experience a beautifully personalized tarot reading,
+          thoughtfully crafted around your questions and your journey.
+        </p>
+
+        <a href="#readings" class="btn">Explore Your Reading</a>
+      </div>
+    </section>
+
+    <section class="readings" id="readings">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Choose Your Path</p>
+          <h2>What Brings You Here?</h2>
+          <p>Every journey begins with a question. Choose the area of your life you wish to explore.</p>
+        </div>
+
+        <div class="reading-grid">
+          <div class="reading-card">
+            <div class="card-symbol">♡</div>
+            <h3>Love & Relationships</h3>
+            <p>Explore emotional connections, relationships, and matters of the heart.</p>
+          </div>
+
+          <div class="reading-card">
+            <div class="card-symbol">✧</div>
+            <h3>Career & Purpose</h3>
+            <p>Reflect on your ambitions, opportunities, and the direction of your professional life.</p>
+          </div>
+
+          <div class="reading-card">
+            <div class="card-symbol">☯</div>
+            <h3>Personal Growth</h3>
+            <p>Discover new perspectives on your inner world, challenges, and transformation.</p>
+          </div>
+
+          <div class="reading-card">
+            <div class="card-symbol">☾</div>
+            <h3>General Guidance</h3>
+            <p>Let the cards inspire reflection when you're uncertain where to begin.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-it-works">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">A Simple Ritual</p>
+          <h2>How Lunara Works</h2>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">01</div>
+            <h3>Share Your Question</h3>
+            <p>Tell us what's on your mind and choose the focus of your reading.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-number">02</div>
+            <h3>Discover Your Cards</h3>
+            <p>Experience an interactive tarot spread drawn especially for your session.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-number">03</div>
+            <h3>Receive Your Reading</h3>
+            <p>Explore a personalized interpretation and reflect on the possibilities ahead.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="offer" id="experience">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">The Lunara Experience</p>
+          <h2>A Reading as Unique as You</h2>
+          <p>
+            Thoughtful interpretations, timeless tarot symbolism,
+            and a beautiful experience designed around your personal questions.
+          </p>
+        </div>
+
+        <div class="offer-box" id="begin">
+          <p class="eyebrow">Your Personal Reading</p>
+          <h2>Begin Your Journey</h2>
+
+          <div class="price">$18.99 <small>CAD</small></div>
+
+          <p>
+            A personalized seven-card tarot reading,
+            complete with thoughtful interpretations and a beautifully presented experience.
+          </p>
+
+          <a href="#readings" class="btn">Discover Your Reading</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <span class="logo">☾ LUNARA</span>
+      <p>Tarot-inspired reflection & self-discovery.</p>
+      <p>© 2026 Lunara. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
