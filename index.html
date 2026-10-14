@@ -2084,6 +2084,46 @@ document.getElementById("beginReading").addEventListener("click", () => {
   alert(translations[currentLanguage].comingSoon);
 
 });
+   /* ==========================================
+   LUNARA — CURRENCY CONVERSION
+   Base price: $9.99 USD
+========================================== */
+
+const lunaraBasePrice = 9.99;
+
+// Approximate conversion rates from USD.
+// These can be updated as exchange rates change.
+const lunaraRates = {
+  USD: 1,
+  CAD: 1.38,
+  EUR: 0.86,
+  GBP: 0.75,
+  AUD: 1.52
+};
+
+const lunaraCurrencySymbols = {
+  USD: "$",
+  CAD: "CA$",
+  EUR: "€",
+  GBP: "£",
+  AUD: "AU$"
+};
+
+const lunaraCurrencySelect = document.getElementById("currencySelect");
+const lunaraPriceDisplay = document.getElementById("readingPrice");
+
+function updateLunaraPrice() {
+  const currency = lunaraCurrencySelect.value;
+  const convertedPrice = lunaraBasePrice * lunaraRates[currency];
+
+  lunaraPriceDisplay.textContent =
+    lunaraCurrencySymbols[currency] + convertedPrice.toFixed(2);
+}
+
+lunaraCurrencySelect.addEventListener("change", updateLunaraPrice);
+
+// Set the correct price when the page loads.
+updateLunaraPrice();
 
 </script>
 
