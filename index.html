@@ -3678,11 +3678,11 @@ document.querySelectorAll('[data-lang]').forEach(button=>button.addEventListener
 </script>
 
 
-<!-- LUNARA ambient audio — uses the actual GitHub filename. -->
+<!-- LUNARA ambient audio — browser-safe autoplay and first-interaction unlock. -->
 <audio id="lunaraSoundtrack" src="audio/lunara-ambient.mp3" preload="auto" loop playsinline></audio>
 <button id="lunaraSoundToggle" class="lunara-sound" type="button" aria-label="Enable ambient music" aria-pressed="false"><span class="sound-icon" aria-hidden="true">♫</span><span id="lunaraSoundLabel">SOUND OFF</span></button>
 <script>
-/* Isolated effects: tarot logic and existing content remain unchanged. */
+/* Audio-only update; tarot logic and all existing site content remain unchanged. */
 (()=>{
   const body=document.body;
   if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
@@ -3692,66 +3692,64 @@ document.querySelectorAll('[data-lang]').forEach(button=>button.addEventListener
   const audio=document.getElementById('lunaraSoundtrack');
   const button=document.getElementById('lunaraSoundToggle');
   const label=document.getElementById('lunaraSoundLabel');
-  const targetVolume=.22;
   const preferenceKey='lunara-ambient-muted';
-  let fadeTimer=null,enabled=false,starting=false;
-  let explicitlyOff=false;
+  const targetVolume=.22;
+  let explicitlyOff=false,enabled=false,starting=false,fadeTimer=null;
   try{explicitlyOff=localStorage.getItem(preferenceKey)==='true';}catch(e){}
-  function savePreference(off){try{localStorage.setItem(preferenceKey,String(off));}catch(e){}}
+  function savePreference(){try{localStorage.setItem(preferenceKey,String(explicitlyOff));}catch(e){}}
   function stopFade(){if(fadeTimer!==null){clearInterval(fadeTimer);fadeTimer=null;}}
   function updateButton(){
-    label.textContent=explicitlyOff?'SOUND OFF':'SOUND ON';
-    button.setAttribute('aria-pressed',String(!explicitlyOff));
-    button.setAttribute('aria-label',explicitlyOff?'Enable ambient music':'Disable ambient music');
+    label.textContent=enabled&&!explicitlyOff?'SOUND ON':'SOUND OFF';
+    button.setAttribute('aria-pressed',String(enabled&&!explicitlyOff));
+    button.setAttribute('aria-label',enabled&&!explicitlyOff?'Disable ambient music':'Enable ambient music');
   }
   function fadeTo(target,duration,done){
     stopFade();
     const from=audio.volume,start=performance.now();
     fadeTimer=setInterval(()=>{
-      const t=Math.min(1,(performance.now()-start)/duration);
-      const eased=t*t*(3-2*t);
+      const t=Math.min(1,(performance.now()-start)/duration),eased=t*t*(3-2*t);
       audio.volume=Math.max(0,Math.min(1,from+(target-from)*eased));
       if(t===1){stopFade();if(done)done();}
     },40);
   }
   async function startAudio(){
-    if(enabled||starting||explicitlyOff)return;
+    if(explicitlyOff||enabled||starting)return;
     starting=true;
     stopFade();audio.volume=0;
     try{
       await audio.play();
       if(explicitlyOff){audio.pause();return;}
-      enabled=true;updateButton();fadeTo(targetVolume,4800);
+      enabled=true;
+      updateButton();
+      fadeTo(targetVolume,4800);
     }catch(err){
-      // Browsers may block audible autoplay until a visitor interacts with the page.
-      if(err.name!=='NotAllowedError')console.warn('LUNARA audio playback:',err);
+      if(err.name!=='NotAllowedError'&&err.name!=='AbortError')console.warn('LUNARA audio:',err);
+      updateButton();
     }finally{starting=false;}
   }
-  button.addEventListener('click',async()=>{
-    if(!explicitlyOff){
-      explicitlyOff=true;savePreference(true);enabled=false;updateButton();
-      fadeTo(0,800,()=>audio.pause());
-    }else{
-      explicitlyOff=false;savePreference(false);updateButton();
-      await startAudio();
-      if(!enabled && audio.error){label.textContent='SOUND UNAVAILABLE';setTimeout(updateButton,3000);}
-    }
+  function stopAudio(){
+    stopFade();enabled=false;updateButton();
+    fadeTo(0,800,()=>audio.pause());
+  }
+  button.addEventListener('click',()=>{
+    if(enabled&&!explicitlyOff){explicitlyOff=true;savePreference();stopAudio();}
+    else{explicitlyOff=false;savePreference();startAudio();}
   });
-  // Music is ON by default, unless this visitor previously switched it OFF.
-  updateButton();
+  // An audible autoplay attempt is permitted, but browsers may reject it.
+  // The first real user gesture retries immediately, without needing to toggle OFF/ON.
   if(!explicitlyOff)startAudio();
-  // If autoplay is blocked, any first interaction with the page unlocks music.
-  // Exclude the sound button so clicking it cannot accidentally toggle playback twice.
-  const unlock=(event)=>{
-    if(button.contains(event.target))return;
-    if(!enabled&&!explicitlyOff)startAudio();
+  const unlock=()=>{
+    if(explicitlyOff||enabled)return;
+    // A pending autoplay promise can block a second play attempt; reset the guard
+    // and retry directly from the trusted user gesture.
+    starting=false;
+    startAudio();
   };
-  document.addEventListener('pointerdown',unlock,{capture:true});
-  document.addEventListener('keydown',unlock,{capture:true});
+  document.addEventListener('pointerdown',e=>{if(!button.contains(e.target))unlock();},{capture:true});
+  document.addEventListener('keydown',e=>{if(!button.contains(e.target))unlock();},{capture:true});
   audio.addEventListener('error',()=>console.warn('LUNARA: unable to load audio/lunara-ambient.mp3'));
   updateButton();
 })();
 </script>
-
 </body>
 </html>
