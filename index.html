@@ -3,12 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#080d19">
+<meta name="theme-color" content="#070b16">
 
 <title>LUNARA | The Art of Knowing Yourself</title>
 
-<meta name="description"
-content="Discover LUNARA, an elegant AI-powered tarot experience for reflection, clarity and self-discovery.">
+<meta name="description" content="Enter Lunara. An immersive, AI-powered tarot experience for personal reflection and self-discovery.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,394 +16,778 @@ content="Discover LUNARA, an elegant AI-powered tarot experience for reflection,
 
 <style>
 
-:root{
---navy:#080d19;
---navy2:#10192a;
---gold:#d8b978;
---goldlight:#f5dfae;
---ivory:#f5efe5;
---muted:#b9b4ac;
+/* =========================================
+   LUNARA V3 — CELESTIAL EXPERIENCE
+========================================= */
+
+:root {
+  --void: #05070d;
+  --navy: #080f20;
+  --navy-light: #142039;
+  --gold: #c9a76a;
+  --gold-light: #f0d8a2;
+  --ivory: #f6eddb;
+  --muted: #b6b0a7;
 }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-html{
-scroll-behavior:smooth;
+html {
+  scroll-behavior: smooth;
 }
 
-body{
-background:var(--navy);
-color:var(--ivory);
-font-family:"DM Sans",sans-serif;
-line-height:1.7;
-overflow-x:hidden;
+body {
+  background: var(--void);
+  color: var(--ivory);
+  font-family: "DM Sans", sans-serif;
+  line-height: 1.7;
+  overflow-x: hidden;
 }
 
-a{
-text-decoration:none;
-color:inherit;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-button{
-font-family:inherit;
-cursor:pointer;
+button {
+  font: inherit;
+  cursor: pointer;
 }
 
-.container{
-width:min(1200px,90%);
-margin:auto;
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--gold-light);
+  outline-offset: 5px;
 }
 
-/* HEADER */
+h1, h2, h3 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 500;
+}
+
+.container {
+  width: min(1200px, 90%);
+  margin: auto;
+}
+
+/* =========================================
+   CELESTIAL BACKGROUND
+========================================= */
+
+.celestial-world {
+  position: relative;
+  isolation: isolate;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 5%,
+      rgba(39, 65, 110, .32),
+      transparent 40%
+    ),
+    radial-gradient(
+      ellipse at 80% 45%,
+      rgba(105, 76, 39, .08),
+      transparent 35%
+    ),
+    linear-gradient(
+      to bottom,
+      #0b1428 0%,
+      #080d1a 42%,
+      #05070d 100%
+    );
+}
+
+.celestial-world::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+
+  background-image:
+    radial-gradient(1px 1px at 10% 12%, #fff, transparent),
+    radial-gradient(2px 2px at 25% 32%, #d8b978, transparent),
+    radial-gradient(1px 1px at 45% 18%, #fff, transparent),
+    radial-gradient(2px 2px at 72% 12%, #d8b978, transparent),
+    radial-gradient(1px 1px at 85% 42%, #fff, transparent),
+    radial-gradient(1px 1px at 15% 70%, #d8b978, transparent),
+    radial-gradient(2px 2px at 65% 75%, #fff, transparent);
+
+  background-size: 340px 340px;
+  opacity: .4;
+
+  animation: starsFloat 60s linear infinite;
+}
+
+@keyframes starsFloat {
+  from { background-position: 0 0; }
+  to { background-position: 0 -340px; }
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  background: rgba(5, 9, 19, .94);
+  backdrop-filter: blur(18px);
+
+  border-bottom: 1px solid rgba(201,167,106,.25);
+}
+
+nav {
+  min-height: 78px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2.2rem;
+  letter-spacing: .24em;
+  color: var(--gold-light);
+  white-space: nowrap;
+}
 
-header{
-position:sticky;
-top:0;
-z-index:100;
-background:rgba(8,13,25,.96);
-border-bottom:1px solid rgba(216,185,120,.25);
-backdrop-filter:blur(15px);
+.logo span {
+  color: var(--gold);
 }
 
-nav{
-min-height:85px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:20px;
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+
+  text-transform: uppercase;
+  font-size: .75rem;
+  letter-spacing: .14em;
+}
+
+.nav-links a {
+  transition: color .3s;
 }
 
-.logo{
-font-family:"Cormorant Garamond",serif;
-font-size:2.2rem;
-letter-spacing:.22em;
-color:var(--goldlight);
-white-space:nowrap;
+.nav-links a:hover {
+  color: var(--gold-light);
 }
 
-.logo span{
-color:var(--gold);
+.languages {
+  display: flex;
+  gap: 12px;
 }
 
-.nav-links{
-display:flex;
-align-items:center;
-gap:30px;
-font-size:.8rem;
-letter-spacing:.1em;
-text-transform:uppercase;
+.languages button {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: .75rem;
 }
 
-.nav-links a:hover{
-color:var(--gold);
+.languages button.active {
+  color: var(--gold-light);
+  border-bottom: 1px solid var(--gold);
 }
 
-.languages{
-display:flex;
-gap:12px;
+/* =========================================
+   CINEMATIC HERO
+========================================= */
+
+.hero-art {
+  position: relative;
+  background: #080d19;
+  overflow: hidden;
 }
 
-.languages button{
-background:none;
-border:none;
-color:var(--muted);
-font-size:.8rem;
+.hero-art img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
+
+.hero-art::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 24%;
+
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    #0b1428
+  );
 
-.languages button.active{
-color:var(--goldlight);
-text-decoration:underline;
+  pointer-events: none;
 }
 
-/* CINEMATIC ARTWORK */
+/* =========================================
+   SHARED ELEMENTS
+========================================= */
 
-.hero-art{
-width:100%;
-position:relative;
-background:#080d19;
+section {
+  padding: 120px 0;
+  position: relative;
 }
 
-.hero-art img{
-display:block;
-width:100%;
-height:auto;
+.eyebrow {
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: .35em;
+  font-size: .72rem;
+  margin-bottom: 22px;
 }
 
-/* INTRODUCTION */
+.section-title {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  line-height: 1.05;
+  margin-bottom: 25px;
+}
 
-.intro{
-padding:100px 20px 110px;
-text-align:center;
-background:
-radial-gradient(circle at center,
-rgba(216,185,120,.08),
-transparent 60%),
-var(--navy);
+.section-title em {
+  color: var(--gold-light);
+  font-weight: 400;
 }
 
-.eyebrow{
-color:var(--gold);
-text-transform:uppercase;
-letter-spacing:.3em;
-font-size:.75rem;
-margin-bottom:20px;
+.section-description {
+  color: var(--muted);
+  max-width: 680px;
+  margin: 0 auto;
+  font-size: 1.05rem;
 }
 
-h1,h2,h3{
-font-family:"Cormorant Garamond",serif;
-font-weight:500;
+.gold-line {
+  width: 120px;
+  height: 1px;
+  margin: 40px auto;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--gold),
+    transparent
+  );
 }
+
+.btn {
+  display: inline-block;
+  padding: 17px 42px;
 
-.intro h1{
-font-size:clamp(3rem,6vw,5.5rem);
-line-height:1.1;
-margin-bottom:25px;
+  border: 1px solid var(--gold);
+  background: linear-gradient(
+    135deg,
+    #e6ca91,
+    #b99558
+  );
+
+  color: #101321;
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+
+  transition: .35s;
 }
 
-.intro h1 em{
-color:var(--goldlight);
+.btn:hover {
+  background: transparent;
+  color: var(--gold-light);
+  box-shadow: 0 0 35px rgba(201,167,106,.2);
+  transform: translateY(-3px);
 }
+
+/* =========================================
+   ACT I — THE INVITATION
+========================================= */
 
-.intro p.description{
-max-width:700px;
-margin:0 auto 35px;
-color:var(--muted);
-font-size:1.05rem;
+.invitation {
+  text-align: center;
+  padding-top: 130px;
+  padding-bottom: 140px;
 }
 
-.btn{
-display:inline-block;
-background:var(--gold);
-color:#101321;
-padding:16px 40px;
-font-size:.8rem;
-font-weight:600;
-letter-spacing:.15em;
-text-transform:uppercase;
-border:1px solid var(--gold);
-transition:.3s;
+.invitation-content {
+  max-width: 850px;
+  margin: auto;
 }
 
-.btn:hover{
-background:transparent;
-color:var(--goldlight);
-transform:translateY(-3px);
+.celestial-emblem {
+  width: 170px;
+  height: 170px;
+  margin: 0 auto 55px;
+  position: relative;
+
+  border: 1px solid rgba(201,167,106,.35);
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow:
+    0 0 65px rgba(201,167,106,.08),
+    inset 0 0 45px rgba(201,167,106,.05);
+
+  animation: emblemFloat 7s ease-in-out infinite;
 }
 
-/* READING CATEGORIES */
+.celestial-emblem::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1px dashed rgba(201,167,106,.35);
+  border-radius: 50%;
+  animation: rotate 45s linear infinite;
+}
 
-section{
-padding:100px 0;
+.celestial-emblem::after {
+  content: "✦";
+  position: absolute;
+  top: -15px;
+  color: var(--gold-light);
+  font-size: 1.4rem;
 }
 
-.section-heading{
-text-align:center;
-max-width:750px;
-margin:0 auto 55px;
+.emblem-moon {
+  font-family: serif;
+  font-size: 6rem;
+  color: var(--gold-light);
+  line-height: 1;
+  text-shadow: 0 0 35px rgba(201,167,106,.35);
 }
 
-.section-heading h2{
-font-size:clamp(2.8rem,5vw,4.5rem);
-margin-bottom:15px;
+@keyframes rotate {
+  to { transform: rotate(360deg); }
 }
 
-.section-heading p{
-color:var(--muted);
+@keyframes emblemFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
 }
 
-.readings{
-background:var(--navy2);
-border-top:1px solid rgba(216,185,120,.15);
-border-bottom:1px solid rgba(216,185,120,.15);
+.invitation .btn {
+  margin-top: 45px;
 }
+
+/* =========================================
+   ACT II — FOUR PATHS
+========================================= */
 
-.reading-grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:22px;
+.paths {
+  padding-top: 100px;
+  padding-bottom: 160px;
 }
 
-.reading-card{
-padding:50px 25px;
-text-align:center;
-background:linear-gradient(145deg,#17243a,#0b1222);
-border:1px solid rgba(216,185,120,.35);
-transition:.3s;
-cursor:pointer;
+.paths-heading {
+  text-align: center;
+  margin-bottom: 85px;
 }
 
-.reading-card:hover{
-transform:translateY(-8px);
-border-color:var(--gold);
-box-shadow:0 15px 45px rgba(0,0,0,.35);
+.paths-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
 }
+
+.path-card {
+  position: relative;
+  min-height: 440px;
+
+  padding: 55px 24px 45px;
+
+  border: 1px solid rgba(201,167,106,.3);
+
+  background:
+    radial-gradient(
+      circle at 50% 25%,
+      rgba(201,167,106,.12),
+      transparent 50%
+    ),
+    linear-gradient(
+      160deg,
+      rgba(24,39,65,.85),
+      rgba(5,8,16,.95)
+    );
+
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-.symbol{
-font-size:2.5rem;
-color:var(--gold);
-margin-bottom:20px;
+  transition:
+    transform .45s,
+    border-color .45s,
+    box-shadow .45s;
+
+  overflow: hidden;
+  cursor: pointer;
+  color: inherit;
 }
 
-.reading-card h3{
-font-size:2rem;
-margin-bottom:15px;
+.path-card::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(201,167,106,.13);
+  pointer-events: none;
 }
+
+.path-card::after {
+  content: "";
+  position: absolute;
+  width: 170px;
+  height: 170px;
+  top: 35px;
 
-.reading-card p{
-color:var(--muted);
-font-size:.9rem;
+  border: 1px solid rgba(201,167,106,.18);
+  border-radius: 50%;
+
+  transition: .5s;
+  pointer-events: none;
 }
 
-/* HOW IT WORKS */
+.path-card:hover,
+.path-card:focus-visible,
+.path-card.selected {
+  transform: translateY(-12px);
+  border-color: var(--gold-light);
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.5),
+    0 0 45px rgba(201,167,106,.12);
+}
 
-.steps{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:45px;
-text-align:center;
+.path-card:hover::after,
+.path-card.selected::after {
+  transform: scale(1.15);
+  border-color: rgba(201,167,106,.5);
 }
 
-.step-number{
-font-family:"Cormorant Garamond",serif;
-font-size:4rem;
-color:var(--gold);
+.path-symbol {
+  font-family: serif;
+  font-size: 5rem;
+  color: var(--gold-light);
+
+  height: 180px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-shadow: 0 0 35px rgba(201,167,106,.3);
 }
 
-.step h3{
-font-size:2rem;
-margin-bottom:15px;
+.path-card h3 {
+  font-size: 2.2rem;
+  line-height: 1.1;
+  margin-bottom: 20px;
 }
 
-.step p{
-color:var(--muted);
+.path-card p {
+  color: var(--muted);
+  font-size: .9rem;
 }
 
-/* PRICE */
+.path-link {
+  margin-top: auto;
+  padding-top: 25px;
 
-.offer{
-background:
-radial-gradient(circle at center,
-rgba(216,185,120,.1),
-transparent 60%),
-#0b1426;
-text-align:center;
+  color: var(--gold);
+  font-size: .7rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
 }
 
-.offer-box{
-max-width:700px;
-margin:auto;
-padding:65px 35px;
-border:1px solid rgba(216,185,120,.45);
-background:rgba(255,255,255,.02);
+/* =========================================
+   ACT III — THE RITUAL
+========================================= */
+
+.ritual {
+  text-align: center;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(24,39,65,.28),
+      transparent 70%
+    );
 }
 
-.offer-box h2{
-font-size:3.5rem;
+.ritual-heading {
+  margin-bottom: 100px;
 }
 
-.price{
-font-family:"Cormorant Garamond",serif;
-font-size:5.5rem;
-color:var(--goldlight);
-margin:15px 0;
+.ritual-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 65px;
 }
 
-.price small{
-font-family:"DM Sans",sans-serif;
-font-size:.9rem;
-color:var(--muted);
+.ritual-step {
+  position: relative;
 }
+
+.ritual-circle {
+  width: 190px;
+  height: 190px;
+  margin: 0 auto 35px;
 
-.offer-box p{
-color:var(--muted);
-margin-bottom:30px;
+  border: 1px solid rgba(201,167,106,.4);
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(201,167,106,.12),
+      transparent 70%
+    );
+
+  box-shadow: 0 0 50px rgba(201,167,106,.06);
 }
 
-/* FOOTER */
+.ritual-symbol {
+  font-family: serif;
+  font-size: 4.5rem;
+  color: var(--gold-light);
+}
 
-footer{
-padding:60px 20px;
-text-align:center;
-border-top:1px solid rgba(216,185,120,.2);
+.ritual-step h3 {
+  font-size: 2.4rem;
+  margin-bottom: 15px;
 }
 
-footer .logo{
-display:block;
-margin-bottom:15px;
+.ritual-step p {
+  color: var(--muted);
+  max-width: 300px;
+  margin: auto;
 }
+
+/* =========================================
+   ACT IV — ORACLE CHAMBER
+========================================= */
+
+.oracle-chamber {
+  text-align: center;
 
-footer p{
-color:var(--muted);
-font-size:.85rem;
+  padding: 170px 0 190px;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 35%,
+      rgba(201,167,106,.12),
+      transparent 55%
+    ),
+    linear-gradient(
+      to bottom,
+      transparent,
+      #030406
+    );
 }
+
+.oracle-frame {
+  position: relative;
+  max-width: 850px;
+  margin: auto;
+
+  padding: 100px 45px;
 
-/* MOBILE */
+  border: 1px solid rgba(201,167,106,.4);
 
-@media(max-width:1000px){
+  background: rgba(5,7,13,.65);
 
-.reading-grid{
-grid-template-columns:repeat(2,1fr);
+  box-shadow:
+    0 0 100px rgba(201,167,106,.05),
+    inset 0 0 100px rgba(201,167,106,.03);
 }
 
-.nav-links{
-gap:15px;
+.oracle-frame::before {
+  content: "";
+  position: absolute;
+  inset: 15px;
+  border: 1px solid rgba(201,167,106,.15);
+  pointer-events: none;
 }
 
+.oracle-symbol {
+  font-size: 3rem;
+  color: var(--gold-light);
+  margin-bottom: 35px;
 }
 
-@media(max-width:700px){
+.oracle-frame h2 {
+  font-size: clamp(3.5rem, 7vw, 6rem);
+  line-height: 1;
+  margin-bottom: 25px;
+}
+
+.oracle-subtitle {
+  color: var(--muted);
+  font-size: 1.05rem;
+  margin-bottom: 30px;
+}
 
-nav{
-min-height:70px;
-flex-wrap:wrap;
-padding:12px 0;
+.price {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 5.5rem;
+  color: var(--gold-light);
+  line-height: 1.1;
 }
 
-.logo{
-font-size:1.7rem;
+.currency {
+  font-size: .85rem;
+  color: var(--muted);
+  margin-bottom: 40px;
 }
 
-.nav-links{
-display:none;
+.oracle-note {
+  font-size: .75rem;
+  color: var(--muted);
+  margin-top: 30px;
 }
 
-.hero-art img{
-width:100%;
-height:auto;
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+  background: #030406;
+  border-top: 1px solid rgba(201,167,106,.2);
+
+  padding: 70px 20px;
+  text-align: center;
 }
 
-.intro{
-padding:65px 20px;
+footer .logo {
+  display: block;
+  margin-bottom: 20px;
 }
 
-section{
-padding:70px 0;
+footer p {
+  color: var(--muted);
+  font-size: .8rem;
 }
 
-.reading-grid,
-.steps{
-grid-template-columns:1fr;
+.footer-disclaimer {
+  max-width: 650px;
+  margin: 20px auto;
 }
+
+/* =========================================
+   SCROLL REVEAL
+========================================= */
 
-.offer-box{
-padding:45px 22px;
+.reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  transition:
+    opacity .9s ease,
+    transform .9s ease;
 }
 
-.price{
-font-size:4.5rem;
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1050px) {
+
+  .paths-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
+  .nav-links {
+    gap: 15px;
+    font-size: .7rem;
+  }
+
 }
+
+@media (max-width: 700px) {
+
+  nav {
+    min-height: 70px;
+  }
+
+  .logo {
+    font-size: 1.7rem;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  section {
+    padding: 85px 0;
+  }
 
-@media(prefers-reduced-motion:reduce){
-*,*::before,*::after{
-scroll-behavior:auto!important;
-transition:none!important;
+  .invitation {
+    padding-top: 90px;
+  }
+
+  .celestial-emblem {
+    width: 140px;
+    height: 140px;
+  }
+
+  .paths-grid,
+  .ritual-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .path-card {
+    min-height: 370px;
+  }
+
+  .ritual-steps {
+    gap: 70px;
+  }
+
+  .oracle-chamber {
+    padding: 100px 0;
+  }
+
+  .oracle-frame {
+    padding: 75px 25px;
+  }
+
+  .price {
+    font-size: 4.5rem;
+  }
+
 }
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
 }
 
 </style>
@@ -412,7 +795,12 @@ transition:none!important;
 
 <body>
 
+<!-- =====================================
+     HEADER
+===================================== -->
+
 <header>
+
 <nav class="container">
 
 <a href="#" class="logo">
@@ -420,213 +808,332 @@ transition:none!important;
 </a>
 
 <div class="nav-links">
-<a href="#readings" data-i18n="navReadings">Readings</a>
-<a href="#how" data-i18n="navHow">How It Works</a>
-<a href="#experience" data-i18n="navExperience">Experience</a>
-<a href="#begin" data-i18n="navBegin">Begin Your Journey</a>
+
+<a href="#paths" data-i18n="navReadings">Readings</a>
+
+<a href="#ritual" data-i18n="navHow">The Ritual</a>
+
+<a href="#oracle" data-i18n="navBegin">Begin Your Journey</a>
+
 </div>
 
 <div class="languages">
+
 <button type="button" data-lang="en" class="active">EN</button>
 <button type="button" data-lang="fr">FR</button>
 <button type="button" data-lang="es">ES</button>
+
 </div>
 
 </nav>
+
 </header>
 
 <main>
 
-<!-- CINEMATIC ARTWORK -->
+<!-- =====================================
+     CINEMATIC HERO
+===================================== -->
 
 <div class="hero-art">
+
 <img
 src="images/lunara-hero.png"
-alt="Lunara celestial oracle surrounded by golden stars, tarot cards and moonlight">
+alt="Lunara celestial oracle surrounded by golden stars, moonlight and tarot symbolism"
+fetchpriority="high">
+
 </div>
 
-<!-- INTRO -->
+<div class="celestial-world">
 
-<section class="intro">
+<!-- =====================================
+     ACT I — INVITATION
+===================================== -->
 
-<div class="container">
+<section class="invitation">
 
-<p class="eyebrow" data-i18n="introEyebrow">
-A Journey Beyond the Ordinary
+<div class="container invitation-content reveal">
+
+<div class="celestial-emblem" aria-hidden="true">
+<span class="emblem-moon">☾</span>
+</div>
+
+<p class="eyebrow" data-i18n="invitationEyebrow">
+Beyond the Ordinary
 </p>
 
-<h1 data-i18n="introTitle">
-The Art of <em>Knowing Yourself</em>
+<h1 class="section-title" data-i18n="invitationTitle">
+Every Question Holds <em>a Story</em>
 </h1>
 
-<p class="description" data-i18n="introDescription">
-Every question carries a story.
-Discover a beautifully personalized tarot experience
-designed to inspire reflection, clarity and new perspectives.
+<div class="gold-line"></div>
+
+<p class="section-description" data-i18n="invitationDescription">
+
+Some questions deserve more than a simple answer.
+Enter a world of timeless symbolism, intuition and reflection.
+Let the cards illuminate new perspectives on your journey.
+
 </p>
 
-<a href="#readings" class="btn" data-i18n="explore">
-Explore Your Reading
+<a href="#paths" class="btn" data-i18n="explore">
+Explore Your Path
 </a>
 
 </div>
+
 </section>
 
-<!-- READINGS -->
+<!-- =====================================
+     ACT II — FOUR PATHS
+===================================== -->
 
-<section class="readings" id="readings">
+<section class="paths" id="paths">
 
 <div class="container">
 
-<div class="section-heading">
+<div class="paths-heading reveal">
 
-<p class="eyebrow" data-i18n="choosePath">
-Choose Your Path
+<p class="eyebrow" data-i18n="pathsEyebrow">
+Four Paths. Infinite Possibilities.
 </p>
 
-<h2 data-i18n="whatBrings">
-What Brings You Here?
+<h2 class="section-title" data-i18n="pathsTitle">
+What Does Your <em>Heart Seek?</em>
 </h2>
 
-<p data-i18n="readingIntro">
-Every journey begins with a question.
-Choose the area of your life you wish to explore.
+<p class="section-description" data-i18n="pathsDescription">
+Choose the path that resonates with your question.
 </p>
 
 </div>
 
-<div class="reading-grid">
+<div class="paths-grid">
 
-<div class="reading-card" data-reading="love" role="button" tabindex="0">
-<div class="symbol">♡</div>
-<h3 data-i18n="love">Love & Relationships</h3>
+<button class="path-card reveal" type="button" data-reading="love">
+
+<div class="path-symbol" aria-hidden="true">♡</div>
+
+<h3 data-i18n="loveTitle">
+Love & Relationships
+</h3>
+
 <p data-i18n="loveDesc">
-Explore emotional connections and matters of the heart.
+Explore the bonds that shape your heart and the connections that define your journey.
 </p>
-</div>
 
-<div class="reading-card" data-reading="career" role="button" tabindex="0">
-<div class="symbol">✧</div>
-<h3 data-i18n="career">Career & Purpose</h3>
+<span class="path-link" data-i18n="enterPath">
+Enter This Path →
+</span>
+
+</button>
+
+<button class="path-card reveal" type="button" data-reading="career">
+
+<div class="path-symbol" aria-hidden="true">✧</div>
+
+<h3 data-i18n="careerTitle">
+Career & Purpose
+</h3>
+
 <p data-i18n="careerDesc">
-Reflect on opportunities, ambitions and life direction.
+Discover new perspectives on ambition, opportunity and the road ahead.
 </p>
-</div>
 
-<div class="reading-card" data-reading="growth" role="button" tabindex="0">
-<div class="symbol">☯</div>
-<h3 data-i18n="growth">Personal Growth</h3>
+<span class="path-link" data-i18n="enterPath">
+Enter This Path →
+</span>
+
+</button>
+
+<button class="path-card reveal" type="button" data-reading="growth">
+
+<div class="path-symbol" aria-hidden="true">✺</div>
+
+<h3 data-i18n="growthTitle">
+Personal Growth
+</h3>
+
 <p data-i18n="growthDesc">
-Discover new perspectives and personal transformation.
+Explore transformation, inner strength and the wisdom found within.
 </p>
-</div>
 
-<div class="reading-card" data-reading="general" role="button" tabindex="0">
-<div class="symbol">☾</div>
-<h3 data-i18n="general">General Guidance</h3>
+<span class="path-link" data-i18n="enterPath">
+Enter This Path →
+</span>
+
+</button>
+
+<button class="path-card reveal" type="button" data-reading="general">
+
+<div class="path-symbol" aria-hidden="true">☾</div>
+
+<h3 data-i18n="generalTitle">
+General Guidance
+</h3>
+
 <p data-i18n="generalDesc">
-Explore whatever questions are on your mind.
+When the path is uncertain, discover what new perspectives the cards may offer.
 </p>
+
+<span class="path-link" data-i18n="enterPath">
+Enter This Path →
+</span>
+
+</button>
+
 </div>
 
 </div>
-</div>
+
 </section>
 
-<!-- HOW IT WORKS -->
+<!-- =====================================
+     ACT III — THE RITUAL
+===================================== -->
 
-<section id="how">
+<section class="ritual" id="ritual">
 
 <div class="container">
 
-<div class="section-heading">
+<div class="ritual-heading reveal">
 
-<p class="eyebrow" data-i18n="simpleRitual">
-A Simple Ritual
+<p class="eyebrow" data-i18n="ritualEyebrow">
+The Lunara Experience
 </p>
 
-<h2 data-i18n="howTitle">
-How Lunara Works
+<h2 class="section-title" data-i18n="ritualTitle">
+A Ritual of <em>Discovery</em>
 </h2>
+
+<p class="section-description" data-i18n="ritualDescription">
+Three simple steps. One deeply personal experience.
+</p>
 
 </div>
 
-<div class="steps">
+<div class="ritual-steps">
 
-<div class="step">
-<div class="step-number">01</div>
-<h3 data-i18n="step1">Share Your Question</h3>
+<div class="ritual-step reveal">
+
+<div class="ritual-circle">
+<span class="ritual-symbol" aria-hidden="true">✦</span>
+</div>
+
+<h3 data-i18n="step1Title">
+I. The Question
+</h3>
+
 <p data-i18n="step1Desc">
-Tell us what's on your mind.
+Share what is on your mind and choose the focus of your journey.
 </p>
+
 </div>
 
-<div class="step">
-<div class="step-number">02</div>
-<h3 data-i18n="step2">Discover Your Cards</h3>
+<div class="ritual-step reveal">
+
+<div class="ritual-circle">
+<span class="ritual-symbol" aria-hidden="true">♧</span>
+</div>
+
+<h3 data-i18n="step2Title">
+II. The Cards
+</h3>
+
 <p data-i18n="step2Desc">
-Experience a personalized tarot spread.
+Discover seven tarot cards, each carrying its own symbolism and meaning.
 </p>
+
 </div>
 
-<div class="step">
-<div class="step-number">03</div>
-<h3 data-i18n="step3">Receive Your Reading</h3>
+<div class="ritual-step reveal">
+
+<div class="ritual-circle">
+<span class="ritual-symbol" aria-hidden="true">☼</span>
+</div>
+
+<h3 data-i18n="step3Title">
+III. The Revelation
+</h3>
+
 <p data-i18n="step3Desc">
-Explore thoughtful interpretations and new perspectives.
+Receive a thoughtful interpretation inspired by your cards and personal question.
 </p>
+
 </div>
 
 </div>
+
 </div>
+
 </section>
 
-<!-- OFFER -->
+<!-- =====================================
+     ACT IV — THE ORACLE CHAMBER
+===================================== -->
 
-<section class="offer" id="experience">
+<section class="oracle-chamber" id="oracle">
 
 <div class="container">
 
-<div class="offer-box" id="begin">
+<div class="oracle-frame reveal">
 
-<p class="eyebrow" data-i18n="personalReading">
-Your Personal Reading
+<div class="oracle-symbol" aria-hidden="true">✧ ☾ ✧</div>
+
+<p class="eyebrow" data-i18n="oracleEyebrow">
+Your Journey Begins Here
 </p>
 
-<h2 data-i18n="beginTitle">
-Begin Your Journey
+<h2 data-i18n="oracleTitle">
+The Oracle Awaits
 </h2>
 
-<div class="price">
-$18.99 <small>CAD</small>
-</div>
+<div class="gold-line"></div>
 
-<p data-i18n="offerDescription">
-A personalized seven-card tarot reading,
-thoughtfully crafted around your questions.
+<p class="oracle-subtitle" data-i18n="oracleSubtitle">
+Seven cards. One question. A journey of discovery.
 </p>
 
-<button class="btn" id="startReading" type="button" data-i18n="beginButton">
+<div class="price">$18.99</div>
+
+<div class="currency">CAD</div>
+
+<button class="btn" id="beginReading" type="button" data-i18n="beginButton">
 Begin Your Reading
 </button>
 
-<p style="font-size:.75rem;margin-top:25px;">
-AI-powered tarot for entertainment and personal reflection.
-No payment will be collected during this preview.
+<p class="oracle-note" data-i18n="oracleNote">
+Personalized AI-powered tarot experience.
+</p>
+
+<p class="oracle-note" data-i18n="previewNote">
+Preview only — payments are not enabled.
 </p>
 
 </div>
+
 </div>
+
 </section>
 
+</div>
+
 </main>
+
+<!-- =====================================
+     FOOTER
+===================================== -->
 
 <footer>
 
 <span class="logo">☾ LUNARA</span>
 
-<p data-i18n="footerText">
+<p data-i18n="footerTagline">
 The Art of Knowing Yourself
+</p>
+
+<p class="footer-disclaimer" data-i18n="disclaimer">
+Lunara provides AI-generated tarot interpretations for entertainment and personal reflection. Readings are not guaranteed predictions of future events.
 </p>
 
 <p>© 2026 Lunara. All rights reserved.</p>
@@ -635,192 +1142,324 @@ The Art of Knowing Yourself
 
 <script>
 
-/* LANGUAGE SYSTEM */
+/* =====================================
+   LANGUAGE SYSTEM
+===================================== */
 
 const translations = {
 
-en:{
-navReadings:"Readings",
-navHow:"How It Works",
-navExperience:"Experience",
-navBegin:"Begin Your Journey",
-introEyebrow:"A Journey Beyond the Ordinary",
-introTitle:"The Art of <em>Knowing Yourself</em>",
-introDescription:"Every question carries a story. Discover a beautifully personalized tarot experience designed to inspire reflection, clarity and new perspectives.",
-explore:"Explore Your Reading",
-choosePath:"Choose Your Path",
-whatBrings:"What Brings You Here?",
-readingIntro:"Every journey begins with a question. Choose the area of your life you wish to explore.",
-love:"Love & Relationships",
-loveDesc:"Explore emotional connections and matters of the heart.",
-career:"Career & Purpose",
-careerDesc:"Reflect on opportunities, ambitions and life direction.",
-growth:"Personal Growth",
-growthDesc:"Discover new perspectives and personal transformation.",
-general:"General Guidance",
-generalDesc:"Explore whatever questions are on your mind.",
-simpleRitual:"A Simple Ritual",
-howTitle:"How Lunara Works",
-step1:"Share Your Question",
-step1Desc:"Tell us what's on your mind.",
-step2:"Discover Your Cards",
-step2Desc:"Experience a personalized tarot spread.",
-step3:"Receive Your Reading",
-step3Desc:"Explore thoughtful interpretations and new perspectives.",
-personalReading:"Your Personal Reading",
-beginTitle:"Begin Your Journey",
-offerDescription:"A personalized seven-card tarot reading, thoughtfully crafted around your questions.",
-beginButton:"Begin Your Reading",
-footerText:"The Art of Knowing Yourself"
+en: {
+
+navReadings: "Readings",
+navHow: "The Ritual",
+navBegin: "Begin Your Journey",
+
+invitationEyebrow: "Beyond the Ordinary",
+invitationTitle: "Every Question Holds <em>a Story</em>",
+invitationDescription: "Some questions deserve more than a simple answer. Enter a world of timeless symbolism, intuition and reflection. Let the cards illuminate new perspectives on your journey.",
+explore: "Explore Your Path",
+
+pathsEyebrow: "Four Paths. Infinite Possibilities.",
+pathsTitle: "What Does Your <em>Heart Seek?</em>",
+pathsDescription: "Choose the path that resonates with your question.",
+
+loveTitle: "Love & Relationships",
+loveDesc: "Explore the bonds that shape your heart and the connections that define your journey.",
+
+careerTitle: "Career & Purpose",
+careerDesc: "Discover new perspectives on ambition, opportunity and the road ahead.",
+
+growthTitle: "Personal Growth",
+growthDesc: "Explore transformation, inner strength and the wisdom found within.",
+
+generalTitle: "General Guidance",
+generalDesc: "When the path is uncertain, discover what new perspectives the cards may offer.",
+
+enterPath: "Enter This Path →",
+
+ritualEyebrow: "The Lunara Experience",
+ritualTitle: "A Ritual of <em>Discovery</em>",
+ritualDescription: "Three simple steps. One deeply personal experience.",
+
+step1Title: "I. The Question",
+step1Desc: "Share what is on your mind and choose the focus of your journey.",
+
+step2Title: "II. The Cards",
+step2Desc: "Discover seven tarot cards, each carrying its own symbolism and meaning.",
+
+step3Title: "III. The Revelation",
+step3Desc: "Receive a thoughtful interpretation inspired by your cards and personal question.",
+
+oracleEyebrow: "Your Journey Begins Here",
+oracleTitle: "The Oracle Awaits",
+oracleSubtitle: "Seven cards. One question. A journey of discovery.",
+beginButton: "Begin Your Reading",
+oracleNote: "Personalized AI-powered tarot experience.",
+previewNote: "Preview only — payments are not enabled.",
+
+footerTagline: "The Art of Knowing Yourself",
+disclaimer: "Lunara provides AI-generated tarot interpretations for entertainment and personal reflection. Readings are not guaranteed predictions of future events.",
+
+comingSoon: "The interactive tarot experience is coming soon."
+
 },
 
-fr:{
-navReadings:"Tirages",
-navHow:"Comment ça marche",
-navExperience:"Expérience",
-navBegin:"Commencer",
-introEyebrow:"Un voyage hors de l'ordinaire",
-introTitle:"L'art de <em>se connaître</em>",
-introDescription:"Chaque question raconte une histoire. Découvrez une expérience de tarot personnalisée qui invite à la réflexion et à la découverte de soi.",
-explore:"Découvrir mon tirage",
-choosePath:"Choisissez votre voie",
-whatBrings:"Qu'est-ce qui vous amène?",
-readingIntro:"Chaque voyage commence par une question. Choisissez le domaine de votre vie que vous souhaitez explorer.",
-love:"Amour et relations",
-loveDesc:"Explorez vos liens affectifs et les questions du cœur.",
-career:"Carrière et vocation",
-careerDesc:"Réfléchissez à vos ambitions et à votre avenir professionnel.",
-growth:"Développement personnel",
-growthDesc:"Découvrez de nouvelles perspectives sur votre évolution.",
-general:"Conseils généraux",
-generalDesc:"Explorez les questions qui vous préoccupent.",
-simpleRitual:"Un rituel simple",
-howTitle:"Comment fonctionne Lunara",
-step1:"Posez votre question",
-step1Desc:"Partagez ce qui vous préoccupe.",
-step2:"Découvrez vos cartes",
-step2Desc:"Explorez un tirage de tarot personnalisé.",
-step3:"Recevez votre lecture",
-step3Desc:"Découvrez des interprétations et de nouvelles perspectives.",
-personalReading:"Votre lecture personnalisée",
-beginTitle:"Commencez votre voyage",
-offerDescription:"Un tirage personnalisé de sept cartes, conçu autour de vos questions.",
-beginButton:"Commencer mon tirage",
-footerText:"L'art de se connaître"
+fr: {
+
+navReadings: "Tirages",
+navHow: "Le Rituel",
+navBegin: "Commencer",
+
+invitationEyebrow: "Au-delà de l'ordinaire",
+invitationTitle: "Chaque question raconte <em>une histoire</em>",
+invitationDescription: "Certaines questions méritent plus qu'une simple réponse. Entrez dans un univers de symboles, d'intuition et de réflexion. Laissez les cartes vous offrir de nouvelles perspectives.",
+explore: "Explorer votre voie",
+
+pathsEyebrow: "Quatre voies. Une infinité de possibilités.",
+pathsTitle: "Que recherche <em>votre cœur?</em>",
+pathsDescription: "Choisissez la voie qui correspond à votre question.",
+
+loveTitle: "Amour et relations",
+loveDesc: "Explorez les liens affectifs et les relations qui façonnent votre parcours.",
+
+careerTitle: "Carrière et vocation",
+careerDesc: "Découvrez de nouvelles perspectives sur vos ambitions et votre avenir.",
+
+growthTitle: "Développement personnel",
+growthDesc: "Explorez votre transformation, votre force intérieure et votre sagesse.",
+
+generalTitle: "Conseils généraux",
+generalDesc: "Lorsque le chemin est incertain, découvrez les perspectives que les cartes peuvent offrir.",
+
+enterPath: "Explorer cette voie →",
+
+ritualEyebrow: "L'expérience Lunara",
+ritualTitle: "Un rituel de <em>découverte</em>",
+ritualDescription: "Trois étapes simples. Une expérience profondément personnelle.",
+
+step1Title: "I. La Question",
+step1Desc: "Partagez vos préoccupations et choisissez le thème de votre tirage.",
+
+step2Title: "II. Les Cartes",
+step2Desc: "Découvrez sept cartes de tarot, chacune porteuse de symboles et de significations.",
+
+step3Title: "III. La Révélation",
+step3Desc: "Recevez une interprétation inspirée de vos cartes et de votre question.",
+
+oracleEyebrow: "Votre voyage commence ici",
+oracleTitle: "L'Oracle vous attend",
+oracleSubtitle: "Sept cartes. Une question. Un voyage de découverte.",
+beginButton: "Commencer mon tirage",
+oracleNote: "Une expérience de tarot personnalisée par intelligence artificielle.",
+previewNote: "Aperçu seulement — les paiements sont désactivés.",
+
+footerTagline: "L'art de se connaître",
+disclaimer: "Lunara propose des interprétations de tarot générées par intelligence artificielle à des fins de divertissement et de réflexion personnelle. Les tirages ne garantissent pas de prédire l'avenir.",
+
+comingSoon: "L'expérience interactive de tarot arrive bientôt."
+
 },
 
-es:{
-navReadings:"Lecturas",
-navHow:"Cómo funciona",
-navExperience:"Experiencia",
-navBegin:"Comenzar",
-introEyebrow:"Un viaje extraordinario",
-introTitle:"El arte de <em>conocerte</em>",
-introDescription:"Cada pregunta cuenta una historia. Descubre una experiencia de tarot personalizada que invita a la reflexión y al autoconocimiento.",
-explore:"Explorar mi lectura",
-choosePath:"Elige tu camino",
-whatBrings:"¿Qué te trae aquí?",
-readingIntro:"Cada viaje comienza con una pregunta. Elige el área de tu vida que deseas explorar.",
-love:"Amor y relaciones",
-loveDesc:"Explora tus conexiones emocionales y asuntos del corazón.",
-career:"Carrera y propósito",
-careerDesc:"Reflexiona sobre tus oportunidades y aspiraciones.",
-growth:"Crecimiento personal",
-growthDesc:"Descubre nuevas perspectivas sobre tu transformación.",
-general:"Orientación general",
-generalDesc:"Explora las preguntas que tienes en mente.",
-simpleRitual:"Un ritual sencillo",
-howTitle:"Cómo funciona Lunara",
-step1:"Comparte tu pregunta",
-step1Desc:"Cuéntanos qué tienes en mente.",
-step2:"Descubre tus cartas",
-step2Desc:"Explora una tirada de tarot personalizada.",
-step3:"Recibe tu lectura",
-step3Desc:"Descubre interpretaciones y nuevas perspectivas.",
-personalReading:"Tu lectura personalizada",
-beginTitle:"Comienza tu viaje",
-offerDescription:"Una lectura personalizada de siete cartas, creada alrededor de tus preguntas.",
-beginButton:"Comenzar mi lectura",
-footerText:"El arte de conocerte"
+es: {
+
+navReadings: "Lecturas",
+navHow: "El Ritual",
+navBegin: "Comenzar",
+
+invitationEyebrow: "Más allá de lo ordinario",
+invitationTitle: "Cada pregunta guarda <em>una historia</em>",
+invitationDescription: "Algunas preguntas merecen más que una simple respuesta. Entra en un mundo de simbolismo, intuición y reflexión. Deja que las cartas iluminen nuevas perspectivas.",
+explore: "Explora tu camino",
+
+pathsEyebrow: "Cuatro caminos. Infinitas posibilidades.",
+pathsTitle: "¿Qué busca <em>tu corazón?</em>",
+pathsDescription: "Elige el camino que mejor represente tu pregunta.",
+
+loveTitle: "Amor y relaciones",
+loveDesc: "Explora los vínculos emocionales y las relaciones que forman parte de tu vida.",
+
+careerTitle: "Carrera y propósito",
+careerDesc: "Descubre nuevas perspectivas sobre tus ambiciones y oportunidades.",
+
+growthTitle: "Crecimiento personal",
+growthDesc: "Explora tu transformación, fortaleza interior y sabiduría.",
+
+generalTitle: "Orientación general",
+generalDesc: "Cuando el camino es incierto, descubre las perspectivas que pueden ofrecer las cartas.",
+
+enterPath: "Explorar este camino →",
+
+ritualEyebrow: "La experiencia Lunara",
+ritualTitle: "Un ritual de <em>descubrimiento</em>",
+ritualDescription: "Tres pasos sencillos. Una experiencia profundamente personal.",
+
+step1Title: "I. La Pregunta",
+step1Desc: "Comparte tus inquietudes y elige el enfoque de tu lectura.",
+
+step2Title: "II. Las Cartas",
+step2Desc: "Descubre siete cartas de tarot, cada una con su propio simbolismo.",
+
+step3Title: "III. La Revelación",
+step3Desc: "Recibe una interpretación inspirada en tus cartas y tu pregunta.",
+
+oracleEyebrow: "Tu viaje comienza aquí",
+oracleTitle: "El Oráculo te espera",
+oracleSubtitle: "Siete cartas. Una pregunta. Un viaje de descubrimiento.",
+beginButton: "Comenzar mi lectura",
+oracleNote: "Experiencia de tarot personalizada mediante inteligencia artificial.",
+previewNote: "Vista previa — los pagos están desactivados.",
+
+footerTagline: "El arte de conocerte",
+disclaimer: "Lunara ofrece interpretaciones de tarot generadas por inteligencia artificial para entretenimiento y reflexión personal. Las lecturas no garantizan predicciones del futuro.",
+
+comingSoon: "La experiencia interactiva de tarot estará disponible pronto."
+
 }
 
 };
 
-function setLanguage(lang){
+/* =====================================
+   LANGUAGE SWITCHING
+===================================== */
 
-const selected=translations[lang] || translations.en;
+let currentLanguage = "en";
 
-document.documentElement.lang=lang;
+function setLanguage(lang) {
 
-document.querySelectorAll("[data-i18n]").forEach(element=>{
+  if (!translations[lang]) lang = "en";
 
-const key=element.dataset.i18n;
+  currentLanguage = lang;
 
-if(selected[key]!==undefined){
+  const dictionary = translations[lang];
 
-if(key==="introTitle"){
-element.innerHTML=selected[key];
-}else{
-element.textContent=selected[key];
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll("[data-i18n]").forEach(element => {
+
+    const key = element.dataset.i18n;
+
+    if (dictionary[key] === undefined) return;
+
+    if (["invitationTitle", "pathsTitle", "ritualTitle"].includes(key)) {
+      element.innerHTML = dictionary[key];
+    } else {
+      element.textContent = dictionary[key];
+    }
+
+  });
+
+  document.querySelectorAll("[data-lang]").forEach(button => {
+
+    button.classList.toggle(
+      "active",
+      button.dataset.lang === lang
+    );
+
+    button.setAttribute(
+      "aria-pressed",
+      String(button.dataset.lang === lang)
+    );
+
+  });
+
+  try {
+    localStorage.setItem("lunara-language", lang);
+  } catch (error) {
+    // Language selection still works without storage.
+  }
+
 }
 
+document.querySelectorAll("[data-lang]").forEach(button => {
+
+  button.addEventListener("click", () => {
+    setLanguage(button.dataset.lang);
+  });
+
+});
+
+let savedLanguage = "en";
+
+try {
+  savedLanguage = localStorage.getItem("lunara-language") || "en";
+} catch (error) {
+  // Use English if browser storage is unavailable.
 }
 
-});
+setLanguage(savedLanguage);
 
-document.querySelectorAll("[data-lang]").forEach(button=>{
-button.classList.toggle("active",button.dataset.lang===lang);
-});
+/* =====================================
+   SCROLL REVEAL
+===================================== */
 
-localStorage.setItem("lunara-language",lang);
+const revealElements = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+
+  const observer = new IntersectionObserver(entries => {
+
+    entries.forEach(entry => {
+
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+
+    });
+
+  }, {
+    threshold: 0.08
+  });
+
+  revealElements.forEach(element => observer.observe(element));
+
+} else {
+
+  revealElements.forEach(element => {
+    element.classList.add("visible");
+  });
 
 }
 
-document.querySelectorAll("[data-lang]").forEach(button=>{
+/* =====================================
+   READING SELECTION
+===================================== */
 
-button.addEventListener("click",()=>{
-setLanguage(button.dataset.lang);
-});
+let selectedReading = null;
 
-});
+document.querySelectorAll(".path-card").forEach(card => {
 
-const savedLanguage=localStorage.getItem("lunara-language");
+  card.setAttribute("aria-pressed", "false");
 
-setLanguage(savedLanguage || "en");
+  card.addEventListener("click", () => {
 
-/* READING SELECTION - PREVIEW */
+    selectedReading = card.dataset.reading;
 
-document.querySelectorAll(".reading-card").forEach(card=>{
+    document.querySelectorAll(".path-card").forEach(item => {
+      item.classList.remove("selected");
+      item.setAttribute("aria-pressed", "false");
+    });
 
-const select=()=>{
-card.scrollIntoView({behavior:"smooth",block:"center"});
+    card.classList.add("selected");
+    card.setAttribute("aria-pressed", "true");
 
-document.querySelectorAll(".reading-card").forEach(c=>{
-c.style.borderColor="";
-});
+    document.getElementById("oracle").scrollIntoView({
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth"
+    });
 
-card.style.borderColor="#f5dfae";
-
-};
-
-card.addEventListener("click",select);
-
-card.addEventListener("keydown",event=>{
-if(event.key==="Enter" || event.key===" "){
-event.preventDefault();
-select();
-}
-});
+  });
 
 });
 
-/* PAYMENT DISABLED DURING DEVELOPMENT */
+/* =====================================
+   PREVIEW MODE — NO PAYMENTS
+===================================== */
 
-document.getElementById("startReading").addEventListener("click",()=>{
+document.getElementById("beginReading").addEventListener("click", () => {
 
-alert(
-"LUNARA is currently in development. The interactive tarot experience is coming soon!"
-);
+  alert(translations[currentLanguage].comingSoon);
 
 });
 
