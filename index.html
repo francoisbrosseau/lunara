@@ -1545,6 +1545,79 @@ body.ritual-open { overflow: hidden; }
 @media(prefers-reduced-motion:reduce) { .ritual-card { animation:none!important; transition:none!important; } }
 
 
+/* LUNARA — PHASE III: SEVEN-CARD DRAW ALIGNMENT FIX
+   Scoped to the drawing spread; Revelation layout is unchanged. */
+.ritual-deck {
+  gap: 12px;
+  align-items: start;
+}
+.ritual-deck .ritual-card {
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  min-height: 0;
+  padding: 0;
+  gap: 7px;
+  justify-content: flex-start;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  overflow: visible;
+}
+.ritual-deck .ritual-card.revealed {
+  padding: 0;
+  background: transparent;
+  overflow: visible;
+  border: 0;
+  box-shadow: none;
+}
+.ritual-deck .ritual-card .card-face {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 310 / 944;
+  height: auto;
+  flex: none;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid rgba(201,167,106,.65);
+  background: #05070d;
+  box-shadow: 0 12px 26px rgba(0,0,0,.35);
+}
+.ritual-deck .ritual-card.revealed .card-face {
+  border-color: transparent;
+  background: transparent;
+}
+.ritual-deck .ritual-card .card-face img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.ritual-deck .ritual-card .card-caption,
+.ritual-deck .ritual-card.revealed .card-caption {
+  display: block;
+  padding: 0 2px;
+  width: 100%;
+  text-align: center;
+  line-height: 1.5;
+}
+.ritual-deck .ritual-card.current .card-face {
+  border-color: #fff0c8;
+  box-shadow: 0 0 22px rgba(201,167,106,.4);
+}
+.ritual-deck .ritual-card:not(:disabled):hover {
+  transform: translateY(-6px);
+}
+@media (max-width: 800px) {
+  .ritual-deck { gap: 14px; }
+  .ritual-deck .ritual-card { max-height: none; }
+}
+@media (max-width: 520px) {
+  .ritual-deck { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; }
+}
+
 /* LUNARA — MAJOR ARCANA ARTWORK INTEGRATION */
 .ritual-card.revealed { padding:0; background:#05070d; overflow:hidden; }
 .ritual-card .card-face { display:flex; align-items:center; justify-content:center; width:100%; flex:1; min-height:0; }
