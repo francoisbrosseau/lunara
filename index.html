@@ -1544,6 +1544,17 @@ body.ritual-open { overflow: hidden; }
 @media(max-width:520px) { .ritual-overlay { padding:16px 10px; } .ritual-stage { padding:38px 2px; } .ritual-deck { gap:8px; } .ritual-card .card-caption { font-size:.58rem; } .ritual-results { grid-template-columns:1fr; } .ritual-summary { padding:20px; } }
 @media(prefers-reduced-motion:reduce) { .ritual-card { animation:none!important; transition:none!important; } }
 
+
+/* LUNARA — MAJOR ARCANA ARTWORK INTEGRATION */
+.ritual-card.revealed { padding:0; background:#05070d; overflow:hidden; }
+.ritual-card .card-face { display:flex; align-items:center; justify-content:center; width:100%; flex:1; min-height:0; }
+.ritual-card .card-face img { display:block; width:100%; height:100%; object-fit:contain; }
+.ritual-card.revealed .card-caption { padding:5px 3px 8px; }
+.ritual-result { display:flex; align-items:center; gap:20px; }
+.ritual-result-art { display:block; width:clamp(90px,35%,160px); height:auto; flex:none; object-fit:contain; }
+.ritual-result-body { min-width:0; }
+@media(max-width:520px) { .ritual-result { align-items:flex-start; gap:13px; padding:12px; } .ritual-result-art { width:35%; } .ritual-result h3 { font-size:1.5rem; } }
+
 </style>
 </head>
 
@@ -2266,6 +2277,8 @@ const ritualDeck = [
  ['Judgement','Le Jugement','El Juicio','♧','A fresh perspective can help you answer an old call.','Un regard neuf peut vous aider à répondre à un ancien appel.','Una mirada nueva puede ayudarte a responder a una vieja llamada.'],
  ['The World','Le Monde','El Mundo','◎','Completion invites gratitude and a new horizon.','L’achèvement invite à la gratitude et à un nouvel horizon.','La culminación invita a agradecer y mirar hacia un nuevo horizonte.']
 ];
+const ritualArtFiles = ["images/tarot/major-00-the-fool.png", "images/tarot/major-01-the-magician.png", "images/tarot/major-02-the-high-priestess.png", "images/tarot/major-03-the-empress.png", "images/tarot/major-04-the-emperor.png", "images/tarot/major-05-the-hierophant.png", "images/tarot/major-06-the-lovers.png", "images/tarot/major-07-the-chariot.png", "images/tarot/major-08-strength.png", "images/tarot/major-09-the-hermit.png", "images/tarot/major-10-wheel-of-fortune.png", "images/tarot/major-11-justice.png", "images/tarot/major-12-the-hanged-man.png", "images/tarot/major-13-death.png", "images/tarot/major-14-temperance.png", "images/tarot/major-15-the-devil.png", "images/tarot/major-16-the-tower.png", "images/tarot/major-17-the-star.png", "images/tarot/major-18-the-moon.png", "images/tarot/major-19-the-sun.png", "images/tarot/major-20-judgement.png", "images/tarot/major-21-the-world.png"];
+const ritualArt = card => ritualArtFiles[ritualDeck.indexOf(card)];
 const ritualOverlay = document.getElementById('ritualOverlay');
 const ritualContent = document.getElementById('ritualContent');
 const ritualClose = document.getElementById('ritualClose');
@@ -2310,13 +2323,13 @@ function ritualRender() {
     });
   } else if (ritualStep==='cards') {
     const idx=ritualLangIndex();
-    ritualContent.innerHTML=`<section class="ritual-stage"><p class="ritual-kicker">${t.drawKicker}</p><h2 class="ritual-title">${t.drawTitle}</h2><p class="ritual-copy">${t.drawCopy}</p><p class="ritual-progress">${t.progress}: ${ritualRevealed} / 7</p><div class="ritual-deck">${ritualDraw.map((card,i)=>{const shown=i<ritualRevealed;return `<button type="button" class="ritual-card ${shown?'revealed':''} ${i===ritualRevealed?'current':''}" data-card="${i}" ${i===ritualRevealed?'':'disabled'} aria-label="${shown?ritualEscape(card[idx]):t.reveal+' '+(i+1)}"><span class="card-glyph">${shown?card[3]:'☾'}</span><span class="card-caption">${shown?ritualEscape(card[idx]):'✦ '+(i+1)+' ✦'}</span></button>`;}).join('')}</div><div class="ritual-insight">${ritualRevealed?`<h3>${ritualEscape(t.positions[ritualRevealed-1])} · ${ritualEscape(ritualDraw[ritualRevealed-1][idx])}</h3><p>${ritualEscape(ritualDraw[ritualRevealed-1][4+idx])}</p>`:`<p>${t.wait}</p>`}</div><div class="ritual-actions"><button type="button" class="ritual-back" id="ritualBack">← ${t.back}</button>${ritualRevealed===7?`<button type="button" class="btn" id="ritualResults">${t.next} ✦</button>`:''}</div><p class="ritual-notice">${t.demo}</p></section>`;
+    ritualContent.innerHTML=`<section class="ritual-stage"><p class="ritual-kicker">${t.drawKicker}</p><h2 class="ritual-title">${t.drawTitle}</h2><p class="ritual-copy">${t.drawCopy}</p><p class="ritual-progress">${t.progress}: ${ritualRevealed} / 7</p><div class="ritual-deck">${ritualDraw.map((card,i)=>{const shown=i<ritualRevealed;return `<button type="button" class="ritual-card ${shown?'revealed':''} ${i===ritualRevealed?'current':''}" data-card="${i}" ${i===ritualRevealed?'':'disabled'} aria-label="${shown?ritualEscape(card[idx]):t.reveal+' '+(i+1)}"><span class="card-face">${shown?`<img src="${ritualArt(card)}" alt="${ritualEscape(card[idx])}" loading="lazy">`:`<span class="card-glyph">☾</span>`}</span><span class="card-caption">${shown?ritualEscape(card[idx]):'✦ '+(i+1)+' ✦'}</span></button>`;}).join('')}</div><div class="ritual-insight">${ritualRevealed?`<h3>${ritualEscape(t.positions[ritualRevealed-1])} · ${ritualEscape(ritualDraw[ritualRevealed-1][idx])}</h3><p>${ritualEscape(ritualDraw[ritualRevealed-1][4+idx])}</p>`:`<p>${t.wait}</p>`}</div><div class="ritual-actions"><button type="button" class="ritual-back" id="ritualBack">← ${t.back}</button>${ritualRevealed===7?`<button type="button" class="btn" id="ritualResults">${t.next} ✦</button>`:''}</div><p class="ritual-notice">${t.demo}</p></section>`;
     ritualContent.querySelectorAll('[data-card]').forEach(button=>button.addEventListener('click',()=>{if(Number(button.dataset.card)===ritualRevealed){ritualRevealed++;ritualRender();}}));
     document.getElementById('ritualBack').addEventListener('click',()=>{ritualStep='question';ritualRender();});
     const next=document.getElementById('ritualResults');if(next)next.addEventListener('click',()=>{ritualStep='results';ritualRender();});
   } else {
     const idx=ritualLangIndex();
-    const cardsHtml=ritualDraw.map((card,i)=>`<article class="ritual-result"><small>${i+1} · ${ritualEscape(t.positions[i])}</small><h3>${ritualEscape(card[idx])}</h3><p>${ritualEscape(card[4+idx])} ${ritualEscape(t.positionHints[i])}</p></article>`).join('');
+    const cardsHtml=ritualDraw.map((card,i)=>`<article class="ritual-result"><img class="ritual-result-art" src="${ritualArt(card)}" alt="${ritualEscape(card[idx])}" loading="lazy"><div class="ritual-result-body"><small>${i+1} · ${ritualEscape(t.positions[i])}</small><h3>${ritualEscape(card[idx])}</h3><p>${ritualEscape(card[4+idx])} ${ritualEscape(t.positionHints[i])}</p></div></article>`).join('');
     const summary=`${t.summaryLead} ${ritualDraw[0][idx]}, ${ritualDraw[3][idx]} ${t.summaryBridge} ${ritualDraw[6][idx]} ${t.summaryEnd}`;
     ritualContent.innerHTML=`<section class="ritual-stage"><p class="ritual-kicker">${t.resultKicker}</p><h2 class="ritual-title">${t.resultTitle}</h2><p class="ritual-copy">${t.resultCopy}</p><div class="ritual-summary"><h3>${t.yourQuestion}</h3><p>${ritualEscape(ritualQuestion)}</p><p><strong>${t.yourPath}:</strong> ${ritualEscape(t.paths[ritualPath])}</p></div><div class="ritual-results">${cardsHtml}</div><div class="ritual-summary"><h3>${t.reflection}</h3><p>${ritualEscape(summary)}</p></div><div class="ritual-actions"><button class="ritual-back" id="ritualAgain" type="button">↺ ${t.again}</button><button class="btn" id="ritualSave" type="button">${t.save} ↓</button></div><p class="ritual-notice">${t.demo}</p></section>`;
     document.getElementById('ritualAgain').addEventListener('click',()=>{ritualStep='question';ritualQuestion='';ritualRender();});
