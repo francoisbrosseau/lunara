@@ -1498,6 +1498,52 @@ h1, h2, h3, .section-title { font-family: var(--display-font); }
 .footer-disclaimer { max-width: 750px; }
 @media(max-width:700px) { .section-title { font-size: clamp(3rem, 11vw, 4.3rem); } .sanctuary-heading { font-size: clamp(2.7rem, 10vw, 4rem); } .eyebrow { letter-spacing: .12em; } }
 
+
+/* LUNARA — INTERACTIVE SANCTUARY (isolated from existing artwork) */
+body.ritual-open { overflow: hidden; }
+.ritual-overlay[hidden] { display: none !important; }
+.ritual-overlay { position:fixed; inset:0; z-index:3000; overflow-y:auto; padding:36px 16px; background:radial-gradient(ellipse at 50% 0%,#1a2840 0%,#080d1b 52%,#03050b 100%); color:var(--ivory); }
+.ritual-overlay::before { content:""; position:fixed; inset:0; pointer-events:none; opacity:.26; background-image:radial-gradient(1px 1px at 10% 20%,#fff,transparent),radial-gradient(1px 1px at 70% 40%,#d5b77b,transparent),radial-gradient(1px 1px at 42% 76%,#fff,transparent); background-size:260px 260px; }
+.ritual-shell { position:relative; width:min(1080px,100%); margin:0 auto; }
+.ritual-topbar { display:flex; align-items:center; justify-content:space-between; gap:16px; padding-bottom:22px; border-bottom:1px solid rgba(201,167,106,.3); }
+.ritual-brand { font-family:'Cinzel',serif; color:var(--gold-light); letter-spacing:.3em; font-size:1.2rem; }
+.ritual-close,.ritual-back { background:transparent; color:var(--gold-light); border:1px solid rgba(201,167,106,.45); padding:10px 16px; letter-spacing:.1em; }
+.ritual-stage { padding:56px 12px 80px; text-align:center; }
+.ritual-kicker { font-family:'Cinzel',serif; color:var(--gold); font-size:.73rem; letter-spacing:.25em; text-transform:uppercase; margin-bottom:22px; }
+.ritual-title { font-family:'Cormorant Garamond',serif; font-size:clamp(2.8rem,6vw,5.3rem); font-weight:500; line-height:1.08; margin:0 auto 22px; max-width:900px; }
+.ritual-copy { color:#c6c0b9; max-width:690px; margin:0 auto 28px; }
+.ritual-field { display:block; text-align:left; max-width:700px; margin:28px auto 10px; color:var(--gold-light); font-size:.85rem; letter-spacing:.06em; }
+.ritual-input { display:block; width:100%; margin-top:12px; min-height:130px; resize:vertical; padding:18px 20px; border:1px solid rgba(201,167,106,.55); border-radius:2px; background:rgba(6,12,24,.85); color:var(--ivory); font:1rem/1.7 'DM Sans',sans-serif; }
+.ritual-input:focus-visible,.ritual-close:focus-visible,.ritual-back:focus-visible,.ritual-card:focus-visible { outline:2px solid var(--gold-light); outline-offset:4px; }
+.ritual-meta { max-width:700px; margin:8px auto 30px; display:flex; justify-content:space-between; gap:15px; color:#bcb4a8; font-size:.78rem; }
+.ritual-error { color:#ffd4b5; min-height:25px; }
+.ritual-actions { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-top:28px; }
+.ritual-progress { font-family:'Cinzel',serif; color:var(--gold-light); letter-spacing:.12em; margin-bottom:24px; }
+.ritual-deck { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:13px; margin:35px auto; }
+.ritual-card { position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; width:100%; aspect-ratio: .64; min-width:0; padding:10px 5px; border:1px solid #c9a76a; background:radial-gradient(circle at center,#203452,#070c1a 75%); color:var(--gold-light); box-shadow:inset 0 0 0 5px #091222,inset 0 0 0 6px rgba(201,167,106,.4),0 12px 35px rgba(0,0,0,.35); cursor:pointer; transition:transform .35s,border-color .35s,background .35s; }
+.ritual-card:not(:disabled):hover { transform:translateY(-8px); border-color:#ffe4aa; }
+.ritual-card:disabled { cursor:default; }
+.ritual-card .card-glyph { font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,4vw,4rem); line-height:1; }
+.ritual-card .card-caption { font-family:'Cinzel',serif; font-size:clamp(.55rem,.8vw,.75rem); letter-spacing:.06em; line-height:1.4; }
+.ritual-card.revealed { background:radial-gradient(circle at 50% 35%,#3d3650,#14243d 55%,#080d19); animation:lunaraTurn .45s ease-out; }
+@keyframes lunaraTurn { from { transform:rotateY(75deg); opacity:.4; } to { transform:rotateY(0); opacity:1; } }
+.ritual-card.current { border-color:#fff0c8; box-shadow:0 0 24px rgba(201,167,106,.35),inset 0 0 0 5px #091222; }
+.ritual-insight { border-top:1px solid rgba(201,167,106,.3); padding-top:28px; margin:30px auto 0; max-width:760px; min-height:120px; }
+.ritual-insight h3 { color:var(--gold-light); font-size:2rem; margin-bottom:8px; }
+.ritual-insight p { color:#d0c9bf; }
+.ritual-results { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:15px; text-align:left; margin:35px auto; }
+.ritual-result { border:1px solid rgba(201,167,106,.32); background:rgba(11,18,32,.78); padding:22px; }
+.ritual-result small { color:var(--gold); text-transform:uppercase; letter-spacing:.12em; }
+.ritual-result h3 { font-size:1.8rem; margin:8px 0; color:var(--gold-light); }
+.ritual-result p { color:#cfc7bc; font-size:.94rem; }
+.ritual-summary { border:1px solid rgba(201,167,106,.55); padding:30px; margin-top:22px; text-align:left; background:rgba(8,13,25,.85); }
+.ritual-summary h3 { font-size:2rem; color:var(--gold-light); }
+.ritual-summary p { margin-top:12px; color:#d0c9bf; }
+.ritual-notice { margin:24px auto 0; max-width:780px; font-size:.8rem; color:#bdb3a4; }
+@media(max-width:800px) { .ritual-deck { grid-template-columns:repeat(4,minmax(0,1fr)); max-width:620px; } .ritual-card { max-height:205px; } }
+@media(max-width:520px) { .ritual-overlay { padding:16px 10px; } .ritual-stage { padding:38px 2px; } .ritual-deck { gap:8px; } .ritual-card .card-caption { font-size:.58rem; } .ritual-results { grid-template-columns:1fr; } .ritual-summary { padding:20px; } }
+@media(prefers-reduced-motion:reduce) { .ritual-card { animation:none!important; transition:none!important; } }
+
 </style>
 </head>
 
@@ -1761,6 +1807,15 @@ Receive a thoughtful interpretation inspired by your cards and personal question
 </div>
 
 </main>
+
+<!-- INTERACTIVE RITUAL — client-side preview, no payments or data transmission -->
+<div id="ritualOverlay" class="ritual-overlay" role="dialog" aria-modal="true" aria-label="Lunara interactive tarot ritual" hidden>
+  <div class="ritual-shell">
+    <div class="ritual-topbar"><span class="ritual-brand">☾ LUNARA</span><button class="ritual-close" id="ritualClose" type="button">✕ <span id="ritualCloseText">Close</span></button></div>
+    <div id="ritualContent" aria-live="polite"></div>
+  </div>
+</div>
+
 
 <!-- =====================================
      FOOTER
@@ -2110,11 +2165,7 @@ document.querySelectorAll(".path-card").forEach(card => {
    PREVIEW MODE — NO PAYMENTS
 ===================================== */
 
-document.getElementById("beginReading").addEventListener("click", () => {
-
-  alert(translations[currentLanguage].comingSoon);
-
-});
+// Interactive ritual handler is installed below.
    /* ==========================================
    LUNARA — CURRENCY CONVERSION
    Base price: $9.99 USD
@@ -2155,6 +2206,143 @@ lunaraCurrencySelect.addEventListener("change", updateLunaraPrice);
 
 // Set the correct price when the page loads.
 updateLunaraPrice();
+
+
+/* =====================================
+   INTERACTIVE RITUAL — LOCAL DEMO
+   No network calls, payment processing, or AI claims.
+===================================== */
+const ritualI18n = {
+  en: {
+    close:'Close', back:'Back', introKicker:'I · THE QUESTION', introTitle:'Every revelation begins with a question.', introCopy:'Choose what you wish to explore. Your words stay in this browser during this preview.', label:'Your question', placeholder:'What would you like to understand more deeply?', count:'characters', continue:'Prepare the Seven Cards', error:'Write at least 10 characters to begin.', path:'Your chosen path',
+    drawKicker:'II · THE CARDS', drawTitle:'The cards await your touch.', drawCopy:'Reveal the seven cards, one by one. Each position offers a different lens through which to reflect.', progress:'Cards revealed', reveal:'Reveal card', wait:'Reveal the glowing card next', next:'See Your Revelation',
+    resultKicker:'III · THE REVELATION', resultTitle:'A story written in symbols.', resultCopy:'Your seven cards form a reflective reading. Consider what resonates, and leave behind what does not.', yourQuestion:'Your question', yourPath:'Your path', reflection:'Threads of reflection', save:'Save Reading as Text', again:'Begin Another Reading', demo:'Interactive preview: symbolic interpretations are generated locally from a curated deck. No AI personalization or payment is active.', saved:'Your reading has been saved.',
+    positions:['The Present','The Hidden Influence','The Past','The Turning Point','Your Strength','The Invitation','The Way Forward'],
+    positionHints:['What is asking for attention now.','An influence you may not yet recognize.','What still echoes from behind you.','Where change may become possible.','What you can draw upon.','What deserves your curiosity.','A perspective to carry onward.'],
+    summaryLead:'Rather than predicting an outcome, this spread invites you to notice how', summaryBridge:'and', summaryEnd:'might speak to your question. Which of these themes feels most alive for you right now?',
+    paths:{love:'Love & Relationships',career:'Career & Purpose',growth:'Personal Growth',general:'General Guidance'}
+  },
+  fr: {
+    close:'Fermer', back:'Retour', introKicker:'I · LA QUESTION', introTitle:'Toute révélation commence par une question.', introCopy:'Choisissez ce que vous souhaitez explorer. Vos mots restent dans ce navigateur pendant cet aperçu.', label:'Votre question', placeholder:'Qu’aimeriez-vous mieux comprendre?', count:'caractères', continue:'Préparer les sept cartes', error:'Écrivez au moins 10 caractères pour commencer.', path:'Votre voie',
+    drawKicker:'II · LES CARTES', drawTitle:'Les cartes attendent votre geste.', drawCopy:'Révélez les sept cartes, une à une. Chaque position propose un nouvel angle de réflexion.', progress:'Cartes révélées', reveal:'Révéler la carte', wait:'Révélez ensuite la carte lumineuse', next:'Découvrir votre révélation',
+    resultKicker:'III · LA RÉVÉLATION', resultTitle:'Une histoire racontée par les symboles.', resultCopy:'Ces sept cartes composent une lecture propice à la réflexion. Gardez ce qui résonne en vous.', yourQuestion:'Votre question', yourPath:'Votre voie', reflection:'Pistes de réflexion', save:'Enregistrer en texte', again:'Commencer un autre tirage', demo:'Aperçu interactif : les interprétations symboliques proviennent d’un jeu local. Aucune personnalisation par IA ni aucun paiement ne sont actifs.', saved:'Votre tirage a été enregistré.',
+    positions:['Le présent','L’influence cachée','Le passé','Le tournant','Votre force','L’invitation','La voie à suivre'],
+    positionHints:['Ce qui demande votre attention.','Une influence encore discrète.','Ce qui résonne du passé.','Là où le changement devient possible.','Une ressource sur laquelle compter.','Ce qui mérite votre curiosité.','Une perspective à emporter.'],
+    summaryLead:'Sans prédire l’avenir, ce tirage vous invite à observer comment', summaryBridge:'et', summaryEnd:'peuvent éclairer votre question. Quel thème vous interpelle le plus aujourd’hui?',
+    paths:{love:'Amour et relations',career:'Carrière et vocation',growth:'Développement personnel',general:'Conseils généraux'}
+  },
+  es: {
+    close:'Cerrar', back:'Volver', introKicker:'I · LA PREGUNTA', introTitle:'Toda revelación comienza con una pregunta.', introCopy:'Elige lo que deseas explorar. Tus palabras permanecen en este navegador durante la vista previa.', label:'Tu pregunta', placeholder:'¿Qué te gustaría comprender mejor?', count:'caracteres', continue:'Preparar las siete cartas', error:'Escribe al menos 10 caracteres para comenzar.', path:'Tu camino',
+    drawKicker:'II · LAS CARTAS', drawTitle:'Las cartas esperan tu gesto.', drawCopy:'Revela las siete cartas, una a una. Cada posición ofrece una nueva perspectiva para reflexionar.', progress:'Cartas reveladas', reveal:'Revelar carta', wait:'Revela la siguiente carta iluminada', next:'Descubrir tu revelación',
+    resultKicker:'III · LA REVELACIÓN', resultTitle:'Una historia contada en símbolos.', resultCopy:'Estas siete cartas forman una lectura para reflexionar. Conserva aquello que resuene contigo.', yourQuestion:'Tu pregunta', yourPath:'Tu camino', reflection:'Hilos de reflexión', save:'Guardar lectura en texto', again:'Comenzar otra lectura', demo:'Vista previa interactiva: las interpretaciones simbólicas proceden de una baraja local. No hay personalización con IA ni pagos activos.', saved:'Tu lectura se ha guardado.',
+    positions:['El presente','La influencia oculta','El pasado','El punto de cambio','Tu fortaleza','La invitación','El camino por delante'],
+    positionHints:['Lo que pide tu atención.','Una influencia aún discreta.','Lo que resuena del pasado.','Donde el cambio es posible.','Un recurso en el que apoyarte.','Lo que merece tu curiosidad.','Una perspectiva para llevar contigo.'],
+    summaryLead:'Sin predecir el futuro, esta tirada te invita a observar cómo', summaryBridge:'y', summaryEnd:'pueden iluminar tu pregunta. ¿Qué tema te llama más la atención ahora?',
+    paths:{love:'Amor y relaciones',career:'Carrera y propósito',growth:'Crecimiento personal',general:'Orientación general'}
+  }
+};
+// Each entry contains an original symbolic reflection in EN, FR and ES.
+const ritualDeck = [
+ ['The Fool','Le Mat','El Loco','✧','New beginnings invite curiosity rather than certainty.','Un nouveau départ invite à la curiosité plutôt qu’à la certitude.','Un nuevo comienzo invita a la curiosidad más que a la certeza.'],
+ ['The Magician','Le Bateleur','El Mago','✦','Your tools and attention can turn intention into action.','Vos ressources et votre attention peuvent transformer une intention en action.','Tus recursos y tu atención pueden convertir la intención en acción.'],
+ ['The High Priestess','La Papesse','La Sacerdotisa','☾','Listen to what quiet observation reveals beneath the surface.','Écoutez ce qu’une observation attentive révèle sous la surface.','Escucha lo que revela la observación silenciosa bajo la superficie.'],
+ ['The Empress','L’Impératrice','La Emperatriz','❀','Growth may need patience, care and room to unfold.','La croissance demande parfois patience, soin et espace.','El crecimiento puede necesitar paciencia, cuidado y espacio.'],
+ ['The Emperor','L’Empereur','El Emperador','♜','Healthy structure can make freedom feel more secure.','Une structure saine peut donner davantage de sécurité à la liberté.','Una estructura sana puede dar mayor seguridad a la libertad.'],
+ ['The Hierophant','Le Pape','El Sumo Sacerdote','✺','Examine which traditions still serve your values.','Interrogez les traditions qui servent encore vos valeurs.','Examina qué tradiciones siguen reflejando tus valores.'],
+ ['The Lovers','L’Amoureux','Los Enamorados','♡','Alignment grows when choices reflect what matters to you.','L’harmonie grandit lorsque vos choix reflètent l’essentiel.','La armonía crece cuando tus decisiones reflejan lo importante.'],
+ ['The Chariot','Le Chariot','El Carro','✵','Direction matters more than rushing toward a destination.','La direction compte davantage que la précipitation.','La dirección importa más que llegar deprisa.'],
+ ['Strength','La Force','La Fuerza','♌','Gentle courage can be stronger than force.','Un courage tranquille peut dépasser la force brute.','El valor sereno puede ser más fuerte que la imposición.'],
+ ['The Hermit','L’Hermite','El Ermitaño','☼','Solitude can illuminate what noise obscures.','La solitude peut éclairer ce que le bruit dissimule.','La soledad puede iluminar lo que el ruido oculta.'],
+ ['Wheel of Fortune','La Roue de Fortune','La Rueda de la Fortuna','◉','Cycles shift; consider what remains within your influence.','Les cycles changent; observez ce qui dépend encore de vous.','Los ciclos cambian; observa qué sigue estando en tus manos.'],
+ ['Justice','La Justice','La Justicia','⚖','Clarity begins with honesty and a balanced perspective.','La clarté commence par l’honnêteté et un regard équilibré.','La claridad empieza con honestidad y equilibrio.'],
+ ['The Hanged Man','Le Pendu','El Colgado','◇','A pause may reveal an entirely different angle.','Une pause peut révéler un angle entièrement nouveau.','Una pausa puede revelar un ángulo completamente distinto.'],
+ ['Death','L’Arcane sans nom','La Muerte','☽','An ending can create space for something new.','Une fin peut ouvrir un espace pour le renouveau.','Un final puede abrir espacio para algo nuevo.'],
+ ['Temperance','Tempérance','La Templanza','⚗','Balance is often a practice, not a fixed destination.','L’équilibre est souvent une pratique, pas une destination.','El equilibrio suele ser una práctica, no una meta fija.'],
+ ['The Devil','Le Diable','El Diablo','♢','Notice the habits or attachments that narrow your choices.','Observez les habitudes ou attachements qui limitent vos choix.','Observa los hábitos o apegos que limitan tus opciones.'],
+ ['The Tower','La Maison Dieu','La Torre','⚡','When assumptions fall away, new foundations become possible.','Quand les certitudes tombent, de nouvelles bases deviennent possibles.','Cuando caen las certezas, pueden surgir nuevas bases.'],
+ ['The Star','L’Étoile','La Estrella','✶','Hope can be a quiet commitment to keep going.','L’espoir peut être un engagement discret à poursuivre.','La esperanza puede ser un compromiso sereno de continuar.'],
+ ['The Moon','La Lune','La Luna','☽','Uncertainty asks for patience before conclusions.','L’incertitude demande de la patience avant de conclure.','La incertidumbre pide paciencia antes de sacar conclusiones.'],
+ ['The Sun','Le Soleil','El Sol','☀','Notice where warmth, openness and vitality already exist.','Remarquez la chaleur, l’ouverture et l’élan déjà présents.','Observa dónde ya existen calidez, apertura y vitalidad.'],
+ ['Judgement','Le Jugement','El Juicio','♧','A fresh perspective can help you answer an old call.','Un regard neuf peut vous aider à répondre à un ancien appel.','Una mirada nueva puede ayudarte a responder a una vieja llamada.'],
+ ['The World','Le Monde','El Mundo','◎','Completion invites gratitude and a new horizon.','L’achèvement invite à la gratitude et à un nouvel horizon.','La culminación invita a agradecer y mirar hacia un nuevo horizonte.']
+];
+const ritualOverlay = document.getElementById('ritualOverlay');
+const ritualContent = document.getElementById('ritualContent');
+const ritualClose = document.getElementById('ritualClose');
+let ritualStep = 'question';
+let ritualQuestion = '';
+let ritualPath = 'general';
+let ritualDraw = [];
+let ritualRevealed = 0;
+let ritualReturnFocus = null;
+const ritualT = () => ritualI18n[currentLanguage] || ritualI18n.en;
+const ritualLangIndex = () => ({en:0,fr:1,es:2})[currentLanguage] ?? 0;
+const ritualEscape = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function ritualOpen() {
+  ritualReturnFocus = document.activeElement;
+  ritualPath = selectedReading || 'general';
+  ritualStep = 'question';
+  ritualQuestion = '';
+  ritualOverlay.hidden = false;
+  document.body.classList.add('ritual-open');
+  ritualRender();
+  ritualClose.focus();
+}
+function ritualDismiss() {
+  ritualOverlay.hidden = true;
+  document.body.classList.remove('ritual-open');
+  if (ritualReturnFocus && ritualReturnFocus.focus) ritualReturnFocus.focus();
+}
+function ritualRender() {
+  const t=ritualT();
+  document.getElementById('ritualCloseText').textContent=t.close;
+  if (ritualStep==='question') {
+    ritualContent.innerHTML=`<section class="ritual-stage"><p class="ritual-kicker">${t.introKicker}</p><h2 class="ritual-title">${t.introTitle}</h2><p class="ritual-copy">${t.introCopy}</p><p class="ritual-kicker">${t.path}: ${ritualEscape(t.paths[ritualPath])}</p><form id="ritualQuestionForm"><label class="ritual-field" for="ritualQuestionInput">${t.label}<textarea id="ritualQuestionInput" class="ritual-input" maxlength="600" placeholder="${ritualEscape(t.placeholder)}" required>${ritualEscape(ritualQuestion)}</textarea></label><div class="ritual-meta"><span id="ritualCount">${ritualQuestion.length}/600 ${t.count}</span><span id="ritualError" class="ritual-error" role="status"></span></div><button class="btn" type="submit">${t.continue} ✦</button></form><p class="ritual-notice">${t.demo}</p></section>`;
+    const input=document.getElementById('ritualQuestionInput');
+    input.addEventListener('input',()=>{ritualQuestion=input.value;document.getElementById('ritualCount').textContent=`${input.value.length}/600 ${t.count}`;});
+    document.getElementById('ritualQuestionForm').addEventListener('submit',event=>{
+      event.preventDefault();ritualQuestion=input.value.trim();
+      if(ritualQuestion.length<10){document.getElementById('ritualError').textContent=t.error;input.focus();return;}
+      ritualDraw=[...ritualDeck];
+      // Fisher–Yates with browser cryptographic randomness where available.
+      for(let i=ritualDraw.length-1;i>0;i--){const r=new Uint32Array(1);if(window.crypto?.getRandomValues)window.crypto.getRandomValues(r);else r[0]=Math.floor(Math.random()*4294967296);const j=r[0]%(i+1);[ritualDraw[i],ritualDraw[j]]=[ritualDraw[j],ritualDraw[i]];}
+      ritualDraw=ritualDraw.slice(0,7);ritualRevealed=0;ritualStep='cards';ritualRender();
+    });
+  } else if (ritualStep==='cards') {
+    const idx=ritualLangIndex();
+    ritualContent.innerHTML=`<section class="ritual-stage"><p class="ritual-kicker">${t.drawKicker}</p><h2 class="ritual-title">${t.drawTitle}</h2><p class="ritual-copy">${t.drawCopy}</p><p class="ritual-progress">${t.progress}: ${ritualRevealed} / 7</p><div class="ritual-deck">${ritualDraw.map((card,i)=>{const shown=i<ritualRevealed;return `<button type="button" class="ritual-card ${shown?'revealed':''} ${i===ritualRevealed?'current':''}" data-card="${i}" ${i===ritualRevealed?'':'disabled'} aria-label="${shown?ritualEscape(card[idx]):t.reveal+' '+(i+1)}"><span class="card-glyph">${shown?card[3]:'☾'}</span><span class="card-caption">${shown?ritualEscape(card[idx]):'✦ '+(i+1)+' ✦'}</span></button>`;}).join('')}</div><div class="ritual-insight">${ritualRevealed?`<h3>${ritualEscape(t.positions[ritualRevealed-1])} · ${ritualEscape(ritualDraw[ritualRevealed-1][idx])}</h3><p>${ritualEscape(ritualDraw[ritualRevealed-1][4+idx])}</p>`:`<p>${t.wait}</p>`}</div><div class="ritual-actions"><button type="button" class="ritual-back" id="ritualBack">← ${t.back}</button>${ritualRevealed===7?`<button type="button" class="btn" id="ritualResults">${t.next} ✦</button>`:''}</div><p class="ritual-notice">${t.demo}</p></section>`;
+    ritualContent.querySelectorAll('[data-card]').forEach(button=>button.addEventListener('click',()=>{if(Number(button.dataset.card)===ritualRevealed){ritualRevealed++;ritualRender();}}));
+    document.getElementById('ritualBack').addEventListener('click',()=>{ritualStep='question';ritualRender();});
+    const next=document.getElementById('ritualResults');if(next)next.addEventListener('click',()=>{ritualStep='results';ritualRender();});
+  } else {
+    const idx=ritualLangIndex();
+    const cardsHtml=ritualDraw.map((card,i)=>`<article class="ritual-result"><small>${i+1} · ${ritualEscape(t.positions[i])}</small><h3>${ritualEscape(card[idx])}</h3><p>${ritualEscape(card[4+idx])} ${ritualEscape(t.positionHints[i])}</p></article>`).join('');
+    const summary=`${t.summaryLead} ${ritualDraw[0][idx]}, ${ritualDraw[3][idx]} ${t.summaryBridge} ${ritualDraw[6][idx]} ${t.summaryEnd}`;
+    ritualContent.innerHTML=`<section class="ritual-stage"><p class="ritual-kicker">${t.resultKicker}</p><h2 class="ritual-title">${t.resultTitle}</h2><p class="ritual-copy">${t.resultCopy}</p><div class="ritual-summary"><h3>${t.yourQuestion}</h3><p>${ritualEscape(ritualQuestion)}</p><p><strong>${t.yourPath}:</strong> ${ritualEscape(t.paths[ritualPath])}</p></div><div class="ritual-results">${cardsHtml}</div><div class="ritual-summary"><h3>${t.reflection}</h3><p>${ritualEscape(summary)}</p></div><div class="ritual-actions"><button class="ritual-back" id="ritualAgain" type="button">↺ ${t.again}</button><button class="btn" id="ritualSave" type="button">${t.save} ↓</button></div><p class="ritual-notice">${t.demo}</p></section>`;
+    document.getElementById('ritualAgain').addEventListener('click',()=>{ritualStep='question';ritualQuestion='';ritualRender();});
+    document.getElementById('ritualSave').addEventListener('click',()=>{
+      const lines=['LUNARA — '+t.resultTitle,'',t.yourPath+': '+t.paths[ritualPath],t.yourQuestion+': '+ritualQuestion,''];
+      ritualDraw.forEach((card,i)=>lines.push(`${i+1}. ${t.positions[i]} — ${card[idx]}`,card[4+idx]+' '+t.positionHints[i],''));
+      lines.push(t.reflection,summary,'',t.demo);
+      const blob=new Blob([lines.join('\n')],{type:'text/plain;charset=utf-8'});
+      const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='lunara-reading.txt';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+    });
+  }
+  ritualOverlay.scrollTop=0;
+}
+document.getElementById('beginReading').addEventListener('click',ritualOpen);
+ritualClose.addEventListener('click',ritualDismiss);
+ritualOverlay.addEventListener('keydown',event=>{
+  if(event.key==='Escape')ritualDismiss();
+  if(event.key==='Tab'){
+    const focusable=[...ritualOverlay.querySelectorAll('button:not(:disabled),textarea:not(:disabled),input:not(:disabled),select:not(:disabled)')].filter(el=>el.getClientRects().length);
+    if(!focusable.length)return;
+    const first=focusable[0],last=focusable[focusable.length-1];
+    if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
+    else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
+  }
+});
+document.querySelectorAll('[data-lang]').forEach(button=>button.addEventListener('click',()=>{if(!ritualOverlay.hidden)ritualRender();}));
 
 </script>
 
