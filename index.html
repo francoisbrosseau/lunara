@@ -1758,6 +1758,42 @@ body.ritual-open { overflow: hidden; }
 @media(max-width:600px){.oracle-synthesis {padding:38px 20px 30px;}.ritual-stage .ritual-title{font-size:clamp(2rem,9vw,3rem);}.ritual-stage .ritual-actions .btn{padding:15px 20px;}}
 @media(prefers-reduced-motion:reduce){.ritual-stage .ritual-actions .btn{transition:none;}}
 
+
+/* LUNARA — HOMEPAGE GOTHIC TYPOGRAPHY
+   Match the approved Inner Sanctum without changing its styling. */
+body:not(.ritual-open) .celestial-world .section-title,
+body:not(.ritual-open) .celestial-world .sanctuary-heading,
+body:not(.ritual-open) .celestial-world .oracle-frame h2,
+body:not(.ritual-open) .celestial-world .ritual-step h3,
+body:not(.ritual-open) .celestial-world h3 {
+  font-family: "Cinzel Decorative", "Cinzel", Georgia, serif;
+  font-weight: 400;
+  letter-spacing: .008em;
+  line-height: 1.28;
+}
+body:not(.ritual-open) .celestial-world .section-description,
+body:not(.ritual-open) .celestial-world .sanctuary-description,
+body:not(.ritual-open) .celestial-world .ritual-step p,
+body:not(.ritual-open) .celestial-world .oracle-note,
+body:not(.ritual-open) .celestial-world .footer-disclaimer {
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: clamp(1.18rem, 1.65vw, 1.45rem);
+  line-height: 1.65;
+}
+body:not(.ritual-open) .celestial-world .eyebrow,
+body:not(.ritual-open) .celestial-world .sanctuary-label,
+body:not(.ritual-open) .celestial-world .path-link,
+body:not(.ritual-open) .celestial-world .btn,
+body:not(.ritual-open) .celestial-world .currency-label {
+  font-family: "Cinzel", Georgia, serif;
+}
+@media (max-width: 700px) {
+  body:not(.ritual-open) .celestial-world .section-title {
+    font-size: clamp(2.2rem, 8vw, 3.6rem);
+    overflow-wrap: break-word;
+  }
+}
+
 </style>
 </head>
 
