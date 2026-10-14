@@ -1871,6 +1871,22 @@ body.lunara-arriving::after{content:"";position:fixed;inset:0;z-index:9998;point
 @keyframes lunaraInsightRise {0%{opacity:0;filter:blur(7px);transform:translateY(13px)}100%{opacity:1;filter:blur(0);transform:translateY(0)}}
 @keyframes lunaraNextGlow {0%,100%{filter:brightness(1)}45%{filter:brightness(1.6)}}
 @media(prefers-reduced-motion:reduce){.ritual-deck .ritual-card.lunara-card-unveiling .card-face img,.ritual-deck .ritual-card.lunara-card-unveiling .card-face::after,.ritual-deck .ritual-card.lunara-card-unveiling .card-caption,.ritual-insight.lunara-insight-visible,.ritual-deck .ritual-card.lunara-card-next .card-face{animation:none!important}}
+
+/* LUNARA — connected card and interpretation choreography. */
+.ritual-stage .ritual-insight{position:relative;isolation:isolate;transition:opacity .52s ease,filter .52s ease,transform .52s ease;}
+.ritual-stage .ritual-insight.lunara-insight-leaving{opacity:.14;filter:blur(8px);transform:translateY(-8px);}
+.ritual-stage .ritual-insight.lunara-insight-entering{animation:lunaraInsightBloom 1.45s cubic-bezier(.19,.65,.25,1) both;}
+.ritual-stage .ritual-insight.lunara-insight-entering::after{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 45% 55%,rgba(178,184,205,.15),transparent 70%);animation:lunaraInsightSmoke 1.65s ease-out both;}
+@keyframes lunaraInsightBloom{0%{opacity:0;filter:blur(14px);transform:translateY(18px)}35%{opacity:.3;filter:blur(9px)}100%{opacity:1;filter:blur(0);transform:translateY(0)}}
+@keyframes lunaraInsightSmoke{0%{opacity:.85;transform:translateX(-4%)}100%{opacity:0;transform:translateX(7%)}}
+/* The final reading arrives as a single veil of mist, with the chapters following softly. */
+.ritual-stage.lunara-final-arrival{position:relative;isolation:isolate;animation:lunaraFinalMist 2.45s cubic-bezier(.2,.65,.24,1) both!important;}
+.ritual-stage.lunara-final-arrival::before{content:'';position:absolute;inset:0;z-index:3;pointer-events:none;background:radial-gradient(ellipse at 38% 22%,rgba(179,191,211,.25),transparent 62%),radial-gradient(ellipse at 70% 55%,rgba(220,194,154,.13),transparent 65%);animation:lunaraFinalVeil 3.1s ease-out both;}
+.ritual-stage.lunara-final-arrival .ritual-result,.ritual-stage.lunara-final-arrival .oracle-synthesis{animation:lunaraFinalDetail 1.65s ease-out both;animation-delay:.65s;}
+@keyframes lunaraFinalMist{0%{opacity:0;filter:blur(17px) brightness(.55);transform:translateY(15px) scale(1.008)}55%{opacity:.65;filter:blur(6px) brightness(.85)}100%{opacity:1;filter:blur(0) brightness(1);transform:none}}
+@keyframes lunaraFinalVeil{0%{opacity:.9;transform:translateX(-5%)}100%{opacity:0;transform:translateX(6%)}}
+@keyframes lunaraFinalDetail{0%{opacity:0;filter:blur(7px);transform:translateY(11px)}100%{opacity:1;filter:blur(0);transform:none}}
+@media(prefers-reduced-motion:reduce){.ritual-stage .ritual-insight,.ritual-stage .ritual-insight.lunara-insight-entering,.ritual-stage.lunara-final-arrival,.ritual-stage.lunara-final-arrival .ritual-result,.ritual-stage.lunara-final-arrival .oracle-synthesis{animation:none!important;transition:none!important;filter:none!important;transform:none!important;opacity:1!important}.ritual-stage.lunara-final-arrival::before,.ritual-stage .ritual-insight.lunara-insight-entering::after{display:none!important}}
 </style>
 </head>
 
@@ -3672,6 +3688,8 @@ function ritualRender() {
       const deck=ritualContent.querySelector('.ritual-deck');
       const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       button.disabled=true;
+      insight.classList.remove('lunara-insight-entering','lunara-insight-visible');
+      if(!reduced)insight.classList.add('lunara-insight-leaving');
       button.classList.remove('current');
       button.classList.add('revealed','lunara-card-unveiling');
       // Preserve all seven card elements: rebuilding the deck was causing the abrupt flash.
@@ -3683,9 +3701,14 @@ function ritualRender() {
         button.setAttribute('aria-label',card[idx]);
         ritualRevealed=i+1;
         progress.textContent=`${t.progress}: ${ritualRevealed} / 7`;
-        insight.classList.remove('lunara-insight-visible');
-        insight.innerHTML=`<h3>${ritualEscape(t.positions[i])} · ${ritualEscape(card[idx])}</h3><p>${ritualEscape(ritualExpandedMeaning(card,i))}</p>`;
-        requestAnimationFrame(()=>requestAnimationFrame(()=>insight.classList.add('lunara-insight-visible')));
+        // Keep the old interpretation until it has faded away; the new text
+        // materializes after the card, rather than snapping into place.
+        const showInsight=()=>{
+          insight.classList.remove('lunara-insight-leaving','lunara-insight-entering');
+          insight.innerHTML=`<h3>${ritualEscape(t.positions[i])} · ${ritualEscape(card[idx])}</h3><p>${ritualEscape(ritualExpandedMeaning(card,i))}</p>`;
+          if(!reduced)requestAnimationFrame(()=>requestAnimationFrame(()=>insight.classList.add('lunara-insight-entering')));
+        };
+        setTimeout(showInsight,reduced?0:220);
         if(ritualRevealed<7){
           const upcoming=deck.querySelector(`[data-card="${ritualRevealed}"]`);
           upcoming.disabled=false;upcoming.classList.add('current','lunara-card-next');
@@ -3717,7 +3740,7 @@ function ritualRender() {
     const oracle=ritualOracleText();
     const summary=oracle.text.join('\n\n');
     const oracleHtml=oracle.text.map((paragraph,i)=>`<section class="oracle-chapter"><span class="oracle-chapter-index">${ritualEscape(oracle.heads[i])}</span>${i===4?`<div class="oracle-counsel">${ritualFinalHtml(oracle.finalParts)}</div>`:`<p>${ritualEscape(paragraph)}</p>`}</section>`).join('');
-    ritualContent.innerHTML=`<section class="ritual-stage"><p class="ritual-kicker">${t.resultKicker}</p><h2 class="ritual-title">${t.resultTitle}</h2><p class="ritual-copy">${t.resultCopy}</p><div class="ritual-summary"><h3>${t.yourQuestion}</h3><p>${ritualEscape(ritualQuestion)}</p><p><strong>${t.yourPath}:</strong> ${ritualEscape(t.paths[ritualPath])}</p></div><div class="ritual-results">${cardsHtml}</div><div class="oracle-synthesis"><div class="oracle-sigil" aria-hidden="true">☾ ✦ ☽</div><p class="oracle-overline">✧ L U N A R A ✧</p><h3>${t.reflection}</h3><div class="oracle-chapters">${oracleHtml}</div><div class="oracle-ending" aria-hidden="true">✦ ─── ☾ ─── ✦</div></div><div class="ritual-actions"><button class="ritual-back" id="ritualAgain" type="button">↺ ${t.again}</button><button class="btn" id="ritualSave" type="button">${t.save} ↓</button></div><p class="ritual-notice">${t.demo}</p></section>`;
+    ritualContent.innerHTML=`<section class="ritual-stage lunara-final-arrival"><p class="ritual-kicker">${t.resultKicker}</p><h2 class="ritual-title">${t.resultTitle}</h2><p class="ritual-copy">${t.resultCopy}</p><div class="ritual-summary"><h3>${t.yourQuestion}</h3><p>${ritualEscape(ritualQuestion)}</p><p><strong>${t.yourPath}:</strong> ${ritualEscape(t.paths[ritualPath])}</p></div><div class="ritual-results">${cardsHtml}</div><div class="oracle-synthesis"><div class="oracle-sigil" aria-hidden="true">☾ ✦ ☽</div><p class="oracle-overline">✧ L U N A R A ✧</p><h3>${t.reflection}</h3><div class="oracle-chapters">${oracleHtml}</div><div class="oracle-ending" aria-hidden="true">✦ ─── ☾ ─── ✦</div></div><div class="ritual-actions"><button class="ritual-back" id="ritualAgain" type="button">↺ ${t.again}</button><button class="btn" id="ritualSave" type="button">${t.save} ↓</button></div><p class="ritual-notice">${t.demo}</p></section>`;
     document.getElementById('ritualAgain').addEventListener('click',()=>{ritualStep='question';ritualQuestion='';ritualRender();});
     document.getElementById('ritualSave').addEventListener('click',()=>{
       const lines=['LUNARA — '+t.resultTitle,'',t.yourPath+': '+t.paths[ritualPath],t.yourQuestion+': '+ritualQuestion,''];
@@ -3760,61 +3783,51 @@ document.querySelectorAll('[data-lang]').forEach(button=>button.addEventListener
   const audio=document.getElementById('lunaraSoundtrack');
   const button=document.getElementById('lunaraSoundToggle');
   const label=document.getElementById('lunaraSoundLabel');
-  const preferenceKey='lunara-ambient-muted';
   const targetVolume=.22;
-  let explicitlyOff=false,enabled=false,starting=false,fadeTimer=null;
-  // Every new page visit starts with sound requested ON; user can switch it OFF.
-  function savePreference(){try{localStorage.setItem(preferenceKey,String(explicitlyOff));}catch(e){}}
-  function stopFade(){if(fadeTimer!==null){clearInterval(fadeTimer);fadeTimer=null;}}
+  let requestedOn=true,playing=false,fadeTimer=null,playAttempt=null;
+  // Sound is requested ON by default. Browsers can still require a user gesture.
   function updateButton(){
-    label.textContent=!explicitlyOff?'SOUND ON':'SOUND OFF';
-    button.setAttribute('aria-pressed',String(!explicitlyOff));
-    button.setAttribute('aria-label',!explicitlyOff?'Disable ambient music (may require first interaction to start)':'Enable ambient music');
+    label.textContent=requestedOn?(playing?'SOUND ON':'SOUND READY'):'SOUND OFF';
+    button.setAttribute('aria-pressed',String(requestedOn));
+    button.setAttribute('aria-label',requestedOn?(playing?'Turn ambient music off':'Ambient music ready; click to start if blocked'):'Turn ambient music on');
   }
-  function fadeTo(target,duration,done){
-    stopFade();
-    const from=audio.volume,start=performance.now();
-    fadeTimer=setInterval(()=>{
-      const t=Math.min(1,(performance.now()-start)/duration),eased=t*t*(3-2*t);
-      audio.volume=Math.max(0,Math.min(1,from+(target-from)*eased));
-      if(t===1){stopFade();if(done)done();}
-    },40);
+  function stopFade(){if(fadeTimer!==null){clearInterval(fadeTimer);fadeTimer=null;}}
+  function fadeIn(){
+    stopFade();const from=audio.volume,start=performance.now();
+    fadeTimer=setInterval(()=>{const t=Math.min(1,(performance.now()-start)/4300);audio.volume=Math.min(1,from+(targetVolume-from)*(t*t*(3-2*t)));if(t>=1)stopFade();},40);
   }
-  async function startAudio(){
-    if(explicitlyOff||enabled||starting)return;
-    starting=true;
-    stopFade();audio.volume=0;
-    try{
-      await audio.play();
-      if(explicitlyOff){audio.pause();return;}
-      enabled=true;
-      updateButton();
-      fadeTo(targetVolume,4800);
-    }catch(err){
-      if(err.name!=='NotAllowedError'&&err.name!=='AbortError')console.warn('LUNARA audio:',err);
-      updateButton();
-    }finally{starting=false;}
+  function requestPlay(){
+    if(!requestedOn||playing)return;
+    // Crucial: call play() synchronously in the actual trusted input event.
+    // Do not wait for a previous rejected autoplay promise before retrying.
+    let attempt;
+    try{attempt=audio.play();}catch(e){updateButton();return;}
+    playAttempt=attempt;
+    if(attempt&&typeof attempt.then==='function'){
+      attempt.then(()=>{if(!requestedOn){audio.pause();return;}if(!playing){playing=true;fadeIn();}updateButton();})
+        .catch(e=>{if(e.name!=='NotAllowedError'&&e.name!=='AbortError')console.warn('LUNARA audio:',e);updateButton();});
+    }else{playing=true;fadeIn();updateButton();}
   }
-  function stopAudio(){
-    stopFade();enabled=false;updateButton();
-    fadeTo(0,800,()=>audio.pause());
-  }
+  function turnOff(){requestedOn=false;stopFade();audio.pause();playing=false;updateButton();}
   button.addEventListener('click',()=>{
-    if(!explicitlyOff){explicitlyOff=true;savePreference();stopAudio();}
-    else{explicitlyOff=false;savePreference();startAudio();}
+    if(requestedOn){
+      if(!playing){requestPlay();return;} // SOUND READY starts audio; never require OFF→ON.
+      turnOff();
+    }else{requestedOn=true;audio.volume=0;requestPlay();updateButton();}
   });
-  // An audible autoplay attempt is permitted, but browsers may reject it.
-  // The first real user gesture retries immediately, without needing to toggle OFF/ON.
-  if(!explicitlyOff)startAudio();
-  const unlock=()=>{
-    if(explicitlyOff||enabled)return;
-    // A pending autoplay promise can block a second play attempt; reset the guard
-    // and retry directly from the trusted user gesture.
-    starting=false;
-    startAudio();
+  // Capture the earliest genuine gesture anywhere, including selecting a reading.
+  const unlock=e=>{
+    if(!requestedOn||playing)return;
+    if(e.type==='keydown'&&(e.key==='Tab'||e.key==='Shift'||e.key==='Control'||e.key==='Alt'||e.key==='Meta'))return;
+    if(button.contains(e.target))return;
+    requestPlay();
   };
-  document.addEventListener('pointerdown',e=>{if(!button.contains(e.target))unlock();},{capture:true});
-  document.addEventListener('keydown',e=>{if(!button.contains(e.target))unlock();},{capture:true});
+  document.addEventListener('pointerdown',unlock,true);
+  document.addEventListener('keydown',unlock,true);
+  audio.addEventListener('playing',()=>{if(requestedOn){if(!playing){playing=true;fadeIn();}updateButton();}});
+  audio.addEventListener('pause',()=>{if(audio.paused){playing=false;updateButton();}});
+  audio.volume=0;
+  requestPlay();
   audio.addEventListener('error',()=>console.warn('LUNARA: unable to load audio/lunara-ambient.mp3'));
   updateButton();
 })();
