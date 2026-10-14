@@ -1116,6 +1116,87 @@ footer p {
   }
 
 }
+   /* =========================================
+   LUNARA — ILLUSTRATED RITUAL CARDS
+========================================= */
+
+.ritual-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 35px;
+  align-items: start;
+}
+
+.ritual-art {
+  width: 100%;
+  max-width: 285px;
+  margin: 0 auto 35px;
+  overflow: hidden;
+  border: 1px solid rgba(201,167,106,.45);
+  background: transparent;
+
+  transition:
+    transform .4s ease,
+    box-shadow .4s ease,
+    border-color .4s ease;
+}
+
+.ritual-art img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.ritual-art:hover {
+  transform: translateY(-10px);
+  border-color: var(--gold-light);
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.55),
+    0 0 35px rgba(201,167,106,.25);
+}
+
+/* Keep descriptions balanced */
+
+.ritual-step h3 {
+  margin-bottom: 12px;
+}
+
+.ritual-step p {
+  max-width: 290px;
+  margin: 0 auto;
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+  .ritual-steps {
+    gap: 20px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+  .ritual-steps {
+    grid-template-columns: 1fr;
+    gap: 65px;
+  }
+
+  .ritual-art {
+    max-width: 320px;
+  }
+}
+
+/* Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .ritual-art {
+    transition: none;
+  }
+}
 
 </style>
 </head>
@@ -1298,12 +1379,11 @@ Three simple steps. One deeply personal experience.
 
 <div class="ritual-step reveal">
 
-<div class="ritual-tarot question-card" aria-hidden="true">
-  <div class="tarot-inner">
-    <span class="tarot-number">I</span>
-    <span class="tarot-symbol">☾</span>
-    <span class="tarot-ornament">✦ ✧ ✦</span>
-  </div>
+<div class="ritual-art">
+  <img
+    src="images/question.png"
+    alt="The Question — a celestial oracle contemplating a question"
+    loading="lazy">
 </div>
 
 <h3 data-i18n="step1Title">
@@ -1318,12 +1398,11 @@ Share what is on your mind and choose the focus of your journey.
 
 <div class="ritual-step reveal">
 
-<div class="ritual-tarot cards-card" aria-hidden="true">
-  <div class="tarot-inner">
-    <span class="tarot-number">II</span>
-    <span class="tarot-symbol">✧</span>
-    <span class="tarot-ornament">☾ ✦ ☼</span>
-  </div>
+<div class="ritual-art">
+  <img
+    src="images/cards.png"
+    alt="The Cards — three mystical tarot cards surrounded by celestial energy"
+    loading="lazy">
 </div>
 <h3 data-i18n="step2Title">
 II. The Cards
@@ -1337,12 +1416,11 @@ Discover seven tarot cards, each carrying its own symbolism and meaning.
 
 <div class="ritual-step reveal">
 
-<div class="ritual-tarot revelation-card" aria-hidden="true">
-  <div class="tarot-inner">
-    <span class="tarot-number">III</span>
-    <span class="tarot-symbol">☼</span>
-    <span class="tarot-ornament">✦ ✧ ✦</span>
-  </div>
+<div class="ritual-art">
+  <img
+    src="images/revelation.png"
+    alt="The Revelation — a celestial oracle presenting a glowing sphere"
+    loading="lazy">
 </div>
 
 <h3 data-i18n="step3Title">
