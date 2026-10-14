@@ -1209,6 +1209,39 @@ footer p {
   height: auto;
   clip-path: inset(1.2% 0 0 0);
 }
+   /* =========================================
+   LUNARA — REMOVE HERO BLUE OVERLAY
+========================================= */
+
+/* Keep the hero above the following section */
+.hero {
+  position: relative;
+  z-index: 2;
+}
+
+/* Prevent the next section from covering the hero */
+.hero::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Remove gradient overlays from the hero */
+.hero::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* Keep the next section underneath */
+.intro {
+  position: relative;
+  z-index: 1;
+}
+
+/* Remove overlapping section effects */
+.intro::before {
+  content: none !important;
+  display: none !important;
+}
 
 </style>
 </head>
