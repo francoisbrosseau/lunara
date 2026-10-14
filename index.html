@@ -1850,6 +1850,27 @@ body.lunara-arriving::after{content:"";position:fixed;inset:0;z-index:9998;point
 .lunara-sound .sound-icon{font-size:17px;line-height:1}
 @media(max-width:600px){.lunara-sound{right:10px;bottom:10px;padding:9px 11px;font-size:10px}}
 @media(prefers-reduced-motion:reduce){body.lunara-arriving > header,body.lunara-arriving > main,body.lunara-arriving > footer,.ritual-overlay:not([hidden]) .ritual-stage{animation:none!important}body.lunara-arriving::before,body.lunara-arriving::after{display:none!important}}
+
+/* LUNARA — soft sequential card unveiling, no full-deck redraw. */
+.ritual-deck .ritual-card.revealed { animation:none; }
+.ritual-deck .ritual-card.lunara-card-unveiling .card-face { position:relative; isolation:isolate; }
+.ritual-deck .ritual-card.lunara-card-unveiling .card-face img {
+  animation:lunaraCardMaterialize 1.35s cubic-bezier(.19,.72,.28,1) both;
+}
+.ritual-deck .ritual-card.lunara-card-unveiling .card-face::after {
+  content:''; position:absolute; inset:-12%; pointer-events:none; z-index:2;
+  background:radial-gradient(ellipse at 50% 50%,rgba(218,195,155,.34),rgba(152,168,196,.16) 44%,transparent 75%);
+  animation:lunaraCardMist 1.45s ease-out both;
+}
+.ritual-deck .ritual-card.lunara-card-unveiling .card-caption {animation:lunaraCaptionRise 1.15s ease both;}
+.ritual-insight.lunara-insight-visible {animation:lunaraInsightRise 1.1s ease-out both;}
+.ritual-deck .ritual-card.lunara-card-next .card-face {animation:lunaraNextGlow 1.1s ease-out;}
+@keyframes lunaraCardMaterialize {0%{opacity:0;filter:blur(15px) brightness(1.7);transform:scale(1.09)}55%{opacity:.78;filter:blur(5px) brightness(1.18)}100%{opacity:1;filter:blur(0) brightness(1);transform:scale(1.045)}}
+@keyframes lunaraCardMist {0%{opacity:0;transform:scale(1.2)}30%{opacity:.85}100%{opacity:0;transform:scale(1.5)}}
+@keyframes lunaraCaptionRise {0%{opacity:0;transform:translateY(9px)}100%{opacity:1;transform:translateY(0)}}
+@keyframes lunaraInsightRise {0%{opacity:0;filter:blur(7px);transform:translateY(13px)}100%{opacity:1;filter:blur(0);transform:translateY(0)}}
+@keyframes lunaraNextGlow {0%,100%{filter:brightness(1)}45%{filter:brightness(1.6)}}
+@media(prefers-reduced-motion:reduce){.ritual-deck .ritual-card.lunara-card-unveiling .card-face img,.ritual-deck .ritual-card.lunara-card-unveiling .card-face::after,.ritual-deck .ritual-card.lunara-card-unveiling .card-caption,.ritual-insight.lunara-insight-visible,.ritual-deck .ritual-card.lunara-card-next .card-face{animation:none!important}}
 </style>
 </head>
 
@@ -3640,7 +3661,54 @@ function ritualRender() {
   } else if (ritualStep==='cards') {
     const idx=ritualLangIndex();
     ritualContent.innerHTML=`<section class="ritual-stage"><p class="ritual-kicker">${t.drawKicker}</p><h2 class="ritual-title">${t.drawTitle}</h2><p class="ritual-copy">${t.drawCopy}</p><p class="ritual-progress">${t.progress}: ${ritualRevealed} / 7</p><div class="ritual-deck">${ritualDraw.map((card,i)=>{const shown=i<ritualRevealed;return `<button type="button" class="ritual-card ${shown?'revealed':''} ${i===ritualRevealed?'current':''}" data-card="${i}" ${i===ritualRevealed?'':'disabled'} aria-label="${shown?ritualEscape(card[idx]):t.reveal+' '+(i+1)}"><span class="card-face">${shown?`<img src="${ritualArt(card)}" alt="${ritualEscape(card[idx])}" loading="lazy">`:`<span class="card-glyph">☾</span>`}</span><span class="card-caption">${shown?ritualEscape(card[idx]):'✦ '+(i+1)+' ✦'}</span></button>`;}).join('')}</div><div class="ritual-insight">${ritualRevealed?`<h3>${ritualEscape(t.positions[ritualRevealed-1])} · ${ritualEscape(ritualDraw[ritualRevealed-1][idx])}</h3><p>${ritualEscape(ritualExpandedMeaning(ritualDraw[ritualRevealed-1],ritualRevealed-1))}</p>`:`<p>${t.wait}</p>`}</div><div class="ritual-actions"><button type="button" class="ritual-back" id="ritualBack">← ${t.back}</button>${ritualRevealed===7?`<button type="button" class="btn" id="ritualResults">${t.next} ✦</button>`:''}</div><p class="ritual-notice">${t.demo}</p></section>`;
-    ritualContent.querySelectorAll('[data-card]').forEach(button=>button.addEventListener('click',()=>{if(Number(button.dataset.card)===ritualRevealed){ritualRevealed++;ritualRender();}}));
+    ritualContent.querySelectorAll('[data-card]').forEach(button=>button.addEventListener('click',()=>{
+      if(Number(button.dataset.card)!==ritualRevealed || button.dataset.turning==='true')return;
+      button.dataset.turning='true';
+      const i=ritualRevealed, card=ritualDraw[i];
+      const face=button.querySelector('.card-face');
+      const caption=button.querySelector('.card-caption');
+      const insight=ritualContent.querySelector('.ritual-insight');
+      const progress=ritualContent.querySelector('.ritual-progress');
+      const deck=ritualContent.querySelector('.ritual-deck');
+      const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      button.disabled=true;
+      button.classList.remove('current');
+      button.classList.add('revealed','lunara-card-unveiling');
+      // Preserve all seven card elements: rebuilding the deck was causing the abrupt flash.
+      const art=document.createElement('img');
+      art.src=ritualArt(card);art.alt=card[idx];art.loading='eager';
+      const finish=()=>{
+        face.replaceChildren(art);
+        caption.textContent=card[idx];
+        button.setAttribute('aria-label',card[idx]);
+        ritualRevealed=i+1;
+        progress.textContent=`${t.progress}: ${ritualRevealed} / 7`;
+        insight.classList.remove('lunara-insight-visible');
+        insight.innerHTML=`<h3>${ritualEscape(t.positions[i])} · ${ritualEscape(card[idx])}</h3><p>${ritualEscape(ritualExpandedMeaning(card,i))}</p>`;
+        requestAnimationFrame(()=>requestAnimationFrame(()=>insight.classList.add('lunara-insight-visible')));
+        if(ritualRevealed<7){
+          const upcoming=deck.querySelector(`[data-card="${ritualRevealed}"]`);
+          upcoming.disabled=false;upcoming.classList.add('current','lunara-card-next');
+          upcoming.setAttribute('aria-label',t.reveal+' '+(ritualRevealed+1));
+          setTimeout(()=>upcoming.classList.remove('lunara-card-next'),1200);
+        }else{
+          const actions=ritualContent.querySelector('.ritual-actions');
+          const next=document.createElement('button');next.type='button';next.className='btn';next.id='ritualResults';
+          next.textContent=t.next+' ✦';
+          next.addEventListener('click',()=>{ritualStep='results';ritualRender();});
+          actions.appendChild(next);
+        }
+        setTimeout(()=>button.classList.remove('lunara-card-unveiling'),reduced?0:1450);
+      };
+      if(reduced){finish();return;}
+      // The card image is preloaded, then revealed through a soft mist instead of a flash.
+      const preload=new Image();preload.src=art.src;
+      const reveal=()=>setTimeout(finish,240);
+      if(preload.complete)reveal();else{
+        preload.addEventListener('load',reveal,{once:true});
+        preload.addEventListener('error',reveal,{once:true});
+      }
+    }));
     document.getElementById('ritualBack').addEventListener('click',()=>{ritualStep='question';ritualRender();});
     const next=document.getElementById('ritualResults');if(next)next.addEventListener('click',()=>{ritualStep='results';ritualRender();});
   } else {
@@ -3695,13 +3763,13 @@ document.querySelectorAll('[data-lang]').forEach(button=>button.addEventListener
   const preferenceKey='lunara-ambient-muted';
   const targetVolume=.22;
   let explicitlyOff=false,enabled=false,starting=false,fadeTimer=null;
-  try{explicitlyOff=localStorage.getItem(preferenceKey)==='true';}catch(e){}
+  // Every new page visit starts with sound requested ON; user can switch it OFF.
   function savePreference(){try{localStorage.setItem(preferenceKey,String(explicitlyOff));}catch(e){}}
   function stopFade(){if(fadeTimer!==null){clearInterval(fadeTimer);fadeTimer=null;}}
   function updateButton(){
-    label.textContent=enabled&&!explicitlyOff?'SOUND ON':'SOUND OFF';
-    button.setAttribute('aria-pressed',String(enabled&&!explicitlyOff));
-    button.setAttribute('aria-label',enabled&&!explicitlyOff?'Disable ambient music':'Enable ambient music');
+    label.textContent=!explicitlyOff?'SOUND ON':'SOUND OFF';
+    button.setAttribute('aria-pressed',String(!explicitlyOff));
+    button.setAttribute('aria-label',!explicitlyOff?'Disable ambient music (may require first interaction to start)':'Enable ambient music');
   }
   function fadeTo(target,duration,done){
     stopFade();
@@ -3732,7 +3800,7 @@ document.querySelectorAll('[data-lang]').forEach(button=>button.addEventListener
     fadeTo(0,800,()=>audio.pause());
   }
   button.addEventListener('click',()=>{
-    if(enabled&&!explicitlyOff){explicitlyOff=true;savePreference();stopAudio();}
+    if(!explicitlyOff){explicitlyOff=true;savePreference();stopAudio();}
     else{explicitlyOff=false;savePreference();startAudio();}
   });
   // An audible autoplay attempt is permitted, but browsers may reject it.
