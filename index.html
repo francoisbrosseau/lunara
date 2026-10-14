@@ -1836,18 +1836,20 @@ body:not(.ritual-open) .celestial-world .currency-label {
 .oracle-counsel-part p{margin:0;line-height:1.7}
 
 
-/* LUNARA cinematic atmosphere — additive; existing layout and readings untouched */
-@keyframes lunaraArrival {from{opacity:0;filter:brightness(.72)}to{opacity:1;filter:brightness(1)}}
-@keyframes lunaraGildedSweep {0%{transform:translateX(-115%);opacity:0}20%{opacity:.45}75%{opacity:.28}100%{transform:translateX(115%);opacity:0}}
-@keyframes lunaraSanctumArrival {from{opacity:0;transform:translateY(11px)}to{opacity:1;transform:translateY(0)}}
-body.lunara-arriving > header,body.lunara-arriving > main,body.lunara-arriving > footer {animation:lunaraArrival 1.4s ease-out both}
-body.lunara-arriving::after {content:"";position:fixed;inset:0;z-index:9998;pointer-events:none;background:linear-gradient(100deg,transparent 35%,rgba(221,184,111,.025) 43%,rgba(255,224,162,.15) 50%,rgba(221,184,111,.025) 57%,transparent 65%);animation:lunaraGildedSweep 1.8s ease-in-out .35s both}
-.ritual-overlay:not([hidden]) .ritual-stage {animation:lunaraSanctumArrival .45s ease-out both}
-.lunara-sound {position:fixed;right:18px;bottom:18px;z-index:10001;display:flex;align-items:center;gap:9px;padding:11px 15px;border:1px solid rgba(224,188,119,.65);border-radius:3px;background:rgba(7,13,26,.93);color:#f1d7a2;box-shadow:0 5px 24px rgba(0,0,0,.55),inset 0 0 0 3px rgba(219,181,108,.08);font-family:'Cinzel',Georgia,serif;font-size:11px;letter-spacing:.13em;cursor:pointer;transition:border-color .25s,box-shadow .25s,background .25s}
-.lunara-sound:hover,.lunara-sound:focus-visible {border-color:#f7d79b;background:rgba(22,33,51,.98);box-shadow:0 0 24px rgba(213,171,95,.2)}
+/* LUNARA — soft mist entrance, slow gilded sweep; existing content untouched */
+@keyframes lunaraMistReveal{0%{opacity:0;filter:blur(18px) brightness(.48);transform:scale(1.018)}45%{opacity:.48;filter:blur(8px) brightness(.76)}100%{opacity:1;filter:blur(0) brightness(1);transform:scale(1)}}
+@keyframes lunaraFogDrift{0%{opacity:.86;transform:translateX(-3%)}55%{opacity:.36}100%{opacity:0;transform:translateX(5%)}}
+@keyframes lunaraGildedSweep{0%{transform:translateX(-125%);opacity:0}18%{opacity:.4}55%{opacity:.5}100%{transform:translateX(125%);opacity:0}}
+@keyframes lunaraSanctumArrival{from{opacity:0;transform:translateY(11px)}to{opacity:1;transform:translateY(0)}}
+body.lunara-arriving > header,body.lunara-arriving > main,body.lunara-arriving > footer{animation:lunaraMistReveal 2.7s cubic-bezier(.2,.65,.24,1) both}
+body.lunara-arriving::before{content:"";position:fixed;inset:0;z-index:9997;pointer-events:none;background:radial-gradient(ellipse at 30% 40%,rgba(163,177,195,.21),transparent 58%),radial-gradient(ellipse at 75% 65%,rgba(177,171,174,.14),transparent 58%),rgba(4,7,15,.5);animation:lunaraFogDrift 3.3s ease-out both}
+body.lunara-arriving::after{content:"";position:fixed;inset:0;z-index:9998;pointer-events:none;background:linear-gradient(100deg,transparent 33%,rgba(221,184,111,.02) 43%,rgba(255,225,169,.18) 50%,rgba(221,184,111,.025) 57%,transparent 67%);animation:lunaraGildedSweep 3.5s ease-in-out 1.15s both}
+.ritual-overlay:not([hidden]) .ritual-stage{animation:lunaraSanctumArrival .55s ease-out both}
+.lunara-sound{position:fixed;right:18px;bottom:18px;z-index:10001;display:flex;align-items:center;gap:9px;padding:11px 15px;border:1px solid rgba(224,188,119,.65);border-radius:3px;background:rgba(7,13,26,.93);color:#f1d7a2;box-shadow:0 5px 24px rgba(0,0,0,.55),inset 0 0 0 3px rgba(219,181,108,.08);font-family:'Cinzel',Georgia,serif;font-size:11px;letter-spacing:.13em;cursor:pointer;transition:border-color .25s,box-shadow .25s,background .25s}
+.lunara-sound:hover,.lunara-sound:focus-visible{border-color:#f7d79b;background:rgba(22,33,51,.98);box-shadow:0 0 24px rgba(213,171,95,.2)}
 .lunara-sound .sound-icon{font-size:17px;line-height:1}
 @media(max-width:600px){.lunara-sound{right:10px;bottom:10px;padding:9px 11px;font-size:10px}}
-@media(prefers-reduced-motion:reduce){body.lunara-arriving > header,body.lunara-arriving > main,body.lunara-arriving > footer,.ritual-overlay:not([hidden]) .ritual-stage{animation:none!important}body.lunara-arriving::after{display:none!important}}
+@media(prefers-reduced-motion:reduce){body.lunara-arriving > header,body.lunara-arriving > main,body.lunara-arriving > footer,.ritual-overlay:not([hidden]) .ritual-stage{animation:none!important}body.lunara-arriving::before,body.lunara-arriving::after{display:none!important}}
 </style>
 </head>
 
@@ -3676,63 +3678,68 @@ document.querySelectorAll('[data-lang]').forEach(button=>button.addEventListener
 </script>
 
 
-<!-- LUNARA soundtrack: filename matches the uploaded "Lunara-ambient.mp3" exactly. -->
-<audio id="lunaraSoundtrack" src="audio/Lunara%20ambient.mp3" preload="none" loop></audio>
+<!-- LUNARA ambient audio — uses the actual GitHub filename. -->
+<audio id="lunaraSoundtrack" src="audio/lunara-ambient.mp3" preload="auto" loop playsinline></audio>
 <button id="lunaraSoundToggle" class="lunara-sound" type="button" aria-label="Enable ambient music" aria-pressed="false"><span class="sound-icon" aria-hidden="true">♫</span><span id="lunaraSoundLabel">SOUND OFF</span></button>
 <script>
-/* Isolated cinematic effects: does not alter tarot draw, text, navigation or payments. */
+/* Isolated effects: tarot logic and existing content remain unchanged. */
 (()=>{
   const body=document.body;
   if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
     body.classList.add('lunara-arriving');
-    window.setTimeout(()=>body.classList.remove('lunara-arriving'),2700);
+    setTimeout(()=>body.classList.remove('lunara-arriving'),5100);
   }
   const audio=document.getElementById('lunaraSoundtrack');
   const button=document.getElementById('lunaraSoundToggle');
   const label=document.getElementById('lunaraSoundLabel');
-  const targetVolume=.23;
-  let fadeTimer=null;
-  let enabled=false;
+  const targetVolume=.22;
+  let fadeTimer=null,enabled=false,explicitlyOff=false,starting=false;
   function stopFade(){if(fadeTimer!==null){clearInterval(fadeTimer);fadeTimer=null;}}
   function updateButton(){
     label.textContent=enabled?'SOUND ON':'SOUND OFF';
     button.setAttribute('aria-pressed',String(enabled));
     button.setAttribute('aria-label',enabled?'Disable ambient music':'Enable ambient music');
   }
-  function fadeTo(target,duration,onDone){
+  function fadeTo(target,duration,done){
     stopFade();
-    const start=audio.volume;
-    const startTime=performance.now();
+    const from=audio.volume,start=performance.now();
     fadeTimer=setInterval(()=>{
-      const t=Math.min(1,(performance.now()-startTime)/duration);
-      audio.volume=Math.max(0,Math.min(1,start+(target-start)*t));
-      if(t>=1){stopFade();if(onDone)onDone();}
+      const t=Math.min(1,(performance.now()-start)/duration);
+      const eased=t*t*(3-2*t);
+      audio.volume=Math.max(0,Math.min(1,from+(target-from)*eased));
+      if(t===1){stopFade();if(done)done();}
     },40);
+  }
+  async function startAudio(){
+    if(enabled||starting||explicitlyOff)return;
+    starting=true;
+    stopFade();audio.volume=0;
+    try{
+      await audio.play();
+      enabled=true;updateButton();fadeTo(targetVolume,4800);
+    }catch(err){
+      // Browsers frequently block unprompted audible playback. Retry on first interaction.
+      if(err.name!=='NotAllowedError')console.warn('LUNARA audio playback:',err);
+    }finally{starting=false;}
   }
   button.addEventListener('click',async()=>{
     if(enabled){
-      enabled=false;updateButton();
-      try{localStorage.setItem('lunara-sound','off');}catch(e){}
-      fadeTo(0,900,()=>audio.pause());
-      return;
-    }
-    stopFade();
-    audio.volume=0;
-    try{
-      await audio.play();
-      enabled=true;updateButton();
-      try{localStorage.setItem('lunara-sound','on');}catch(e){}
-      fadeTo(targetVolume,4800);
-    }catch(e){
-      enabled=false;updateButton();
-      label.textContent='SOUND UNAVAILABLE';
-      setTimeout(updateButton,3000);
-      console.warn('LUNARA: audio could not play. Check audio/Lunara ambient.mp3',e);
+      explicitlyOff=true;enabled=false;updateButton();
+      fadeTo(0,800,()=>audio.pause());
+    }else{
+      explicitlyOff=false;
+      await startAudio();
+      if(!enabled && audio.error){label.textContent='SOUND UNAVAILABLE';setTimeout(updateButton,3000);}
     }
   });
-  // Browsers require a user gesture for audible playback; never force autoplay.
+  // Attempt playback automatically when the entrance begins. Browser policy may block it.
+  startAudio();
+  // If blocked, first interaction anywhere on the page can unlock sound without an extra button click.
+  const unlock=()=>{if(!enabled&&!explicitlyOff)startAudio();};
+  document.addEventListener('pointerdown',unlock,{capture:true});
+  document.addEventListener('keydown',unlock,{capture:true});
+  audio.addEventListener('error',()=>console.warn('LUNARA: unable to load audio/lunara-ambient.mp3'));
   updateButton();
-  audio.addEventListener('error',()=>{if(!enabled){label.textContent='AUDIO NOT FOUND';console.warn('LUNARA: confirm exact GitHub filename audio/Lunara ambient.mp3');}});
 })();
 </script>
 
