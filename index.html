@@ -1628,6 +1628,32 @@ body.ritual-open { overflow: hidden; }
 .ritual-result-body { min-width:0; }
 @media(max-width:520px) { .ritual-result { align-items:flex-start; gap:13px; padding:12px; } .ritual-result-art { width:35%; } .ritual-result h3 { font-size:1.5rem; } }
 
+
+/* LUNARA — NORMALIZED 78-CARD SPREAD (Revelation grid left unchanged) */
+.ritual-deck { align-items: start; }
+.ritual-deck .ritual-card { align-self:start; }
+.ritual-deck .ritual-card .card-face,
+.ritual-deck .ritual-card.revealed .card-face {
+  width:100%; height:auto; aspect-ratio: 5 / 12;
+  display:flex; align-items:center; justify-content:center;
+  overflow:hidden; border:0; background:#03050a;
+  box-shadow:none;
+}
+.ritual-deck .ritual-card .card-face img {
+  width:100%; height:100%; object-fit:contain; object-position:center;
+  display:block;
+}
+.ritual-deck .ritual-card .card-caption { min-height:2.4em; }
+.ritual-deck .ritual-card.current .card-face {
+  outline:1px solid rgba(230,192,116,.8); outline-offset:2px;
+  box-shadow:0 0 20px rgba(201,167,106,.22);
+}
+.ritual-insight { max-width:840px; }
+.ritual-insight h3 { font-family:'Cormorant Garamond',serif; font-weight:500; letter-spacing:.015em; font-size:clamp(1.8rem,3vw,2.5rem); }
+.ritual-insight p { font-family:'Cormorant Garamond',serif; font-size:clamp(1.24rem,2vw,1.55rem); line-height:1.5; color:#e4d6c2; }
+.ritual-result p { line-height:1.8; color:#e0d5c6; }
+.ritual-summary p { line-height:1.85; }
+
 </style>
 </head>
 
@@ -2299,8 +2325,8 @@ updateLunaraPrice();
 const ritualI18n = {
   en: {
     close:'Close', back:'Back', introKicker:'I · THE QUESTION', introTitle:'Every revelation begins with a question.', introCopy:'Choose what you wish to explore. Your words stay in this browser during this preview.', label:'Your question', placeholder:'What would you like to understand more deeply?', count:'characters', continue:'Prepare the Seven Cards', error:'Write at least 10 characters to begin.', path:'Your chosen path',
-    drawKicker:'II · THE CARDS', drawTitle:'The cards await your touch.', drawCopy:'Reveal the seven cards, one by one. Each position offers a different lens through which to reflect.', progress:'Cards revealed', reveal:'Reveal card', wait:'Reveal the glowing card next', next:'See Your Revelation',
-    resultKicker:'III · THE REVELATION', resultTitle:'A story written in symbols.', resultCopy:'Your seven cards form a reflective reading. Consider what resonates, and leave behind what does not.', yourQuestion:'Your question', yourPath:'Your path', reflection:'Threads of reflection', save:'Save Reading as Text', again:'Begin Another Reading', demo:'Interactive preview: symbolic interpretations are generated locally from a curated deck. No AI personalization or payment is active.', saved:'Your reading has been saved.',
+    drawKicker:'II · THE CARDS', drawTitle:'Seven cards. Seven doors to understanding.', drawCopy:'Turn each card in its own time. Together, their symbols trace the hidden currents of your question.', progress:'Cards revealed', reveal:'Reveal card', wait:'Reveal the glowing card next', next:'See Your Revelation',
+    resultKicker:'III · THE REVELATION', resultTitle:'The constellation of your story.', resultCopy:'Seven symbols, one unfolding story. Explore the connections between them, and discover which truths resonate with your own experience.', yourQuestion:'Your question', yourPath:'Your path', reflection:'Threads of reflection', save:'Save Reading as Text', again:'Begin Another Reading', demo:'Interactive preview: symbolic interpretations are generated locally from a curated deck. No AI personalization or payment is active.', saved:'Your reading has been saved.',
     positions:['The Present','The Hidden Influence','The Past','The Turning Point','Your Strength','The Invitation','The Way Forward'],
     positionHints:['What is asking for attention now.','An influence you may not yet recognize.','What still echoes from behind you.','Where change may become possible.','What you can draw upon.','What deserves your curiosity.','A perspective to carry onward.'],
     summaryLead:'Rather than predicting an outcome, this spread invites you to notice how', summaryBridge:'and', summaryEnd:'might speak to your question. Which of these themes feels most alive for you right now?',
@@ -2308,8 +2334,8 @@ const ritualI18n = {
   },
   fr: {
     close:'Fermer', back:'Retour', introKicker:'I · LA QUESTION', introTitle:'Toute révélation commence par une question.', introCopy:'Choisissez ce que vous souhaitez explorer. Vos mots restent dans ce navigateur pendant cet aperçu.', label:'Votre question', placeholder:'Qu’aimeriez-vous mieux comprendre?', count:'caractères', continue:'Préparer les sept cartes', error:'Écrivez au moins 10 caractères pour commencer.', path:'Votre voie',
-    drawKicker:'II · LES CARTES', drawTitle:'Les cartes attendent votre geste.', drawCopy:'Révélez les sept cartes, une à une. Chaque position propose un nouvel angle de réflexion.', progress:'Cartes révélées', reveal:'Révéler la carte', wait:'Révélez ensuite la carte lumineuse', next:'Découvrir votre révélation',
-    resultKicker:'III · LA RÉVÉLATION', resultTitle:'Une histoire racontée par les symboles.', resultCopy:'Ces sept cartes composent une lecture propice à la réflexion. Gardez ce qui résonne en vous.', yourQuestion:'Votre question', yourPath:'Votre voie', reflection:'Pistes de réflexion', save:'Enregistrer en texte', again:'Commencer un autre tirage', demo:'Aperçu interactif : les interprétations symboliques proviennent d’un jeu local. Aucune personnalisation par IA ni aucun paiement ne sont actifs.', saved:'Votre tirage a été enregistré.',
+    drawKicker:'II · LES CARTES', drawTitle:'Sept cartes. Sept portes vers la compréhension.', drawCopy:'Retournez chaque carte à votre rythme. Ensemble, leurs symboles dessinent les courants secrets de votre question.', progress:'Cartes révélées', reveal:'Révéler la carte', wait:'Révélez ensuite la carte lumineuse', next:'Découvrir votre révélation',
+    resultKicker:'III · LA RÉVÉLATION', resultTitle:'La constellation de votre histoire.', resultCopy:'Ces sept cartes composent une lecture propice à la réflexion. Gardez ce qui résonne en vous.', yourQuestion:'Votre question', yourPath:'Votre voie', reflection:'Pistes de réflexion', save:'Enregistrer en texte', again:'Commencer un autre tirage', demo:'Aperçu interactif : les interprétations symboliques proviennent d’un jeu local. Aucune personnalisation par IA ni aucun paiement ne sont actifs.', saved:'Votre tirage a été enregistré.',
     positions:['Le présent','L’influence cachée','Le passé','Le tournant','Votre force','L’invitation','La voie à suivre'],
     positionHints:['Ce qui demande votre attention.','Une influence encore discrète.','Ce qui résonne du passé.','Là où le changement devient possible.','Une ressource sur laquelle compter.','Ce qui mérite votre curiosité.','Une perspective à emporter.'],
     summaryLead:'Sans prédire l’avenir, ce tirage vous invite à observer comment', summaryBridge:'et', summaryEnd:'peuvent éclairer votre question. Quel thème vous interpelle le plus aujourd’hui?',
@@ -2317,7 +2343,7 @@ const ritualI18n = {
   },
   es: {
     close:'Cerrar', back:'Volver', introKicker:'I · LA PREGUNTA', introTitle:'Toda revelación comienza con una pregunta.', introCopy:'Elige lo que deseas explorar. Tus palabras permanecen en este navegador durante la vista previa.', label:'Tu pregunta', placeholder:'¿Qué te gustaría comprender mejor?', count:'caracteres', continue:'Preparar las siete cartas', error:'Escribe al menos 10 caracteres para comenzar.', path:'Tu camino',
-    drawKicker:'II · LAS CARTAS', drawTitle:'Las cartas esperan tu gesto.', drawCopy:'Revela las siete cartas, una a una. Cada posición ofrece una nueva perspectiva para reflexionar.', progress:'Cartas reveladas', reveal:'Revelar carta', wait:'Revela la siguiente carta iluminada', next:'Descubrir tu revelación',
+    drawKicker:'II · LAS CARTAS', drawTitle:'Siete cartas. Siete puertas hacia la comprensión.', drawCopy:'Descubre cada carta a su tiempo. Juntos, sus símbolos revelan las corrientes ocultas de tu pregunta.', progress:'Cartas reveladas', reveal:'Revelar carta', wait:'Revela la siguiente carta iluminada', next:'Descubrir tu revelación',
     resultKicker:'III · LA REVELACIÓN', resultTitle:'Una historia contada en símbolos.', resultCopy:'Estas siete cartas forman una lectura para reflexionar. Conserva aquello que resuene contigo.', yourQuestion:'Tu pregunta', yourPath:'Tu camino', reflection:'Hilos de reflexión', save:'Guardar lectura en texto', again:'Comenzar otra lectura', demo:'Vista previa interactiva: las interpretaciones simbólicas proceden de una baraja local. No hay personalización con IA ni pagos activos.', saved:'Tu lectura se ha guardado.',
     positions:['El presente','La influencia oculta','El pasado','El punto de cambio','Tu fortaleza','La invitación','El camino por delante'],
     positionHints:['Lo que pide tu atención.','Una influencia aún discreta.','Lo que resuena del pasado.','Donde el cambio es posible.','Un recurso en el que apoyarte.','Lo que merece tu curiosidad.','Una perspectiva para llevar contigo.'],
@@ -2361,9 +2387,9 @@ const ritualMinorManifest = [
     ],
     "symbol": "⚔",
     "meaning": [
-      "A clear insight offers a new perspective.",
-      "La vérité, les limites et la clarté invitent à avancer avec discernement.",
-      "La verdad, los límites y la claridad invitan a dar el siguiente paso con intención."
+      "In the realm of truth and thought, A new possibility emerges. Notice where the first spark is asking for your trust.",
+      "Dans le domaine de la pensée et de la vérité, Une possibilité nouvelle se présente. Accueillez cette première étincelle avec confiance.",
+      "En el reino de la verdad y el pensamiento, Surge una nueva posibilidad. Confía en la primera chispa de este camino."
     ],
     "art": "images/tarot/swords-01-ace.png",
     "published": true
@@ -2376,9 +2402,9 @@ const ritualMinorManifest = [
     ],
     "symbol": "⚔",
     "meaning": [
-      "A difficult choice deserves a moment of stillness.",
-      "La vérité, les limites et la clarté invitent à avancer avec discernement.",
-      "La verdad, los límites y la claridad invitan a dar el siguiente paso con intención."
+      "In the realm of truth and thought, Two forces seek a rhythm together. A thoughtful choice can bring them into balance.",
+      "Dans le domaine de la pensée et de la vérité, Deux forces cherchent leur équilibre. Un choix réfléchi peut les harmoniser.",
+      "En el reino de la verdad y el pensamiento, Dos fuerzas buscan equilibrio. Una decisión consciente puede armonizarlas."
     ],
     "art": "images/tarot/swords-02-two.png",
     "published": true
@@ -2391,9 +2417,9 @@ const ritualMinorManifest = [
     ],
     "symbol": "⚔",
     "meaning": [
-      "Heartache calls for honest care and time.",
-      "La vérité, les limites et la clarté invitent à avancer avec discernement.",
-      "La verdad, los límites y la claridad invitan a dar el siguiente paso con intención."
+      "In the realm of truth and thought, Progress grows through connection. Let shared effort reveal what you cannot build alone.",
+      "Dans le domaine de la pensée et de la vérité, L’élan grandit dans le partage. Ensemble, vous pouvez bâtir davantage.",
+      "En el reino de la verdad y el pensamiento, El progreso nace del encuentro. Juntos pueden construir algo mayor."
     ],
     "art": "images/tarot/swords-03-three.png",
     "published": true
@@ -2406,9 +2432,9 @@ const ritualMinorManifest = [
     ],
     "symbol": "⚔",
     "meaning": [
-      "Rest can restore perspective and strength.",
-      "La vérité, les limites et la clarté invitent à avancer avec discernement.",
-      "La verdad, los límites y la claridad invitan a dar el siguiente paso con intención."
+      "In the realm of truth and thought, A moment of stillness invites you to examine what deserves your energy.",
+      "Dans le domaine de la pensée et de la vérité, Le calme vous invite à discerner ce qui mérite vraiment votre énergie.",
+      "En el reino de la verdad y el pensamiento, La quietud te invita a reconocer qué merece tu energía."
     ],
     "art": "images/tarot/swords-04-four.png",
     "published": true
@@ -2421,9 +2447,9 @@ const ritualMinorManifest = [
     ],
     "symbol": "⚔",
     "meaning": [
-      "Consider the cost of winning an argument.",
-      "La vérité, les limites et la clarté invitent à avancer avec discernement.",
-      "La verdad, los límites y la claridad invitan a dar el siguiente paso con intención."
+      "In the realm of truth and thought, Tension reveals what matters. You can acknowledge the wound without living inside it.",
+      "Dans le domaine de la pensée et de la vérité, La tension révèle l’essentiel. Reconnaissez la blessure sans lui céder votre avenir.",
+      "En el reino de la verdad y el pensamiento, La tensión revela lo importante. Reconoce la herida sin quedarte en ella."
     ],
     "art": "images/tarot/swords-05-five.png",
     "published": true
@@ -2436,9 +2462,9 @@ const ritualMinorManifest = [
     ],
     "symbol": "⚔",
     "meaning": [
-      "A transition may bring calmer waters.",
-      "La vérité, les limites et la clarté invitent à avancer avec discernement.",
-      "La verdad, los límites y la claridad invitan a dar el siguiente paso con intención."
+      "In the realm of truth and thought, The passage ahead asks for grace. Accept support and keep moving toward calmer ground.",
+      "Dans le domaine de la pensée et de la vérité, Une transition s’amorce. Avancez avec grâce vers des eaux plus paisibles.",
+      "En el reino de la verdad y el pensamiento, Comienza una transición. Avanza con serenidad hacia aguas más tranquilas."
     ],
     "art": "images/tarot/swords-06-six.png",
     "published": true
@@ -2451,9 +2477,9 @@ const ritualMinorManifest = [
     ],
     "symbol": "⚔",
     "meaning": [
-      "Look closely at what remains unspoken.",
-      "La vérité, les limites et la clarté invitent à avancer avec discernement.",
-      "La verdad, los límites y la claridad invitan a dar el siguiente paso con intención."
+      "In the realm of truth and thought, Not every promise is what it seems. Discernment will protect what you value.",
+      "Dans le domaine de la pensée et de la vérité, Toute promesse mérite un regard lucide. Protégez ce qui vous est précieux.",
+      "En el reino de la verdad y el pensamiento, No toda promesa es lo que parece. Protege lo que más valoras."
     ],
     "art": "images/tarot/swords-07-seven.png",
     "published": true
@@ -2466,9 +2492,9 @@ const ritualMinorManifest = [
     ],
     "symbol": "⚔",
     "meaning": [
-      "Fear may be narrowing your options.",
-      "La vérité, les limites et la clarté invitent à avancer avec discernement.",
-      "La verdad, los límites y la claridad invitan a dar el siguiente paso con intención."
+      "In the realm of truth and thought, What confines you may be less permanent than it appears. Look for the opening.",
+      "Dans le domaine de la pensée et de la vérité, Les limites d’aujourd’hui ne sont pas forcément définitives. Cherchez une ouverture.",
+      "En el reino de la verdad y el pensamiento, Tus límites actuales quizá no sean permanentes. Busca una salida."
     ],
     "art": "images/tarot/swords-08-eight.png",
     "published": true
@@ -2481,9 +2507,9 @@ const ritualMinorManifest = [
     ],
     "symbol": "⚔",
     "meaning": [
-      "Worry deserves support, not isolation.",
-      "La vérité, les limites et la clarté invitent à avancer avec discernement.",
-      "La verdad, los límites y la claridad invitan a dar el siguiente paso con intención."
+      "In the realm of truth and thought, The mind magnifies shadows in the dark. Meet your fear with tenderness and clarity.",
+      "Dans le domaine de la pensée et de la vérité, Dans l’ombre, les peurs prennent de l’ampleur. Accueillez-les avec douceur et lucidité.",
+      "En el reino de la verdad y el pensamiento, En la oscuridad, el miedo crece. Respóndele con ternura y claridad."
     ],
     "art": "images/tarot/swords-09-nine.png",
     "published": true
@@ -2496,9 +2522,9 @@ const ritualMinorManifest = [
     ],
     "symbol": "⚔",
     "meaning": [
-      "An ending may also mark a release.",
-      "La vérité, les limites et la clarté invitent à avancer avec discernement.",
-      "La verdad, los límites y la claridad invitan a dar el siguiente paso con intención."
+      "In the realm of truth and thought, An ending makes space for a new chapter. Release what has already run its course.",
+      "Dans le domaine de la pensée et de la vérité, Une fin libère l’espace nécessaire à un nouveau chapitre.",
+      "En el reino de la verdad y el pensamiento, Un final abre espacio para un nuevo capítulo. Suelta lo que ya terminó."
     ],
     "art": "images/tarot/swords-10-ten.png",
     "published": true
@@ -2511,9 +2537,9 @@ const ritualMinorManifest = [
     ],
     "symbol": "⚔",
     "meaning": [
-      "Stay curious, observant and open to truth.",
-      "La vérité, les limites et la clarté invitent à avancer avec discernement.",
-      "La verdad, los límites y la claridad invitan a dar el siguiente paso con intención."
+      "In the realm of truth and thought, Curiosity is your compass. Stay open to a message, a lesson, or a fresh beginning.",
+      "Dans le domaine de la pensée et de la vérité, La curiosité vous guide. Restez disponible à une rencontre ou une leçon.",
+      "En el reino de la verdad y el pensamiento, La curiosidad es tu brújula. Abre el corazón a un aprendizaje."
     ],
     "art": "images/tarot/swords-11-page.png",
     "published": true
@@ -2526,9 +2552,9 @@ const ritualMinorManifest = [
     ],
     "symbol": "⚔",
     "meaning": [
-      "Move decisively without losing perspective.",
-      "La vérité, les limites et la clarté invitent à avancer avec discernement.",
-      "La verdad, los límites y la claridad invitan a dar el siguiente paso con intención."
+      "In the realm of truth and thought, Momentum is gathering. Direct your courage with intention rather than haste.",
+      "Dans le domaine de la pensée et de la vérité, Le mouvement s’accélère. Orientez votre courage avec intention.",
+      "En el reino de la verdad y el pensamiento, El impulso crece. Dirige tu valor con intención y no con prisa."
     ],
     "art": "images/tarot/swords-12-knight.png",
     "published": true
@@ -2541,9 +2567,9 @@ const ritualMinorManifest = [
     ],
     "symbol": "⚔",
     "meaning": [
-      "Clear boundaries can coexist with compassion.",
-      "La vérité, les limites et la clarté invitent à avancer avec discernement.",
-      "La verdad, los límites y la claridad invitan a dar el siguiente paso con intención."
+      "In the realm of truth and thought, Lead with quiet mastery. Your discernment can hold both compassion and strength.",
+      "Dans le domaine de la pensée et de la vérité, La maîtrise véritable allie discernement, compassion et force tranquille.",
+      "En el reino de la verdad y el pensamiento, El verdadero dominio une discernimiento, compasión y fortaleza."
     ],
     "art": "images/tarot/swords-13-queen.png",
     "published": true
@@ -2556,9 +2582,9 @@ const ritualMinorManifest = [
     ],
     "symbol": "⚔",
     "meaning": [
-      "Lead with fairness, clarity and reason.",
-      "La vérité, les limites et la clarté invitent à avancer avec discernement.",
-      "La verdad, los límites y la claridad invitan a dar el siguiente paso con intención."
+      "In the realm of truth and thought, True authority begins within. Choose the legacy your actions will leave behind.",
+      "Dans le domaine de la pensée et de la vérité, L’autorité naît de l’intérieur. Vos gestes façonnent l’héritage de demain.",
+      "En el reino de la verdad y el pensamiento, La autoridad comienza en tu interior. Tus actos construyen tu legado."
     ],
     "art": "images/tarot/swords-14-king.png",
     "published": true
@@ -2571,12 +2597,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "♧",
     "meaning": [
-      "Emotional awareness opens space for connection and compassion.",
-      "La conscience des émotions ouvre un espace de lien et de compassion.",
-      "La conciencia emocional abre espacio para la conexión y la compasión."
+      "In the waters of feeling and connection, A new possibility emerges. Notice where the first spark is asking for your trust.",
+      "Au fil des émotions et des liens, Une possibilité nouvelle se présente. Accueillez cette première étincelle avec confiance.",
+      "En las aguas del sentimiento y la conexión, Surge una nueva posibilidad. Confía en la primera chispa de este camino."
     ],
     "art": "images/tarot/cups-01-ace.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -2586,12 +2612,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "♧",
     "meaning": [
-      "Emotional awareness opens space for connection and compassion.",
-      "La conscience des émotions ouvre un espace de lien et de compassion.",
-      "La conciencia emocional abre espacio para la conexión y la compasión."
+      "In the waters of feeling and connection, Two forces seek a rhythm together. A thoughtful choice can bring them into balance.",
+      "Au fil des émotions et des liens, Deux forces cherchent leur équilibre. Un choix réfléchi peut les harmoniser.",
+      "En las aguas del sentimiento y la conexión, Dos fuerzas buscan equilibrio. Una decisión consciente puede armonizarlas."
     ],
     "art": "images/tarot/cups-02-two.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -2601,12 +2627,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "♧",
     "meaning": [
-      "Emotional awareness opens space for connection and compassion.",
-      "La conscience des émotions ouvre un espace de lien et de compassion.",
-      "La conciencia emocional abre espacio para la conexión y la compasión."
+      "In the waters of feeling and connection, Progress grows through connection. Let shared effort reveal what you cannot build alone.",
+      "Au fil des émotions et des liens, L’élan grandit dans le partage. Ensemble, vous pouvez bâtir davantage.",
+      "En las aguas del sentimiento y la conexión, El progreso nace del encuentro. Juntos pueden construir algo mayor."
     ],
     "art": "images/tarot/cups-03-three.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -2616,12 +2642,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "♧",
     "meaning": [
-      "Emotional awareness opens space for connection and compassion.",
-      "La conscience des émotions ouvre un espace de lien et de compassion.",
-      "La conciencia emocional abre espacio para la conexión y la compasión."
+      "In the waters of feeling and connection, A moment of stillness invites you to examine what deserves your energy.",
+      "Au fil des émotions et des liens, Le calme vous invite à discerner ce qui mérite vraiment votre énergie.",
+      "En las aguas del sentimiento y la conexión, La quietud te invita a reconocer qué merece tu energía."
     ],
     "art": "images/tarot/cups-04-four.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -2631,12 +2657,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "♧",
     "meaning": [
-      "Emotional awareness opens space for connection and compassion.",
-      "La conscience des émotions ouvre un espace de lien et de compassion.",
-      "La conciencia emocional abre espacio para la conexión y la compasión."
+      "In the waters of feeling and connection, Tension reveals what matters. You can acknowledge the wound without living inside it.",
+      "Au fil des émotions et des liens, La tension révèle l’essentiel. Reconnaissez la blessure sans lui céder votre avenir.",
+      "En las aguas del sentimiento y la conexión, La tensión revela lo importante. Reconoce la herida sin quedarte en ella."
     ],
     "art": "images/tarot/cups-05-five.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -2646,12 +2672,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "♧",
     "meaning": [
-      "Emotional awareness opens space for connection and compassion.",
-      "La conscience des émotions ouvre un espace de lien et de compassion.",
-      "La conciencia emocional abre espacio para la conexión y la compasión."
+      "In the waters of feeling and connection, The passage ahead asks for grace. Accept support and keep moving toward calmer ground.",
+      "Au fil des émotions et des liens, Une transition s’amorce. Avancez avec grâce vers des eaux plus paisibles.",
+      "En las aguas del sentimiento y la conexión, Comienza una transición. Avanza con serenidad hacia aguas más tranquilas."
     ],
     "art": "images/tarot/cups-06-six.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -2661,12 +2687,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "♧",
     "meaning": [
-      "Emotional awareness opens space for connection and compassion.",
-      "La conscience des émotions ouvre un espace de lien et de compassion.",
-      "La conciencia emocional abre espacio para la conexión y la compasión."
+      "In the waters of feeling and connection, Not every promise is what it seems. Discernment will protect what you value.",
+      "Au fil des émotions et des liens, Toute promesse mérite un regard lucide. Protégez ce qui vous est précieux.",
+      "En las aguas del sentimiento y la conexión, No toda promesa es lo que parece. Protege lo que más valoras."
     ],
     "art": "images/tarot/cups-07-seven.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -2676,12 +2702,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "♧",
     "meaning": [
-      "Emotional awareness opens space for connection and compassion.",
-      "La conscience des émotions ouvre un espace de lien et de compassion.",
-      "La conciencia emocional abre espacio para la conexión y la compasión."
+      "In the waters of feeling and connection, What confines you may be less permanent than it appears. Look for the opening.",
+      "Au fil des émotions et des liens, Les limites d’aujourd’hui ne sont pas forcément définitives. Cherchez une ouverture.",
+      "En las aguas del sentimiento y la conexión, Tus límites actuales quizá no sean permanentes. Busca una salida."
     ],
     "art": "images/tarot/cups-08-eight.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -2691,12 +2717,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "♧",
     "meaning": [
-      "Emotional awareness opens space for connection and compassion.",
-      "La conscience des émotions ouvre un espace de lien et de compassion.",
-      "La conciencia emocional abre espacio para la conexión y la compasión."
+      "In the waters of feeling and connection, The mind magnifies shadows in the dark. Meet your fear with tenderness and clarity.",
+      "Au fil des émotions et des liens, Dans l’ombre, les peurs prennent de l’ampleur. Accueillez-les avec douceur et lucidité.",
+      "En las aguas del sentimiento y la conexión, En la oscuridad, el miedo crece. Respóndele con ternura y claridad."
     ],
     "art": "images/tarot/cups-09-nine.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -2706,12 +2732,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "♧",
     "meaning": [
-      "Emotional awareness opens space for connection and compassion.",
-      "La conscience des émotions ouvre un espace de lien et de compassion.",
-      "La conciencia emocional abre espacio para la conexión y la compasión."
+      "In the waters of feeling and connection, An ending makes space for a new chapter. Release what has already run its course.",
+      "Au fil des émotions et des liens, Une fin libère l’espace nécessaire à un nouveau chapitre.",
+      "En las aguas del sentimiento y la conexión, Un final abre espacio para un nuevo capítulo. Suelta lo que ya terminó."
     ],
     "art": "images/tarot/cups-10-ten.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -2721,12 +2747,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "♧",
     "meaning": [
-      "Emotional awareness opens space for connection and compassion.",
-      "La conscience des émotions ouvre un espace de lien et de compassion.",
-      "La conciencia emocional abre espacio para la conexión y la compasión."
+      "In the waters of feeling and connection, Curiosity is your compass. Stay open to a message, a lesson, or a fresh beginning.",
+      "Au fil des émotions et des liens, La curiosité vous guide. Restez disponible à une rencontre ou une leçon.",
+      "En las aguas del sentimiento y la conexión, La curiosidad es tu brújula. Abre el corazón a un aprendizaje."
     ],
     "art": "images/tarot/cups-11-page.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -2736,12 +2762,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "♧",
     "meaning": [
-      "Emotional awareness opens space for connection and compassion.",
-      "La conscience des émotions ouvre un espace de lien et de compassion.",
-      "La conciencia emocional abre espacio para la conexión y la compasión."
+      "In the waters of feeling and connection, Momentum is gathering. Direct your courage with intention rather than haste.",
+      "Au fil des émotions et des liens, Le mouvement s’accélère. Orientez votre courage avec intention.",
+      "En las aguas del sentimiento y la conexión, El impulso crece. Dirige tu valor con intención y no con prisa."
     ],
     "art": "images/tarot/cups-12-knight.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -2751,12 +2777,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "♧",
     "meaning": [
-      "Emotional awareness opens space for connection and compassion.",
-      "La conscience des émotions ouvre un espace de lien et de compassion.",
-      "La conciencia emocional abre espacio para la conexión y la compasión."
+      "In the waters of feeling and connection, Lead with quiet mastery. Your discernment can hold both compassion and strength.",
+      "Au fil des émotions et des liens, La maîtrise véritable allie discernement, compassion et force tranquille.",
+      "En las aguas del sentimiento y la conexión, El verdadero dominio une discernimiento, compasión y fortaleza."
     ],
     "art": "images/tarot/cups-13-queen.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -2766,12 +2792,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "♧",
     "meaning": [
-      "Emotional awareness opens space for connection and compassion.",
-      "La conscience des émotions ouvre un espace de lien et de compassion.",
-      "La conciencia emocional abre espacio para la conexión y la compasión."
+      "In the waters of feeling and connection, True authority begins within. Choose the legacy your actions will leave behind.",
+      "Au fil des émotions et des liens, L’autorité naît de l’intérieur. Vos gestes façonnent l’héritage de demain.",
+      "En las aguas del sentimiento y la conexión, La autoridad comienza en tu interior. Tus actos construyen tu legado."
     ],
     "art": "images/tarot/cups-14-king.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -2781,12 +2807,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "✦",
     "meaning": [
-      "Creative energy asks for courage, focus and thoughtful action.",
-      "L’énergie créative appelle au courage, à la concentration et à l’action réfléchie.",
-      "La energía creativa pide valor, enfoque y acción consciente."
+      "In the fire of purpose and creation, A new possibility emerges. Notice where the first spark is asking for your trust.",
+      "Dans le feu de la volonté créatrice, Une possibilité nouvelle se présente. Accueillez cette première étincelle avec confiance.",
+      "En el fuego del propósito y la creación, Surge una nueva posibilidad. Confía en la primera chispa de este camino."
     ],
     "art": "images/tarot/wands-01-ace.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -2796,12 +2822,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "✦",
     "meaning": [
-      "Creative energy asks for courage, focus and thoughtful action.",
-      "L’énergie créative appelle au courage, à la concentration et à l’action réfléchie.",
-      "La energía creativa pide valor, enfoque y acción consciente."
+      "In the fire of purpose and creation, Two forces seek a rhythm together. A thoughtful choice can bring them into balance.",
+      "Dans le feu de la volonté créatrice, Deux forces cherchent leur équilibre. Un choix réfléchi peut les harmoniser.",
+      "En el fuego del propósito y la creación, Dos fuerzas buscan equilibrio. Una decisión consciente puede armonizarlas."
     ],
     "art": "images/tarot/wands-02-two.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -2811,12 +2837,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "✦",
     "meaning": [
-      "Creative energy asks for courage, focus and thoughtful action.",
-      "L’énergie créative appelle au courage, à la concentration et à l’action réfléchie.",
-      "La energía creativa pide valor, enfoque y acción consciente."
+      "In the fire of purpose and creation, Progress grows through connection. Let shared effort reveal what you cannot build alone.",
+      "Dans le feu de la volonté créatrice, L’élan grandit dans le partage. Ensemble, vous pouvez bâtir davantage.",
+      "En el fuego del propósito y la creación, El progreso nace del encuentro. Juntos pueden construir algo mayor."
     ],
     "art": "images/tarot/wands-03-three.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -2826,12 +2852,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "✦",
     "meaning": [
-      "Creative energy asks for courage, focus and thoughtful action.",
-      "L’énergie créative appelle au courage, à la concentration et à l’action réfléchie.",
-      "La energía creativa pide valor, enfoque y acción consciente."
+      "In the fire of purpose and creation, A moment of stillness invites you to examine what deserves your energy.",
+      "Dans le feu de la volonté créatrice, Le calme vous invite à discerner ce qui mérite vraiment votre énergie.",
+      "En el fuego del propósito y la creación, La quietud te invita a reconocer qué merece tu energía."
     ],
     "art": "images/tarot/wands-04-four.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -2841,12 +2867,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "✦",
     "meaning": [
-      "Creative energy asks for courage, focus and thoughtful action.",
-      "L’énergie créative appelle au courage, à la concentration et à l’action réfléchie.",
-      "La energía creativa pide valor, enfoque y acción consciente."
+      "In the fire of purpose and creation, Tension reveals what matters. You can acknowledge the wound without living inside it.",
+      "Dans le feu de la volonté créatrice, La tension révèle l’essentiel. Reconnaissez la blessure sans lui céder votre avenir.",
+      "En el fuego del propósito y la creación, La tensión revela lo importante. Reconoce la herida sin quedarte en ella."
     ],
     "art": "images/tarot/wands-05-five.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -2856,12 +2882,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "✦",
     "meaning": [
-      "Creative energy asks for courage, focus and thoughtful action.",
-      "L’énergie créative appelle au courage, à la concentration et à l’action réfléchie.",
-      "La energía creativa pide valor, enfoque y acción consciente."
+      "In the fire of purpose and creation, The passage ahead asks for grace. Accept support and keep moving toward calmer ground.",
+      "Dans le feu de la volonté créatrice, Une transition s’amorce. Avancez avec grâce vers des eaux plus paisibles.",
+      "En el fuego del propósito y la creación, Comienza una transición. Avanza con serenidad hacia aguas más tranquilas."
     ],
     "art": "images/tarot/wands-06-six.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -2871,12 +2897,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "✦",
     "meaning": [
-      "Creative energy asks for courage, focus and thoughtful action.",
-      "L’énergie créative appelle au courage, à la concentration et à l’action réfléchie.",
-      "La energía creativa pide valor, enfoque y acción consciente."
+      "In the fire of purpose and creation, Not every promise is what it seems. Discernment will protect what you value.",
+      "Dans le feu de la volonté créatrice, Toute promesse mérite un regard lucide. Protégez ce qui vous est précieux.",
+      "En el fuego del propósito y la creación, No toda promesa es lo que parece. Protege lo que más valoras."
     ],
     "art": "images/tarot/wands-07-seven.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -2886,12 +2912,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "✦",
     "meaning": [
-      "Creative energy asks for courage, focus and thoughtful action.",
-      "L’énergie créative appelle au courage, à la concentration et à l’action réfléchie.",
-      "La energía creativa pide valor, enfoque y acción consciente."
+      "In the fire of purpose and creation, What confines you may be less permanent than it appears. Look for the opening.",
+      "Dans le feu de la volonté créatrice, Les limites d’aujourd’hui ne sont pas forcément définitives. Cherchez une ouverture.",
+      "En el fuego del propósito y la creación, Tus límites actuales quizá no sean permanentes. Busca una salida."
     ],
     "art": "images/tarot/wands-08-eight.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -2901,12 +2927,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "✦",
     "meaning": [
-      "Creative energy asks for courage, focus and thoughtful action.",
-      "L’énergie créative appelle au courage, à la concentration et à l’action réfléchie.",
-      "La energía creativa pide valor, enfoque y acción consciente."
+      "In the fire of purpose and creation, The mind magnifies shadows in the dark. Meet your fear with tenderness and clarity.",
+      "Dans le feu de la volonté créatrice, Dans l’ombre, les peurs prennent de l’ampleur. Accueillez-les avec douceur et lucidité.",
+      "En el fuego del propósito y la creación, En la oscuridad, el miedo crece. Respóndele con ternura y claridad."
     ],
     "art": "images/tarot/wands-09-nine.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -2916,12 +2942,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "✦",
     "meaning": [
-      "Creative energy asks for courage, focus and thoughtful action.",
-      "L’énergie créative appelle au courage, à la concentration et à l’action réfléchie.",
-      "La energía creativa pide valor, enfoque y acción consciente."
+      "In the fire of purpose and creation, An ending makes space for a new chapter. Release what has already run its course.",
+      "Dans le feu de la volonté créatrice, Une fin libère l’espace nécessaire à un nouveau chapitre.",
+      "En el fuego del propósito y la creación, Un final abre espacio para un nuevo capítulo. Suelta lo que ya terminó."
     ],
     "art": "images/tarot/wands-10-ten.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -2931,12 +2957,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "✦",
     "meaning": [
-      "Creative energy asks for courage, focus and thoughtful action.",
-      "L’énergie créative appelle au courage, à la concentration et à l’action réfléchie.",
-      "La energía creativa pide valor, enfoque y acción consciente."
+      "In the fire of purpose and creation, Curiosity is your compass. Stay open to a message, a lesson, or a fresh beginning.",
+      "Dans le feu de la volonté créatrice, La curiosité vous guide. Restez disponible à une rencontre ou une leçon.",
+      "En el fuego del propósito y la creación, La curiosidad es tu brújula. Abre el corazón a un aprendizaje."
     ],
     "art": "images/tarot/wands-11-page.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -2946,12 +2972,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "✦",
     "meaning": [
-      "Creative energy asks for courage, focus and thoughtful action.",
-      "L’énergie créative appelle au courage, à la concentration et à l’action réfléchie.",
-      "La energía creativa pide valor, enfoque y acción consciente."
+      "In the fire of purpose and creation, Momentum is gathering. Direct your courage with intention rather than haste.",
+      "Dans le feu de la volonté créatrice, Le mouvement s’accélère. Orientez votre courage avec intention.",
+      "En el fuego del propósito y la creación, El impulso crece. Dirige tu valor con intención y no con prisa."
     ],
     "art": "images/tarot/wands-12-knight.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -2961,12 +2987,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "✦",
     "meaning": [
-      "Creative energy asks for courage, focus and thoughtful action.",
-      "L’énergie créative appelle au courage, à la concentration et à l’action réfléchie.",
-      "La energía creativa pide valor, enfoque y acción consciente."
+      "In the fire of purpose and creation, Lead with quiet mastery. Your discernment can hold both compassion and strength.",
+      "Dans le feu de la volonté créatrice, La maîtrise véritable allie discernement, compassion et force tranquille.",
+      "En el fuego del propósito y la creación, El verdadero dominio une discernimiento, compasión y fortaleza."
     ],
     "art": "images/tarot/wands-13-queen.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -2976,12 +3002,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "✦",
     "meaning": [
-      "Creative energy asks for courage, focus and thoughtful action.",
-      "L’énergie créative appelle au courage, à la concentration et à l’action réfléchie.",
-      "La energía creativa pide valor, enfoque y acción consciente."
+      "In the fire of purpose and creation, True authority begins within. Choose the legacy your actions will leave behind.",
+      "Dans le feu de la volonté créatrice, L’autorité naît de l’intérieur. Vos gestes façonnent l’héritage de demain.",
+      "En el fuego del propósito y la creación, La autoridad comienza en tu interior. Tus actos construyen tu legado."
     ],
     "art": "images/tarot/wands-14-king.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -2991,12 +3017,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "✧",
     "meaning": [
-      "Practical care and steady effort can create lasting foundations.",
-      "Le soin concret et les efforts constants bâtissent des bases durables.",
-      "El cuidado práctico y el esfuerzo constante crean bases duraderas."
+      "In the world of roots and abundance, A new possibility emerges. Notice where the first spark is asking for your trust.",
+      "Dans le monde des racines et de l’abondance, Une possibilité nouvelle se présente. Accueillez cette première étincelle avec confiance.",
+      "En el mundo de las raíces y la abundancia, Surge una nueva posibilidad. Confía en la primera chispa de este camino."
     ],
     "art": "images/tarot/pentacles-01-ace.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -3006,12 +3032,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "✧",
     "meaning": [
-      "Practical care and steady effort can create lasting foundations.",
-      "Le soin concret et les efforts constants bâtissent des bases durables.",
-      "El cuidado práctico y el esfuerzo constante crean bases duraderas."
+      "In the world of roots and abundance, Two forces seek a rhythm together. A thoughtful choice can bring them into balance.",
+      "Dans le monde des racines et de l’abondance, Deux forces cherchent leur équilibre. Un choix réfléchi peut les harmoniser.",
+      "En el mundo de las raíces y la abundancia, Dos fuerzas buscan equilibrio. Una decisión consciente puede armonizarlas."
     ],
     "art": "images/tarot/pentacles-02-two.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -3021,12 +3047,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "✧",
     "meaning": [
-      "Practical care and steady effort can create lasting foundations.",
-      "Le soin concret et les efforts constants bâtissent des bases durables.",
-      "El cuidado práctico y el esfuerzo constante crean bases duraderas."
+      "In the world of roots and abundance, Progress grows through connection. Let shared effort reveal what you cannot build alone.",
+      "Dans le monde des racines et de l’abondance, L’élan grandit dans le partage. Ensemble, vous pouvez bâtir davantage.",
+      "En el mundo de las raíces y la abundancia, El progreso nace del encuentro. Juntos pueden construir algo mayor."
     ],
     "art": "images/tarot/pentacles-03-three.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -3036,12 +3062,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "✧",
     "meaning": [
-      "Practical care and steady effort can create lasting foundations.",
-      "Le soin concret et les efforts constants bâtissent des bases durables.",
-      "El cuidado práctico y el esfuerzo constante crean bases duraderas."
+      "In the world of roots and abundance, A moment of stillness invites you to examine what deserves your energy.",
+      "Dans le monde des racines et de l’abondance, Le calme vous invite à discerner ce qui mérite vraiment votre énergie.",
+      "En el mundo de las raíces y la abundancia, La quietud te invita a reconocer qué merece tu energía."
     ],
     "art": "images/tarot/pentacles-04-four.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -3051,12 +3077,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "✧",
     "meaning": [
-      "Practical care and steady effort can create lasting foundations.",
-      "Le soin concret et les efforts constants bâtissent des bases durables.",
-      "El cuidado práctico y el esfuerzo constante crean bases duraderas."
+      "In the world of roots and abundance, Tension reveals what matters. You can acknowledge the wound without living inside it.",
+      "Dans le monde des racines et de l’abondance, La tension révèle l’essentiel. Reconnaissez la blessure sans lui céder votre avenir.",
+      "En el mundo de las raíces y la abundancia, La tensión revela lo importante. Reconoce la herida sin quedarte en ella."
     ],
     "art": "images/tarot/pentacles-05-five.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -3066,12 +3092,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "✧",
     "meaning": [
-      "Practical care and steady effort can create lasting foundations.",
-      "Le soin concret et les efforts constants bâtissent des bases durables.",
-      "El cuidado práctico y el esfuerzo constante crean bases duraderas."
+      "In the world of roots and abundance, The passage ahead asks for grace. Accept support and keep moving toward calmer ground.",
+      "Dans le monde des racines et de l’abondance, Une transition s’amorce. Avancez avec grâce vers des eaux plus paisibles.",
+      "En el mundo de las raíces y la abundancia, Comienza una transición. Avanza con serenidad hacia aguas más tranquilas."
     ],
     "art": "images/tarot/pentacles-06-six.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -3081,12 +3107,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "✧",
     "meaning": [
-      "Practical care and steady effort can create lasting foundations.",
-      "Le soin concret et les efforts constants bâtissent des bases durables.",
-      "El cuidado práctico y el esfuerzo constante crean bases duraderas."
+      "In the world of roots and abundance, Not every promise is what it seems. Discernment will protect what you value.",
+      "Dans le monde des racines et de l’abondance, Toute promesse mérite un regard lucide. Protégez ce qui vous est précieux.",
+      "En el mundo de las raíces y la abundancia, No toda promesa es lo que parece. Protege lo que más valoras."
     ],
     "art": "images/tarot/pentacles-07-seven.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -3096,12 +3122,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "✧",
     "meaning": [
-      "Practical care and steady effort can create lasting foundations.",
-      "Le soin concret et les efforts constants bâtissent des bases durables.",
-      "El cuidado práctico y el esfuerzo constante crean bases duraderas."
+      "In the world of roots and abundance, What confines you may be less permanent than it appears. Look for the opening.",
+      "Dans le monde des racines et de l’abondance, Les limites d’aujourd’hui ne sont pas forcément définitives. Cherchez une ouverture.",
+      "En el mundo de las raíces y la abundancia, Tus límites actuales quizá no sean permanentes. Busca una salida."
     ],
     "art": "images/tarot/pentacles-08-eight.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -3111,12 +3137,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "✧",
     "meaning": [
-      "Practical care and steady effort can create lasting foundations.",
-      "Le soin concret et les efforts constants bâtissent des bases durables.",
-      "El cuidado práctico y el esfuerzo constante crean bases duraderas."
+      "In the world of roots and abundance, The mind magnifies shadows in the dark. Meet your fear with tenderness and clarity.",
+      "Dans le monde des racines et de l’abondance, Dans l’ombre, les peurs prennent de l’ampleur. Accueillez-les avec douceur et lucidité.",
+      "En el mundo de las raíces y la abundancia, En la oscuridad, el miedo crece. Respóndele con ternura y claridad."
     ],
     "art": "images/tarot/pentacles-09-nine.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -3126,12 +3152,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "✧",
     "meaning": [
-      "Practical care and steady effort can create lasting foundations.",
-      "Le soin concret et les efforts constants bâtissent des bases durables.",
-      "El cuidado práctico y el esfuerzo constante crean bases duraderas."
+      "In the world of roots and abundance, An ending makes space for a new chapter. Release what has already run its course.",
+      "Dans le monde des racines et de l’abondance, Une fin libère l’espace nécessaire à un nouveau chapitre.",
+      "En el mundo de las raíces y la abundancia, Un final abre espacio para un nuevo capítulo. Suelta lo que ya terminó."
     ],
     "art": "images/tarot/pentacles-10-ten.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -3141,12 +3167,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "✧",
     "meaning": [
-      "Practical care and steady effort can create lasting foundations.",
-      "Le soin concret et les efforts constants bâtissent des bases durables.",
-      "El cuidado práctico y el esfuerzo constante crean bases duraderas."
+      "In the world of roots and abundance, Curiosity is your compass. Stay open to a message, a lesson, or a fresh beginning.",
+      "Dans le monde des racines et de l’abondance, La curiosité vous guide. Restez disponible à une rencontre ou une leçon.",
+      "En el mundo de las raíces y la abundancia, La curiosidad es tu brújula. Abre el corazón a un aprendizaje."
     ],
     "art": "images/tarot/pentacles-11-page.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -3156,12 +3182,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "✧",
     "meaning": [
-      "Practical care and steady effort can create lasting foundations.",
-      "Le soin concret et les efforts constants bâtissent des bases durables.",
-      "El cuidado práctico y el esfuerzo constante crean bases duraderas."
+      "In the world of roots and abundance, Momentum is gathering. Direct your courage with intention rather than haste.",
+      "Dans le monde des racines et de l’abondance, Le mouvement s’accélère. Orientez votre courage avec intention.",
+      "En el mundo de las raíces y la abundancia, El impulso crece. Dirige tu valor con intención y no con prisa."
     ],
     "art": "images/tarot/pentacles-12-knight.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -3171,12 +3197,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "✧",
     "meaning": [
-      "Practical care and steady effort can create lasting foundations.",
-      "Le soin concret et les efforts constants bâtissent des bases durables.",
-      "El cuidado práctico y el esfuerzo constante crean bases duraderas."
+      "In the world of roots and abundance, Lead with quiet mastery. Your discernment can hold both compassion and strength.",
+      "Dans le monde des racines et de l’abondance, La maîtrise véritable allie discernement, compassion et force tranquille.",
+      "En el mundo de las raíces y la abundancia, El verdadero dominio une discernimiento, compasión y fortaleza."
     ],
     "art": "images/tarot/pentacles-13-queen.png",
-    "published": false
+    "published": true
   },
   {
     "name": [
@@ -3186,12 +3212,12 @@ const ritualMinorManifest = [
     ],
     "symbol": "✧",
     "meaning": [
-      "Practical care and steady effort can create lasting foundations.",
-      "Le soin concret et les efforts constants bâtissent des bases durables.",
-      "El cuidado práctico y el esfuerzo constante crean bases duraderas."
+      "In the world of roots and abundance, True authority begins within. Choose the legacy your actions will leave behind.",
+      "Dans le monde des racines et de l’abondance, L’autorité naît de l’intérieur. Vos gestes façonnent l’héritage de demain.",
+      "En el mundo de las raíces y la abundancia, La autoridad comienza en tu interior. Tus actos construyen tu legado."
     ],
     "art": "images/tarot/pentacles-14-king.png",
-    "published": false
+    "published": true
   }
 ];
 const ritualPublishedCards = new Set(ritualMinorManifest.filter(card => card.published).map(card => card.art));
@@ -3199,7 +3225,7 @@ for (const item of ritualMinorManifest) {
   ritualDeck.push([item.name[0],item.name[1],item.name[2],item.symbol,item.meaning[0],item.meaning[1],item.meaning[2]]);
   ritualArtFiles.push(item.art);
 }
-// Only draw cards whose artwork is on GitHub. Update 'published' when new suit packs are uploaded.
+// All 78 cards published: draw uniformly from the complete deck without replacement.
 const ritualAvailableDeck = ritualDeck.filter((card,index) => index < 22 || ritualPublishedCards.has(ritualArtFiles[index]));
 const ritualArt = card => ritualArtFiles[ritualDeck.indexOf(card)];
 const ritualOverlay = document.getElementById('ritualOverlay');
@@ -3241,7 +3267,7 @@ function ritualRender() {
       if(ritualQuestion.length<10){document.getElementById('ritualError').textContent=t.error;input.focus();return;}
       ritualDraw=[...ritualAvailableDeck];
       // Fisher–Yates with browser cryptographic randomness where available.
-      for(let i=ritualDraw.length-1;i>0;i--){const r=new Uint32Array(1);if(window.crypto?.getRandomValues)window.crypto.getRandomValues(r);else r[0]=Math.floor(Math.random()*4294967296);const j=r[0]%(i+1);[ritualDraw[i],ritualDraw[j]]=[ritualDraw[j],ritualDraw[i]];}
+      for(let i=ritualDraw.length-1;i>0;i--){const bound=i+1; const range=4294967296; const limit=Math.floor(range/bound)*bound;let r;do {const buf=new Uint32Array(1);if(window.crypto?.getRandomValues)window.crypto.getRandomValues(buf);else buf[0]=Math.floor(Math.random()*range);r=buf[0];} while(r>=limit);const j=r%bound;[ritualDraw[i],ritualDraw[j]]=[ritualDraw[j],ritualDraw[i]];}
       ritualDraw=ritualDraw.slice(0,7);ritualRevealed=0;ritualStep='cards';ritualRender();
     });
   } else if (ritualStep==='cards') {
