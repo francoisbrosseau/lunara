@@ -1828,6 +1828,12 @@ body:not(.ritual-open) .celestial-world .currency-label {
 @media(max-width:520px) {#ritualQuestionForm{padding:25px 18px 20px;}.ritual-stage .ritual-insight{padding:27px 18px;}.ritual-stage .ritual-result{gap:12px;padding:13px;}.ritual-stage .ritual-result-art{width:34%;}.ritual-stage .ritual-summary{padding:26px 20px;}}
 @media(prefers-reduced-motion:reduce){.ritual-stage .ritual-result,.ritual-stage .ritual-back,#ritualQuestionForm .ritual-input{transition:none;}}
 
+
+/* Sevenfold Thread: four clear takeaways inside the original Gothic chapter. */
+.oracle-counsel{display:grid;gap:1.1rem;margin-top:1.2rem;text-align:left}
+.oracle-counsel-part{padding:.75rem 1rem;border-left:1px solid rgba(216,174,96,.52);background:linear-gradient(90deg,rgba(213,168,83,.055),transparent 85%)}
+.oracle-counsel-part strong{display:block;color:#e8c785;font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.17em;margin-bottom:.35rem}
+.oracle-counsel-part p{margin:0;line-height:1.7}
 </style>
 </head>
 
@@ -3503,6 +3509,54 @@ function ritualExpandedMeaning(card,i){
  const bridge={en:`Here, ${card[idx]} draws attention to ${lore}.`,fr:`Ici, ${card[idx]} attire votre regard vers ${lore}.`,es:`Aquí, ${card[idx]} dirige tu atención hacia ${lore}.`}[lang];
  return `${base} ${bridge} ${pos[0]} ${g.suit[suit]} ${g.practice}: ${pos[1]}`;
 }
+// The final chapter is a concise, card-led counsel. No external AI or services.
+function ritualFinalCounsel(lang, cards, names, pathway){
+ const suit=ritualSuit(cards[6]), obstacle=ritualSuit(cards[5]), pivot=ritualSuit(cards[3]);
+ const options={
+ en:{
+  lead:{major:'a meaningful change of perspective',swords:'clear thinking and an honest decision',cups:'emotional honesty and mutual understanding',wands:'focused initiative rather than waiting',pentacles:'patient work toward lasting stability'},
+  act:{major:'Name the life pattern you want to change and choose one behavior that breaks it.',swords:'Write down the facts, identify the unanswered question, and have the conversation you have been avoiding.',cups:'Express what you need plainly, then observe whether actions match words.',wands:'Pick one priority and take a visible first step within seven days.',pentacles:'Make a realistic plan for your time, money, energy, or commitments and start with one manageable task.'},
+  caution:{major:'Do not confuse a powerful feeling of change with proof that a particular outcome is inevitable.',swords:'Do not let overthinking, assumptions, or harsh words decide for you.',cups:'Do not mistake hope for reciprocity or sacrifice your needs to keep the peace.',wands:'Do not rush ahead on excitement alone or spread yourself across too many goals.',pentacles:'Do not let fear of losing security keep you permanently stuck.'},
+  context:['In relationships, judge the pattern of behavior rather than promises alone.','For work or purpose, test the opportunity against your real resources.','For personal growth, favor a habit you can sustain over a dramatic reset.','For an open question, choose the area where one decision would create the most clarity.'],
+  labels:['THE VERDICT','THE DIRECTION','THE WARNING','THE ORACLE’S FINAL COUNSEL'],
+  verdict:(a,b,c)=>`With ${a} shaping the present, ${b} marking the crossroads, and ${c} pointing ahead, this spread favors ${options.en.lead[suit]}. It suggests a direction to examine, not a guaranteed future.`,
+  direction:(a)=>`${options.en.act[suit]} ${options.en.context[pathway]}`,
+  warning:()=>`${options.en.caution[obstacle]} The challenge card, ${names[5]}, is the clearest reminder to check this blind spot before committing.`,
+  closing:()=>`Take one deliberate step. Reassess what changes. Let your choices—not a prediction—shape the next chapter.`
+ },
+ fr:{
+  lead:{major:'un changement de perspective important',swords:'une réflexion lucide et une décision honnête',cups:'la sincérité émotionnelle et la compréhension mutuelle',wands:'une initiative ciblée plutôt que l’attente',pentacles:'des efforts patients vers une stabilité durable'},
+  act:{major:'Nommez le schéma que vous souhaitez changer et choisissez un geste pour en sortir.',swords:'Notez les faits, identifiez la question sans réponse et engagez la conversation nécessaire.',cups:'Exprimez clairement vos besoins, puis observez si les actes suivent les paroles.',wands:'Choisissez une priorité et posez un premier geste concret dans les sept jours.',pentacles:'Établissez un plan réaliste pour votre temps, vos finances ou votre énergie, puis commencez modestement.'},
+  caution:{major:'Ne prenez pas une forte impression de changement pour la preuve d’un résultat certain.',swords:'Ne laissez pas les suppositions, les ruminations ou les paroles blessantes décider à votre place.',cups:'Ne confondez pas l’espoir avec la réciprocité et ne sacrifiez pas vos besoins.',wands:'N’agissez pas dans la précipitation et ne dispersez pas vos efforts.',pentacles:'Ne laissez pas la peur de perdre votre sécurité vous immobiliser.'},
+  context:['En amour, observez les comportements répétés plutôt que les seules promesses.','Au travail, confrontez vos ambitions à vos ressources réelles.','Pour évoluer, privilégiez une habitude durable plutôt qu’un bouleversement soudain.','Pour une question ouverte, ciblez la décision qui apporterait le plus de clarté.'],
+  labels:['LE VERDICT','LA DIRECTION','LA MISE EN GARDE','LE DERNIER CONSEIL DE L’ORACLE'],
+  verdict:(a,b,c)=>`Avec ${a} dans le présent, ${b} au carrefour et ${c} en perspective, ce tirage favorise ${options.fr.lead[suit]}. C’est une piste de réflexion, pas une prédiction certaine.`,
+  direction:()=>`${options.fr.act[suit]} ${options.fr.context[pathway]}`,
+  warning:()=>`${options.fr.caution[obstacle]} La carte du défi, ${names[5]}, invite à examiner ce risque avant de vous engager.`,
+  closing:()=>`Posez un geste délibéré. Observez ce qui change. Laissez vos choix, et non une prédiction, écrire la suite.`
+ },
+ es:{
+  lead:{major:'un cambio importante de perspectiva',swords:'claridad mental y una decisión honesta',cups:'sinceridad emocional y comprensión mutua',wands:'iniciativa enfocada en vez de esperar',pentacles:'esfuerzo paciente hacia una estabilidad duradera'},
+  act:{major:'Identifica el patrón que quieres cambiar y elige una acción que lo interrumpa.',swords:'Anota los hechos, identifica la pregunta pendiente y ten la conversación necesaria.',cups:'Expresa claramente tus necesidades y observa si los actos coinciden con las palabras.',wands:'Elige una prioridad y da un primer paso visible en los próximos siete días.',pentacles:'Prepara un plan realista de tiempo, dinero o energía y empieza con una tarea manejable.'},
+  caution:{major:'No confundas una sensación intensa de cambio con la certeza de un resultado.',swords:'No dejes que las suposiciones, la preocupación o las palabras duras decidan por ti.',cups:'No confundas la esperanza con la reciprocidad ni sacrifiques tus necesidades.',wands:'No te precipites ni disperses tu energía entre demasiados objetivos.',pentacles:'No permitas que el miedo a perder seguridad te mantenga inmóvil.'},
+  context:['En las relaciones, observa los comportamientos, no solo las promesas.','En el trabajo, contrasta tus planes con tus recursos reales.','Para crecer, elige un hábito sostenible antes que un cambio drástico.','Ante una pregunta abierta, enfócate en la decisión que aporte más claridad.'],
+  labels:['EL VEREDICTO','LA DIRECCIÓN','LA ADVERTENCIA','EL CONSEJO FINAL DEL ORÁCULO'],
+  verdict:(a,b,c)=>`Con ${a} en el presente, ${b} en la encrucijada y ${c} como orientación, esta tirada favorece ${options.es.lead[suit]}. Es una dirección para explorar, no un futuro garantizado.`,
+  direction:()=>`${options.es.act[suit]} ${options.es.context[pathway]}`,
+  warning:()=>`${options.es.caution[obstacle]} La carta del desafío, ${names[5]}, señala este riesgo antes de tomar una decisión.`,
+  closing:()=>`Da un paso consciente. Observa qué cambia. Deja que tus decisiones, no una predicción, escriban el siguiente capítulo.`
+ }};
+ const x=options[lang]||options.en;
+ return [
+  [x.labels[0],x.verdict(names[0],names[3],names[6])],
+  [x.labels[1],x.direction()],
+  [x.labels[2],x.warning()],
+  [x.labels[3],x.closing()]
+ ];
+}
+function ritualFinalText(parts){return parts.map(([heading,body])=>`${heading}\n${body}`).join('\n\n');}
+function ritualFinalHtml(parts){return parts.map(([heading,body])=>`<div class="oracle-counsel-part"><strong>${ritualEscape(heading)}</strong><p>${ritualEscape(body)}</p></div>`).join('');}
+
 function ritualOracleText(){
  const lang=currentLanguage in ritualGuidance?currentLanguage:'en',g=ritualGuidance[lang],idx=ritualLangIndex();
  const cards=ritualDraw,names=cards.map(c=>c[idx]);
@@ -3533,7 +3587,9 @@ function ritualOracleText(){
   `The closing card, ${names[6]}, illuminates a possible way forward: ${closing}. ${g.suit[ritualSuit(cards[6])]} ${g.position[6][1]} ${g.prompts[pathway]} This is not a fixed forecast. It is a direction worth testing against your own values and the evidence of your life.`,
   `The golden thread running through all seven cards connects ${names[0]}, ${names[3]}, and ${names[6]}: see the situation clearly, face the central choice, and turn intention into action. Make three notes before you leave this sanctuary: what you know for certain, what still needs an honest conversation or more information, and one small step you can take within the next few days. After taking it, return to your original question and notice what changed. The deepest revelation is not what the cards promise; it is what you choose to do with the insight they offer.`
  ];
- return {heads,text};
+ const finalParts=ritualFinalCounsel(lang,cards,names,pathway);
+ text[4]=ritualFinalText(finalParts);
+ return {heads,text,finalParts};
 }
 function ritualOpen() {
   ritualReturnFocus = document.activeElement;
@@ -3576,7 +3632,7 @@ function ritualRender() {
     const cardsHtml=ritualDraw.map((card,i)=>`<article class="ritual-result"><img class="ritual-result-art" src="${ritualArt(card)}" alt="${ritualEscape(card[idx])}" loading="lazy"><div class="ritual-result-body"><small>${i+1} · ${ritualEscape(t.positions[i])}</small><h3>${ritualEscape(card[idx])}</h3><p>${ritualEscape(ritualExpandedMeaning(card,i))}</p></div></article>`).join('');
     const oracle=ritualOracleText();
     const summary=oracle.text.join('\n\n');
-    const oracleHtml=oracle.text.map((paragraph,i)=>`<section class="oracle-chapter"><span class="oracle-chapter-index">${ritualEscape(oracle.heads[i])}</span><p>${ritualEscape(paragraph)}</p></section>`).join('');
+    const oracleHtml=oracle.text.map((paragraph,i)=>`<section class="oracle-chapter"><span class="oracle-chapter-index">${ritualEscape(oracle.heads[i])}</span>${i===4?`<div class="oracle-counsel">${ritualFinalHtml(oracle.finalParts)}</div>`:`<p>${ritualEscape(paragraph)}</p>`}</section>`).join('');
     ritualContent.innerHTML=`<section class="ritual-stage"><p class="ritual-kicker">${t.resultKicker}</p><h2 class="ritual-title">${t.resultTitle}</h2><p class="ritual-copy">${t.resultCopy}</p><div class="ritual-summary"><h3>${t.yourQuestion}</h3><p>${ritualEscape(ritualQuestion)}</p><p><strong>${t.yourPath}:</strong> ${ritualEscape(t.paths[ritualPath])}</p></div><div class="ritual-results">${cardsHtml}</div><div class="oracle-synthesis"><div class="oracle-sigil" aria-hidden="true">☾ ✦ ☽</div><p class="oracle-overline">✧ L U N A R A ✧</p><h3>${t.reflection}</h3><div class="oracle-chapters">${oracleHtml}</div><div class="oracle-ending" aria-hidden="true">✦ ─── ☾ ─── ✦</div></div><div class="ritual-actions"><button class="ritual-back" id="ritualAgain" type="button">↺ ${t.again}</button><button class="btn" id="ritualSave" type="button">${t.save} ↓</button></div><p class="ritual-notice">${t.demo}</p></section>`;
     document.getElementById('ritualAgain').addEventListener('click',()=>{ritualStep='question';ritualQuestion='';ritualRender();});
     document.getElementById('ritualSave').addEventListener('click',()=>{
