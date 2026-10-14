@@ -862,6 +862,128 @@ footer p {
   }
 
 }
+   /* =========================================
+   LUNARA — FINAL TAROT CARD FIX
+========================================= */
+
+.paths-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+
+.paths-grid .path-card {
+  display: block !important;
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  min-height: 0 !important;
+  height: auto !important;
+
+  margin: 0;
+  padding: 0 !important;
+
+  border: 1px solid rgba(201,167,106,.4);
+  border-radius: 0;
+
+  background: transparent !important;
+  background-image: none !important;
+
+  box-shadow: none;
+  overflow: hidden;
+
+  line-height: 0;
+  appearance: none;
+  cursor: pointer;
+
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease,
+    border-color .35s ease;
+}
+
+.paths-grid .path-card::before,
+.paths-grid .path-card::after {
+  content: none !important;
+  display: none !important;
+}
+
+.paths-grid .path-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  object-fit: contain;
+  object-position: center;
+
+  transform: none;
+  filter: none;
+
+  transition:
+    transform .4s ease,
+    filter .4s ease;
+}
+
+.paths-grid .path-card:hover,
+.paths-grid .path-card:focus-visible {
+  transform: translateY(-7px);
+  border-color: var(--gold-light);
+
+  box-shadow:
+    0 15px 45px rgba(0,0,0,.45),
+    0 0 25px rgba(201,167,106,.2);
+}
+
+.paths-grid .path-card:hover img,
+.paths-grid .path-card:focus-visible img {
+  transform: scale(1.015);
+  filter: brightness(1.08);
+}
+
+.paths-grid .path-card.selected {
+  border-color: var(--gold-light);
+  box-shadow: 0 0 0 2px var(--gold);
+}
+
+/* Tablet */
+
+@media (max-width: 1050px) {
+
+  .paths-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+  .paths-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    max-width: 420px;
+    margin: auto;
+  }
+
+}
+
+/* Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .paths-grid .path-card,
+  .paths-grid .path-card img {
+    transition: none !important;
+  }
+
+}
 
 </style>
 </head>
