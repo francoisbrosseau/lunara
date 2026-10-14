@@ -984,6 +984,138 @@ footer p {
   }
 
 }
+   /* =========================================
+   LUNARA — THE TAROT RITUAL
+========================================= */
+
+.paths {
+  padding-bottom: 70px;
+}
+
+.ritual {
+  padding-top: 75px;
+  padding-bottom: 120px;
+}
+
+.ritual-heading {
+  margin-bottom: 70px;
+}
+
+.ritual-steps {
+  gap: 45px;
+}
+
+.ritual-tarot {
+  position: relative;
+  width: 180px;
+  height: 270px;
+  margin: 0 auto 40px;
+
+  border: 2px solid #b99558;
+
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(201,167,106,.22),
+      transparent 55%
+    ),
+    linear-gradient(
+      145deg,
+      #182a44,
+      #060a13 80%
+    );
+
+  box-shadow:
+    0 15px 45px rgba(0,0,0,.45),
+    0 0 30px rgba(201,167,106,.1);
+
+  transition:
+    transform .5s ease,
+    box-shadow .5s ease;
+}
+
+.ritual-tarot::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(240,216,162,.45);
+  pointer-events: none;
+}
+
+.ritual-tarot::after {
+  content: "✦";
+  position: absolute;
+  top: -17px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5rem;
+  color: var(--gold-light);
+}
+
+.tarot-inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 30px 15px;
+}
+
+.tarot-number {
+  font-family: "Cormorant Garamond", serif;
+  color: var(--gold);
+  font-size: 1.5rem;
+  letter-spacing: .2em;
+}
+
+.tarot-symbol {
+  font-family: serif;
+  font-size: 5rem;
+  color: var(--gold-light);
+
+  text-shadow:
+    0 0 25px rgba(201,167,106,.45);
+}
+
+.tarot-ornament {
+  color: var(--gold);
+  font-size: 1rem;
+  letter-spacing: .25em;
+}
+
+.question-card {
+  transform: rotate(-5deg);
+}
+
+.cards-card {
+  transform: translateY(-10px);
+}
+
+.revelation-card {
+  transform: rotate(5deg);
+}
+
+.question-card:hover,
+.cards-card:hover,
+.revelation-card:hover {
+  transform: translateY(-12px) rotate(0deg);
+
+  box-shadow:
+    0 20px 55px rgba(0,0,0,.55),
+    0 0 45px rgba(201,167,106,.25);
+}
+
+@media (max-width: 700px) {
+
+  .ritual {
+    padding-top: 60px;
+  }
+
+  .ritual-steps {
+    gap: 85px;
+  }
+
+}
 
 </style>
 </head>
@@ -1166,8 +1298,12 @@ Three simple steps. One deeply personal experience.
 
 <div class="ritual-step reveal">
 
-<div class="ritual-circle">
-<span class="ritual-symbol" aria-hidden="true">✦</span>
+<div class="ritual-tarot question-card" aria-hidden="true">
+  <div class="tarot-inner">
+    <span class="tarot-number">I</span>
+    <span class="tarot-symbol">☾</span>
+    <span class="tarot-ornament">✦ ✧ ✦</span>
+  </div>
 </div>
 
 <h3 data-i18n="step1Title">
@@ -1182,10 +1318,13 @@ Share what is on your mind and choose the focus of your journey.
 
 <div class="ritual-step reveal">
 
-<div class="ritual-circle">
-<span class="ritual-symbol" aria-hidden="true">♧</span>
+<div class="ritual-tarot cards-card" aria-hidden="true">
+  <div class="tarot-inner">
+    <span class="tarot-number">II</span>
+    <span class="tarot-symbol">✧</span>
+    <span class="tarot-ornament">☾ ✦ ☼</span>
+  </div>
 </div>
-
 <h3 data-i18n="step2Title">
 II. The Cards
 </h3>
@@ -1198,8 +1337,12 @@ Discover seven tarot cards, each carrying its own symbolism and meaning.
 
 <div class="ritual-step reveal">
 
-<div class="ritual-circle">
-<span class="ritual-symbol" aria-hidden="true">☼</span>
+<div class="ritual-tarot revelation-card" aria-hidden="true">
+  <div class="tarot-inner">
+    <span class="tarot-number">III</span>
+    <span class="tarot-symbol">☼</span>
+    <span class="tarot-ornament">✦ ✧ ✦</span>
+  </div>
 </div>
 
 <h3 data-i18n="step3Title">
