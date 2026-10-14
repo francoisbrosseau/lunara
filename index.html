@@ -1391,6 +1391,29 @@ footer p {
     height: 220px;
   }
 }
+   /* LUNARA — ORACLE ARTWORK */
+.oracle-artwork {
+  width: 100%;
+  max-width: 620px;
+  margin: 0 auto 35px;
+  text-align: center;
+}
+
+.oracle-artwork img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: none;
+  object-fit: contain;
+  filter: drop-shadow(0 15px 45px rgba(201, 155, 76, 0.18));
+}
+
+@media (max-width: 768px) {
+  .oracle-artwork {
+    max-width: 100%;
+    margin-bottom: 25px;
+  }
+}
 
 </style>
 </head>
@@ -1608,31 +1631,14 @@ Receive a thoughtful interpretation inspired by your cards and personal question
 <section class="oracle-chamber" id="oracle">
   <div class="container">
 
-    <div class="oracle-frame reveal lunara-sanctuary">
-
-      <div class="sanctuary-symbol" aria-hidden="true">✧ ☾ ✧</div>
-
-      <p class="eyebrow" data-i18n="oracleEyebrow">
-        YOUR JOURNEY BEGINS HERE
-      </p>
-
-      <h2 data-i18n="oracleTitle">The Oracle Awaits</h2>
-
-      <div class="gold-line"></div>
-
-      <p class="oracle-subtitle" data-i18n="oracleSubtitle">
-        Seven cards. One question. A journey of discovery.
-      </p>
-
-      <div class="sanctuary-art" aria-hidden="true">
-        <div class="sanctuary-halo"></div>
-        <div class="sanctuary-cards">
-          <span>☾</span>
-          <span>✦</span>
-          <span>☼</span>
-        </div>
-      </div>
-
+    <!-- LUNARA ORACLE ARTWORK -->
+<div class="oracle-artwork">
+  <img
+    src="images/lunara-oracle-art.png"
+    alt="LUNARA celestial tarot reading artwork"
+    loading="lazy"
+  >
+</div>
       <p class="sanctuary-label">YOUR SEVEN-CARD READING</p>
 
       <p class="sanctuary-description">
