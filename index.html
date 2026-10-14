@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
@@ -1716,6 +1716,48 @@ body.ritual-open { overflow: hidden; }
   outline-offset:2px;
 }
 
+
+/* LUNARA · THE GOTHIC ORACLE — typography and literary presentation */
+:root { --oracle-ink:#f5e7cd; --oracle-gold:#d8b574; }
+.ritual-stage .ritual-title {
+ font-family:'Cinzel Decorative','Cinzel',serif; font-weight:400;
+ font-size:clamp(2.25rem,4.5vw,4.3rem); line-height:1.27;
+ max-width:1050px; letter-spacing:.005em; color:var(--oracle-ink);
+ text-shadow:0 2px 30px rgba(209,157,78,.12);
+}
+.ritual-stage .ritual-kicker {letter-spacing:.34em; font-size:.71rem; color:#d5b57e;}
+.ritual-stage .ritual-copy {font-family:'EB Garamond',Georgia,serif; font-size:clamp(1.18rem,1.9vw,1.52rem);line-height:1.6;letter-spacing:.012em;color:#d9c9b3;max-width:760px;}
+.ritual-stage .ritual-progress {font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.2em;}
+.ritual-stage .ritual-insight h3 {font-family:'Cinzel Decorative','Cinzel',serif;font-size:clamp(1.45rem,2.5vw,2.1rem);line-height:1.4;}
+.ritual-stage .ritual-insight p {font-family:'EB Garamond',Georgia,serif;font-size:clamp(1.25rem,2vw,1.65rem);line-height:1.6;max-width:800px;margin:12px auto 0;}
+.ritual-stage .ritual-result h3 {font-family:'Cinzel Decorative','Cinzel',serif;font-size:clamp(1.3rem,2vw,1.7rem);}
+.ritual-stage .ritual-result p {font-family:'EB Garamond',Georgia,serif;font-size:1.22rem;line-height:1.7;}
+.ritual-stage .ritual-result small {font-family:'Cinzel',serif;font-size:.7rem;}
+.ritual-stage .ritual-summary h3 {font-family:'Cinzel Decorative','Cinzel',serif;font-size:1.45rem;}
+.ritual-stage .ritual-actions .btn, .ritual-stage #ritualQuestionForm .btn {
+ position:relative;isolation:isolate;overflow:hidden;border:1px solid #f3d79b;
+ background:linear-gradient(115deg,#9e773c 0%,#efd39c 27%,#c9a468 57%,#f0d9a7 100%);
+ color:#16111a;font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.13em;
+ padding:17px 34px;box-shadow:0 0 0 3px rgba(216,181,116,.12),0 9px 32px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.48);
+ transition:filter .25s,transform .25s,box-shadow .25s;
+}
+.ritual-stage .ritual-actions .btn:hover, .ritual-stage #ritualQuestionForm .btn:hover {filter:brightness(1.12);transform:translateY(-3px);box-shadow:0 0 22px rgba(218,177,97,.28),0 14px 35px rgba(0,0,0,.45);}
+.ritual-stage .ritual-actions .btn:focus-visible,.ritual-stage #ritualQuestionForm .btn:focus-visible {outline:2px solid white;outline-offset:5px;}
+.oracle-synthesis {position:relative;overflow:hidden;margin:55px auto 24px;padding:50px clamp(20px,6vw,78px) 45px;max-width:990px;text-align:center;border:1px solid rgba(216,181,116,.55);background:radial-gradient(ellipse at 50% 0%,rgba(42,39,57,.65),transparent 55%),linear-gradient(145deg,#111b2c 0%,#080c17 48%,#121626 100%);box-shadow:inset 0 0 0 6px #090f1b,inset 0 0 0 7px rgba(216,181,116,.22),0 18px 70px rgba(0,0,0,.3);}
+.oracle-synthesis::before,.oracle-synthesis::after {content:'✦';position:absolute;color:#d8b574;font-size:1.15rem;top:17px;left:22px;opacity:.85;}
+.oracle-synthesis::after {left:auto;right:22px;}
+.oracle-sigil {font-size:2rem;color:#d9b67c;letter-spacing:.55em;margin-bottom:10px;text-shadow:0 0 24px rgba(218,181,116,.35);}
+.oracle-overline {font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:.32em;color:#bda16c;}
+.oracle-synthesis h3 {font-family:'Cinzel Decorative','Cinzel',serif;font-weight:400;color:#f1d5a3;font-size:clamp(1.7rem,3vw,2.55rem);line-height:1.45;margin:15px auto 26px;max-width:730px;}
+.oracle-chapters {max-width:760px;margin:auto;text-align:left;}
+.oracle-chapter {padding:25px 0 27px;border-top:1px solid rgba(216,181,116,.23);}
+.oracle-chapter-index {font-family:'Cinzel',serif;font-size:.69rem;letter-spacing:.18em;color:#cfa968;}
+.oracle-chapter p {font-family:'EB Garamond',Georgia,serif;font-size:clamp(1.18rem,1.7vw,1.42rem);line-height:1.72;color:#e6d9c7;margin:11px 0 0;}
+.oracle-chapter:first-child p::first-letter {font-family:'Cinzel Decorative',serif;font-size:2.5em;line-height:.9;float:left;padding:7px 9px 0 0;color:#e0b974;}
+.oracle-ending {margin-top:17px;color:#caa46b;letter-spacing:.25em;}
+@media(max-width:600px){.oracle-synthesis {padding:38px 20px 30px;}.ritual-stage .ritual-title{font-size:clamp(2rem,9vw,3rem);}.ritual-stage .ritual-actions .btn{padding:15px 20px;}}
+@media(prefers-reduced-motion:reduce){.ritual-stage .ritual-actions .btn{transition:none;}}
+
 </style>
 </head>
 
@@ -2387,8 +2429,8 @@ updateLunaraPrice();
 const ritualI18n = {
   en: {
     close:'Close', back:'Back', introKicker:'I · THE QUESTION', introTitle:'Every revelation begins with a question.', introCopy:'Choose what you wish to explore. Your words stay in this browser during this preview.', label:'Your question', placeholder:'What would you like to understand more deeply?', count:'characters', continue:'Prepare the Seven Cards', error:'Write at least 10 characters to begin.', path:'Your chosen path',
-    drawKicker:'II · THE CARDS', drawTitle:'Seven cards. Seven doors to understanding.', drawCopy:'Turn each card in its own time. Together, their symbols trace the hidden currents of your question.', progress:'Cards revealed', reveal:'Reveal card', wait:'Reveal the glowing card next', next:'See Your Revelation',
-    resultKicker:'III · THE REVELATION', resultTitle:'The constellation of your story.', resultCopy:'Seven symbols, one unfolding story. Explore the connections between them, and discover which truths resonate with your own experience.', yourQuestion:'Your question', yourPath:'Your path', reflection:'Threads of reflection', save:'Save Reading as Text', again:'Begin Another Reading', demo:'Interactive preview: symbolic interpretations are generated locally from a curated deck. No AI personalization or payment is active.', saved:'Your reading has been saved.',
+    drawKicker:'II · THE CARDS', drawTitle:'Beneath the Veil of Seven Stars.', drawCopy:'Seven emblems emerge from the dark. Unveil them, and follow the golden thread that binds their secrets.', progress:'Cards revealed', reveal:'Reveal card', wait:'Reveal the glowing card next', next:'Enter the Inner Sanctum',
+    resultKicker:'III · THE REVELATION', resultTitle:'The Oracle Unveiled.', resultCopy:'From seven sacred emblems, a constellation of meaning takes shape. Read slowly; the deepest truths rarely arrive with thunder.', yourQuestion:'Your question', yourPath:'Your path', reflection:'The Golden Thread · An Oracle’s Synthesis', save:'Save Reading as Text', again:'Begin Another Reading', demo:'Interactive preview: symbolic interpretations are generated locally from a curated deck. No AI personalization or payment is active.', saved:'Your reading has been saved.',
     positions:['The Present','The Hidden Influence','The Past','The Turning Point','Your Strength','The Invitation','The Way Forward'],
     positionHints:['What is asking for attention now.','An influence you may not yet recognize.','What still echoes from behind you.','Where change may become possible.','What you can draw upon.','What deserves your curiosity.','A perspective to carry onward.'],
     summaryLead:'Rather than predicting an outcome, this spread invites you to notice how', summaryBridge:'and', summaryEnd:'might speak to your question. Which of these themes feels most alive for you right now?',
@@ -2396,8 +2438,8 @@ const ritualI18n = {
   },
   fr: {
     close:'Fermer', back:'Retour', introKicker:'I · LA QUESTION', introTitle:'Toute révélation commence par une question.', introCopy:'Choisissez ce que vous souhaitez explorer. Vos mots restent dans ce navigateur pendant cet aperçu.', label:'Votre question', placeholder:'Qu’aimeriez-vous mieux comprendre?', count:'caractères', continue:'Préparer les sept cartes', error:'Écrivez au moins 10 caractères pour commencer.', path:'Votre voie',
-    drawKicker:'II · LES CARTES', drawTitle:'Sept cartes. Sept portes vers la compréhension.', drawCopy:'Retournez chaque carte à votre rythme. Ensemble, leurs symboles dessinent les courants secrets de votre question.', progress:'Cartes révélées', reveal:'Révéler la carte', wait:'Révélez ensuite la carte lumineuse', next:'Découvrir votre révélation',
-    resultKicker:'III · LA RÉVÉLATION', resultTitle:'La constellation de votre histoire.', resultCopy:'Ces sept cartes composent une lecture propice à la réflexion. Gardez ce qui résonne en vous.', yourQuestion:'Votre question', yourPath:'Votre voie', reflection:'Pistes de réflexion', save:'Enregistrer en texte', again:'Commencer un autre tirage', demo:'Aperçu interactif : les interprétations symboliques proviennent d’un jeu local. Aucune personnalisation par IA ni aucun paiement ne sont actifs.', saved:'Votre tirage a été enregistré.',
+    drawKicker:'II · LES CARTES', drawTitle:'Sous le voile des sept étoiles.', drawCopy:'Sept emblèmes surgissent des ténèbres. Dévoilez-les et suivez le fil d’or qui relie leurs secrets.', progress:'Cartes révélées', reveal:'Révéler la carte', wait:'Révélez ensuite la carte lumineuse', next:'Entrer dans le sanctuaire',
+    resultKicker:'III · LA RÉVÉLATION', resultTitle:'L’Oracle se dévoile.', resultCopy:'Sept symboles dessinent une constellation de sens. Lisez lentement : les vérités profondes se murmurent.', yourQuestion:'Votre question', yourPath:'Votre voie', reflection:'Le fil d’or · La synthèse de l’Oracle', save:'Enregistrer en texte', again:'Commencer un autre tirage', demo:'Aperçu interactif : les interprétations symboliques proviennent d’un jeu local. Aucune personnalisation par IA ni aucun paiement ne sont actifs.', saved:'Votre tirage a été enregistré.',
     positions:['Le présent','L’influence cachée','Le passé','Le tournant','Votre force','L’invitation','La voie à suivre'],
     positionHints:['Ce qui demande votre attention.','Une influence encore discrète.','Ce qui résonne du passé.','Là où le changement devient possible.','Une ressource sur laquelle compter.','Ce qui mérite votre curiosité.','Une perspective à emporter.'],
     summaryLead:'Sans prédire l’avenir, ce tirage vous invite à observer comment', summaryBridge:'et', summaryEnd:'peuvent éclairer votre question. Quel thème vous interpelle le plus aujourd’hui?',
@@ -2405,8 +2447,8 @@ const ritualI18n = {
   },
   es: {
     close:'Cerrar', back:'Volver', introKicker:'I · LA PREGUNTA', introTitle:'Toda revelación comienza con una pregunta.', introCopy:'Elige lo que deseas explorar. Tus palabras permanecen en este navegador durante la vista previa.', label:'Tu pregunta', placeholder:'¿Qué te gustaría comprender mejor?', count:'caracteres', continue:'Preparar las siete cartas', error:'Escribe al menos 10 caracteres para comenzar.', path:'Tu camino',
-    drawKicker:'II · LAS CARTAS', drawTitle:'Siete cartas. Siete puertas hacia la comprensión.', drawCopy:'Descubre cada carta a su tiempo. Juntos, sus símbolos revelan las corrientes ocultas de tu pregunta.', progress:'Cartas reveladas', reveal:'Revelar carta', wait:'Revela la siguiente carta iluminada', next:'Descubrir tu revelación',
-    resultKicker:'III · LA REVELACIÓN', resultTitle:'Una historia contada en símbolos.', resultCopy:'Estas siete cartas forman una lectura para reflexionar. Conserva aquello que resuene contigo.', yourQuestion:'Tu pregunta', yourPath:'Tu camino', reflection:'Hilos de reflexión', save:'Guardar lectura en texto', again:'Comenzar otra lectura', demo:'Vista previa interactiva: las interpretaciones simbólicas proceden de una baraja local. No hay personalización con IA ni pagos activos.', saved:'Tu lectura se ha guardado.',
+    drawKicker:'II · LAS CARTAS', drawTitle:'Bajo el velo de siete estrellas.', drawCopy:'Siete emblemas emergen de la oscuridad. Descúbrelos y sigue el hilo dorado que une sus secretos.', progress:'Cartas reveladas', reveal:'Revelar carta', wait:'Revela la siguiente carta iluminada', next:'Entrar en el santuario',
+    resultKicker:'III · LA REVELACIÓN', resultTitle:'El Oráculo se revela.', resultCopy:'Siete símbolos dibujan una constelación de significado. Lee despacio: las verdades más profundas suelen susurrarse.', yourQuestion:'Tu pregunta', yourPath:'Tu camino', reflection:'El hilo dorado · Síntesis del Oráculo', save:'Guardar lectura en texto', again:'Comenzar otra lectura', demo:'Vista previa interactiva: las interpretaciones simbólicas proceden de una baraja local. No hay personalización con IA ni pagos activos.', saved:'Tu lectura se ha guardado.',
     positions:['El presente','La influencia oculta','El pasado','El punto de cambio','Tu fortaleza','La invitación','El camino por delante'],
     positionHints:['Lo que pide tu atención.','Una influencia aún discreta.','Lo que resuena del pasado.','Donde el cambio es posible.','Un recurso en el que apoyarte.','Lo que merece tu curiosidad.','Una perspectiva para llevar contigo.'],
     summaryLead:'Sin predecir el futuro, esta tirada te invita a observar cómo', summaryBridge:'y', summaryEnd:'pueden iluminar tu pregunta. ¿Qué tema te llama más la atención ahora?',
@@ -3302,6 +3344,76 @@ let ritualReturnFocus = null;
 const ritualT = () => ritualI18n[currentLanguage] || ritualI18n.en;
 const ritualLangIndex = () => ({en:0,fr:1,es:2})[currentLanguage] ?? 0;
 const ritualEscape = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+// A deterministic reading-specific variation, with no network calls or invented AI.
+function ritualHash(value) { let h=2166136261;for(const ch of value){h=Math.imul(h^ch.charCodeAt(0),16777619);}return h>>>0; }
+function ritualPick(options, salt) {return options[ritualHash(ritualQuestion+'|'+ritualDraw.map(c=>c[0]).join('|')+'|'+salt)%options.length];}
+function ritualSuit(card) {
+ const n=card[0].toLowerCase();
+ return n.includes('swords')?'swords':n.includes('cups')?'cups':n.includes('wands')?'wands':n.includes('pentacles')?'pentacles':'major';
+}
+const ritualLore={
+ en:{
+  major:['an archetype larger than the immediate moment','a turning point in the deeper pattern of your life','a symbol of transformation beneath the visible story'],
+  swords:['the edge of truth, and the cost of avoiding it','the mind seeking clarity through uncertainty','the courage to distinguish fear from fact'],
+  cups:['the undercurrent of feeling beneath what is spoken','the delicate balance of intimacy and self-respect','a truth that can only be understood through the heart'],
+  wands:['a restless fire asking for direction','the spark of ambition before it becomes action','the will to begin, even without a guarantee'],
+  pentacles:['the slow alchemy of effort into lasting change','the foundations that make freedom possible','the tangible choices through which values take form']
+ },
+ fr:{
+  major:['un archétype qui dépasse l’instant présent','un tournant dans la trame profonde de votre histoire','une transformation sous la surface des apparences'],
+  swords:['le tranchant de la vérité et le prix du silence','un esprit en quête de clarté','le courage de distinguer la peur des faits'],
+  cups:['les émotions qui circulent sous les mots','l’équilibre délicat entre intimité et respect de soi','une vérité que le cœur perçoit avant l’esprit'],
+  wands:['un feu intérieur qui cherche sa direction','l’étincelle d’une ambition encore naissante','la volonté de commencer sans certitude'],
+  pentacles:['la lente alchimie de l’effort et du changement','les fondations concrètes de votre liberté','les choix par lesquels les valeurs prennent forme']
+ },
+ es:{
+  major:['un arquetipo que trasciende el instante','un giro en la trama profunda de tu historia','una transformación bajo las apariencias'],
+  swords:['el filo de la verdad y el precio del silencio','una mente que busca claridad','el valor de distinguir el miedo de los hechos'],
+  cups:['las emociones que fluyen bajo las palabras','el delicado equilibrio entre intimidad y respeto propio','una verdad que el corazón conoce primero'],
+  wands:['un fuego interior que busca dirección','la chispa de una ambición naciente','la voluntad de empezar sin certezas'],
+  pentacles:['la lenta alquimia del esfuerzo y el cambio','los cimientos tangibles de la libertad','las decisiones que dan forma a tus valores']
+ }
+};
+function ritualExpandedMeaning(card,i) {
+ const lang=currentLanguage in ritualLore?currentLanguage:'en';const idx=ritualLangIndex();
+ const lore=ritualPick(ritualLore[lang][ritualSuit(card)],'lore-'+i);
+ const bridge={
+  en:[`In the place of ${ritualT().positions[i].toLowerCase()}, this card speaks of ${lore}.`,`Here, ${card[idx]} illuminates ${lore}.`,`At this threshold, consider ${lore}.`],
+  fr:[`À la place du ${ritualT().positions[i].toLowerCase()}, cette carte évoque ${lore}.`,`Ici, ${card[idx]} révèle ${lore}.`,`À ce seuil, considérez ${lore}.`],
+  es:[`En la posición de ${ritualT().positions[i].toLowerCase()}, esta carta habla de ${lore}.`,`Aquí, ${card[idx]} ilumina ${lore}.`,`En este umbral, considera ${lore}.`]
+ }[lang];
+ const challenge={
+  en:['What would change if you faced this theme without disguising it?','Where does this symbol already echo in your choices?','Which part of this message asks for courage rather than certainty?'],
+  fr:['Que changerait le fait d’accueillir ce thème sans détour ?','Où ce symbole résonne-t-il déjà dans vos choix ?','Quelle part de ce message demande du courage plutôt que des certitudes ?'],
+  es:['¿Qué cambiaría si afrontaras este tema sin máscaras?','¿Dónde resuena ya este símbolo en tus decisiones?','¿Qué parte de este mensaje pide valor en lugar de certezas?']
+ }[lang];
+ return `${card[4+idx]} ${ritualPick(bridge,'bridge-'+i)} ${ritualPick(challenge,'challenge-'+i)}`;
+}
+function ritualOracleText(){
+ const t=ritualT(),idx=ritualLangIndex(),a=ritualDraw[0],b=ritualDraw[3],c=ritualDraw[6];
+ const names=[a[idx],b[idx],c[idx]];
+ const lang=currentLanguage in ritualLore?currentLanguage:'en';
+ const strands=[ritualPick(ritualLore[lang][ritualSuit(a)],'thread-a'),ritualPick(ritualLore[lang][ritualSuit(b)],'thread-b'),ritualPick(ritualLore[lang][ritualSuit(c)],'thread-c')];
+ const heads={en:['I · THE VEIL','II · THE CROSSROADS','III · THE CROWN','IV · THE GOLDEN THREAD'],fr:['I · LE VOILE','II · LE CARREFOUR','III · LA COURONNE','IV · LE FIL D’OR'],es:['I · EL VELO','II · LA ENCRUCIJADA','III · LA CORONA','IV · EL HILO DORADO']}[lang];
+ const text={
+ en:[
+  `The first omen, ${names[0]}, stands at the gate of your question. It draws your attention to ${strands[0]}. Before seeking a verdict, notice what you have already sensed but perhaps not yet named.`,
+  `At the heart of the spread, ${names[1]} marks the turning point. Its image speaks of ${strands[1]}. This is not a command from fate; it is a mirror held before a choice that may deserve a more deliberate answer.`,
+  `The final emblem, ${names[2]}, does not seal your future. It offers a direction: ${strands[2]}. Consider what one honest, concrete step toward that direction would look like in the days ahead.`,
+  `Taken together, these seven cards trace a passage from recognition, through tension, toward agency. Their power lies not in certainty, but in the questions they sharpen. What are you prepared to acknowledge—and what will you choose to do with that knowledge?`
+ ],fr:[
+  `Premier présage, ${names[0]} se tient au seuil de votre question. Il attire le regard vers ${strands[0]}. Avant de chercher une réponse définitive, nommez ce que vous pressentez déjà.`,
+  `Au cœur du tirage, ${names[1]} marque le tournant. Son image évoque ${strands[1]}. Ce n’est pas un ordre du destin, mais un miroir tendu devant un choix qui mérite réflexion.`,
+  `Le dernier emblème, ${names[2]}, ne scelle pas votre avenir. Il suggère une direction : ${strands[2]}. Quel premier geste sincère pourrait lui donner vie ?`,
+  `Ensemble, ces sept cartes dessinent un passage : reconnaître, traverser, puis agir. Leur force n’est pas dans la certitude, mais dans la lucidité. Que choisirez-vous de faire de ce que vous voyez désormais ?`
+ ],es:[
+  `El primer presagio, ${names[0]}, guarda el umbral de tu pregunta. Dirige tu mirada hacia ${strands[0]}. Antes de buscar una respuesta definitiva, reconoce lo que ya intuyes.`,
+  `En el centro de la tirada, ${names[1]} señala un giro. Su imagen evoca ${strands[1]}. No es una orden del destino, sino un espejo ante una decisión que merece atención.`,
+  `El último emblema, ${names[2]}, no determina tu futuro. Sugiere una dirección: ${strands[2]}. ¿Qué pequeño paso sincero podrías dar hacia ella?`,
+  `Juntas, las siete cartas dibujan un viaje desde el reconocimiento hasta la acción. Su fuerza no está en la certeza, sino en la claridad. ¿Qué elegirás hacer con lo que ahora puedes ver?`
+ ]}[lang];
+ return {heads,text};
+}
 function ritualOpen() {
   ritualReturnFocus = document.activeElement;
   ritualPath = selectedReading || 'general';
@@ -3334,19 +3446,21 @@ function ritualRender() {
     });
   } else if (ritualStep==='cards') {
     const idx=ritualLangIndex();
-    ritualContent.innerHTML=`<section class="ritual-stage"><p class="ritual-kicker">${t.drawKicker}</p><h2 class="ritual-title">${t.drawTitle}</h2><p class="ritual-copy">${t.drawCopy}</p><p class="ritual-progress">${t.progress}: ${ritualRevealed} / 7</p><div class="ritual-deck">${ritualDraw.map((card,i)=>{const shown=i<ritualRevealed;return `<button type="button" class="ritual-card ${shown?'revealed':''} ${i===ritualRevealed?'current':''}" data-card="${i}" ${i===ritualRevealed?'':'disabled'} aria-label="${shown?ritualEscape(card[idx]):t.reveal+' '+(i+1)}"><span class="card-face">${shown?`<img src="${ritualArt(card)}" alt="${ritualEscape(card[idx])}" loading="lazy">`:`<span class="card-glyph">☾</span>`}</span><span class="card-caption">${shown?ritualEscape(card[idx]):'✦ '+(i+1)+' ✦'}</span></button>`;}).join('')}</div><div class="ritual-insight">${ritualRevealed?`<h3>${ritualEscape(t.positions[ritualRevealed-1])} · ${ritualEscape(ritualDraw[ritualRevealed-1][idx])}</h3><p>${ritualEscape(ritualDraw[ritualRevealed-1][4+idx])}</p>`:`<p>${t.wait}</p>`}</div><div class="ritual-actions"><button type="button" class="ritual-back" id="ritualBack">← ${t.back}</button>${ritualRevealed===7?`<button type="button" class="btn" id="ritualResults">${t.next} ✦</button>`:''}</div><p class="ritual-notice">${t.demo}</p></section>`;
+    ritualContent.innerHTML=`<section class="ritual-stage"><p class="ritual-kicker">${t.drawKicker}</p><h2 class="ritual-title">${t.drawTitle}</h2><p class="ritual-copy">${t.drawCopy}</p><p class="ritual-progress">${t.progress}: ${ritualRevealed} / 7</p><div class="ritual-deck">${ritualDraw.map((card,i)=>{const shown=i<ritualRevealed;return `<button type="button" class="ritual-card ${shown?'revealed':''} ${i===ritualRevealed?'current':''}" data-card="${i}" ${i===ritualRevealed?'':'disabled'} aria-label="${shown?ritualEscape(card[idx]):t.reveal+' '+(i+1)}"><span class="card-face">${shown?`<img src="${ritualArt(card)}" alt="${ritualEscape(card[idx])}" loading="lazy">`:`<span class="card-glyph">☾</span>`}</span><span class="card-caption">${shown?ritualEscape(card[idx]):'✦ '+(i+1)+' ✦'}</span></button>`;}).join('')}</div><div class="ritual-insight">${ritualRevealed?`<h3>${ritualEscape(t.positions[ritualRevealed-1])} · ${ritualEscape(ritualDraw[ritualRevealed-1][idx])}</h3><p>${ritualEscape(ritualExpandedMeaning(ritualDraw[ritualRevealed-1],ritualRevealed-1))}</p>`:`<p>${t.wait}</p>`}</div><div class="ritual-actions"><button type="button" class="ritual-back" id="ritualBack">← ${t.back}</button>${ritualRevealed===7?`<button type="button" class="btn" id="ritualResults">${t.next} ✦</button>`:''}</div><p class="ritual-notice">${t.demo}</p></section>`;
     ritualContent.querySelectorAll('[data-card]').forEach(button=>button.addEventListener('click',()=>{if(Number(button.dataset.card)===ritualRevealed){ritualRevealed++;ritualRender();}}));
     document.getElementById('ritualBack').addEventListener('click',()=>{ritualStep='question';ritualRender();});
     const next=document.getElementById('ritualResults');if(next)next.addEventListener('click',()=>{ritualStep='results';ritualRender();});
   } else {
     const idx=ritualLangIndex();
-    const cardsHtml=ritualDraw.map((card,i)=>`<article class="ritual-result"><img class="ritual-result-art" src="${ritualArt(card)}" alt="${ritualEscape(card[idx])}" loading="lazy"><div class="ritual-result-body"><small>${i+1} · ${ritualEscape(t.positions[i])}</small><h3>${ritualEscape(card[idx])}</h3><p>${ritualEscape(card[4+idx])} ${ritualEscape(t.positionHints[i])}</p></div></article>`).join('');
-    const summary=`${t.summaryLead} ${ritualDraw[0][idx]}, ${ritualDraw[3][idx]} ${t.summaryBridge} ${ritualDraw[6][idx]} ${t.summaryEnd}`;
-    ritualContent.innerHTML=`<section class="ritual-stage"><p class="ritual-kicker">${t.resultKicker}</p><h2 class="ritual-title">${t.resultTitle}</h2><p class="ritual-copy">${t.resultCopy}</p><div class="ritual-summary"><h3>${t.yourQuestion}</h3><p>${ritualEscape(ritualQuestion)}</p><p><strong>${t.yourPath}:</strong> ${ritualEscape(t.paths[ritualPath])}</p></div><div class="ritual-results">${cardsHtml}</div><div class="ritual-summary"><h3>${t.reflection}</h3><p>${ritualEscape(summary)}</p></div><div class="ritual-actions"><button class="ritual-back" id="ritualAgain" type="button">↺ ${t.again}</button><button class="btn" id="ritualSave" type="button">${t.save} ↓</button></div><p class="ritual-notice">${t.demo}</p></section>`;
+    const cardsHtml=ritualDraw.map((card,i)=>`<article class="ritual-result"><img class="ritual-result-art" src="${ritualArt(card)}" alt="${ritualEscape(card[idx])}" loading="lazy"><div class="ritual-result-body"><small>${i+1} · ${ritualEscape(t.positions[i])}</small><h3>${ritualEscape(card[idx])}</h3><p>${ritualEscape(ritualExpandedMeaning(card,i))}</p></div></article>`).join('');
+    const oracle=ritualOracleText();
+    const summary=oracle.text.join('\n\n');
+    const oracleHtml=oracle.text.map((paragraph,i)=>`<section class="oracle-chapter"><span class="oracle-chapter-index">${ritualEscape(oracle.heads[i])}</span><p>${ritualEscape(paragraph)}</p></section>`).join('');
+    ritualContent.innerHTML=`<section class="ritual-stage"><p class="ritual-kicker">${t.resultKicker}</p><h2 class="ritual-title">${t.resultTitle}</h2><p class="ritual-copy">${t.resultCopy}</p><div class="ritual-summary"><h3>${t.yourQuestion}</h3><p>${ritualEscape(ritualQuestion)}</p><p><strong>${t.yourPath}:</strong> ${ritualEscape(t.paths[ritualPath])}</p></div><div class="ritual-results">${cardsHtml}</div><div class="oracle-synthesis"><div class="oracle-sigil" aria-hidden="true">☾ ✦ ☽</div><p class="oracle-overline">✧ L U N A R A ✧</p><h3>${t.reflection}</h3><div class="oracle-chapters">${oracleHtml}</div><div class="oracle-ending" aria-hidden="true">✦ ─── ☾ ─── ✦</div></div><div class="ritual-actions"><button class="ritual-back" id="ritualAgain" type="button">↺ ${t.again}</button><button class="btn" id="ritualSave" type="button">${t.save} ↓</button></div><p class="ritual-notice">${t.demo}</p></section>`;
     document.getElementById('ritualAgain').addEventListener('click',()=>{ritualStep='question';ritualQuestion='';ritualRender();});
     document.getElementById('ritualSave').addEventListener('click',()=>{
       const lines=['LUNARA — '+t.resultTitle,'',t.yourPath+': '+t.paths[ritualPath],t.yourQuestion+': '+ritualQuestion,''];
-      ritualDraw.forEach((card,i)=>lines.push(`${i+1}. ${t.positions[i]} — ${card[idx]}`,card[4+idx]+' '+t.positionHints[i],''));
+      ritualDraw.forEach((card,i)=>lines.push(`${i+1}. ${t.positions[i]} — ${card[idx]}`,ritualExpandedMeaning(card,i),''));
       lines.push(t.reflection,summary,'',t.demo);
       const blob=new Blob([lines.join('\n')],{type:'text/plain;charset=utf-8'});
       const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='lunara-reading.txt';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
