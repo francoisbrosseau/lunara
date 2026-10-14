@@ -3693,12 +3693,16 @@ document.querySelectorAll('[data-lang]').forEach(button=>button.addEventListener
   const button=document.getElementById('lunaraSoundToggle');
   const label=document.getElementById('lunaraSoundLabel');
   const targetVolume=.22;
-  let fadeTimer=null,enabled=false,explicitlyOff=false,starting=false;
+  const preferenceKey='lunara-ambient-muted';
+  let fadeTimer=null,enabled=false,starting=false;
+  let explicitlyOff=false;
+  try{explicitlyOff=localStorage.getItem(preferenceKey)==='true';}catch(e){}
+  function savePreference(off){try{localStorage.setItem(preferenceKey,String(off));}catch(e){}}
   function stopFade(){if(fadeTimer!==null){clearInterval(fadeTimer);fadeTimer=null;}}
   function updateButton(){
-    label.textContent=enabled?'SOUND ON':'SOUND OFF';
-    button.setAttribute('aria-pressed',String(enabled));
-    button.setAttribute('aria-label',enabled?'Disable ambient music':'Enable ambient music');
+    label.textContent=explicitlyOff?'SOUND OFF':'SOUND ON';
+    button.setAttribute('aria-pressed',String(!explicitlyOff));
+    button.setAttribute('aria-label',explicitlyOff?'Enable ambient music':'Disable ambient music');
   }
   function fadeTo(target,duration,done){
     stopFade();
@@ -3716,26 +3720,32 @@ document.querySelectorAll('[data-lang]').forEach(button=>button.addEventListener
     stopFade();audio.volume=0;
     try{
       await audio.play();
+      if(explicitlyOff){audio.pause();return;}
       enabled=true;updateButton();fadeTo(targetVolume,4800);
     }catch(err){
-      // Browsers frequently block unprompted audible playback. Retry on first interaction.
+      // Browsers may block audible autoplay until a visitor interacts with the page.
       if(err.name!=='NotAllowedError')console.warn('LUNARA audio playback:',err);
     }finally{starting=false;}
   }
   button.addEventListener('click',async()=>{
-    if(enabled){
-      explicitlyOff=true;enabled=false;updateButton();
+    if(!explicitlyOff){
+      explicitlyOff=true;savePreference(true);enabled=false;updateButton();
       fadeTo(0,800,()=>audio.pause());
     }else{
-      explicitlyOff=false;
+      explicitlyOff=false;savePreference(false);updateButton();
       await startAudio();
       if(!enabled && audio.error){label.textContent='SOUND UNAVAILABLE';setTimeout(updateButton,3000);}
     }
   });
-  // Attempt playback automatically when the entrance begins. Browser policy may block it.
-  startAudio();
-  // If blocked, first interaction anywhere on the page can unlock sound without an extra button click.
-  const unlock=()=>{if(!enabled&&!explicitlyOff)startAudio();};
+  // Music is ON by default, unless this visitor previously switched it OFF.
+  updateButton();
+  if(!explicitlyOff)startAudio();
+  // If autoplay is blocked, any first interaction with the page unlocks music.
+  // Exclude the sound button so clicking it cannot accidentally toggle playback twice.
+  const unlock=(event)=>{
+    if(button.contains(event.target))return;
+    if(!enabled&&!explicitlyOff)startAudio();
+  };
   document.addEventListener('pointerdown',unlock,{capture:true});
   document.addEventListener('keydown',unlock,{capture:true});
   audio.addEventListener('error',()=>console.warn('LUNARA: unable to load audio/lunara-ambient.mp3'));
