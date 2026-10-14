@@ -2351,6 +2351,856 @@ const ritualDeck = [
  ['The World','Le Monde','El Mundo','◎','Completion invites gratitude and a new horizon.','L’achèvement invite à la gratitude et à un nouvel horizon.','La culminación invita a agradecer y mirar hacia un nuevo horizonte.']
 ];
 const ritualArtFiles = ["images/tarot/major-00-the-fool.png", "images/tarot/major-01-the-magician.png", "images/tarot/major-02-the-high-priestess.png", "images/tarot/major-03-the-empress.png", "images/tarot/major-04-the-emperor.png", "images/tarot/major-05-the-hierophant.png", "images/tarot/major-06-the-lovers.png", "images/tarot/major-07-the-chariot.png", "images/tarot/major-08-strength.png", "images/tarot/major-09-the-hermit.png", "images/tarot/major-10-wheel-of-fortune.png", "images/tarot/major-11-justice.png", "images/tarot/major-12-the-hanged-man.png", "images/tarot/major-13-death.png", "images/tarot/major-14-temperance.png", "images/tarot/major-15-the-devil.png", "images/tarot/major-16-the-tower.png", "images/tarot/major-17-the-star.png", "images/tarot/major-18-the-moon.png", "images/tarot/major-19-the-sun.png", "images/tarot/major-20-judgement.png", "images/tarot/major-21-the-world.png"];
+// LUNARA 78-card manifest. Future suits are registered but excluded until their art is uploaded.
+const ritualMinorManifest = [
+  {
+    "name": [
+      "Ace of Swords",
+      "As de Épées",
+      "As de Espadas"
+    ],
+    "symbol": "⚔",
+    "meaning": [
+      "A clear insight offers a new perspective.",
+      "La vérité, les limites et la clarté invitent à avancer avec discernement.",
+      "La verdad, los límites y la claridad invitan a dar el siguiente paso con intención."
+    ],
+    "art": "images/tarot/swords-01-ace.png",
+    "published": true
+  },
+  {
+    "name": [
+      "Two of Swords",
+      "Deux de Épées",
+      "Dos de Espadas"
+    ],
+    "symbol": "⚔",
+    "meaning": [
+      "A difficult choice deserves a moment of stillness.",
+      "La vérité, les limites et la clarté invitent à avancer avec discernement.",
+      "La verdad, los límites y la claridad invitan a dar el siguiente paso con intención."
+    ],
+    "art": "images/tarot/swords-02-two.png",
+    "published": true
+  },
+  {
+    "name": [
+      "Three of Swords",
+      "Trois de Épées",
+      "Tres de Espadas"
+    ],
+    "symbol": "⚔",
+    "meaning": [
+      "Heartache calls for honest care and time.",
+      "La vérité, les limites et la clarté invitent à avancer avec discernement.",
+      "La verdad, los límites y la claridad invitan a dar el siguiente paso con intención."
+    ],
+    "art": "images/tarot/swords-03-three.png",
+    "published": true
+  },
+  {
+    "name": [
+      "Four of Swords",
+      "Quatre de Épées",
+      "Cuatro de Espadas"
+    ],
+    "symbol": "⚔",
+    "meaning": [
+      "Rest can restore perspective and strength.",
+      "La vérité, les limites et la clarté invitent à avancer avec discernement.",
+      "La verdad, los límites y la claridad invitan a dar el siguiente paso con intención."
+    ],
+    "art": "images/tarot/swords-04-four.png",
+    "published": true
+  },
+  {
+    "name": [
+      "Five of Swords",
+      "Cinq de Épées",
+      "Cinco de Espadas"
+    ],
+    "symbol": "⚔",
+    "meaning": [
+      "Consider the cost of winning an argument.",
+      "La vérité, les limites et la clarté invitent à avancer avec discernement.",
+      "La verdad, los límites y la claridad invitan a dar el siguiente paso con intención."
+    ],
+    "art": "images/tarot/swords-05-five.png",
+    "published": true
+  },
+  {
+    "name": [
+      "Six of Swords",
+      "Six de Épées",
+      "Seis de Espadas"
+    ],
+    "symbol": "⚔",
+    "meaning": [
+      "A transition may bring calmer waters.",
+      "La vérité, les limites et la clarté invitent à avancer avec discernement.",
+      "La verdad, los límites y la claridad invitan a dar el siguiente paso con intención."
+    ],
+    "art": "images/tarot/swords-06-six.png",
+    "published": true
+  },
+  {
+    "name": [
+      "Seven of Swords",
+      "Sept de Épées",
+      "Siete de Espadas"
+    ],
+    "symbol": "⚔",
+    "meaning": [
+      "Look closely at what remains unspoken.",
+      "La vérité, les limites et la clarté invitent à avancer avec discernement.",
+      "La verdad, los límites y la claridad invitan a dar el siguiente paso con intención."
+    ],
+    "art": "images/tarot/swords-07-seven.png",
+    "published": true
+  },
+  {
+    "name": [
+      "Eight of Swords",
+      "Huit de Épées",
+      "Ocho de Espadas"
+    ],
+    "symbol": "⚔",
+    "meaning": [
+      "Fear may be narrowing your options.",
+      "La vérité, les limites et la clarté invitent à avancer avec discernement.",
+      "La verdad, los límites y la claridad invitan a dar el siguiente paso con intención."
+    ],
+    "art": "images/tarot/swords-08-eight.png",
+    "published": true
+  },
+  {
+    "name": [
+      "Nine of Swords",
+      "Neuf de Épées",
+      "Nueve de Espadas"
+    ],
+    "symbol": "⚔",
+    "meaning": [
+      "Worry deserves support, not isolation.",
+      "La vérité, les limites et la clarté invitent à avancer avec discernement.",
+      "La verdad, los límites y la claridad invitan a dar el siguiente paso con intención."
+    ],
+    "art": "images/tarot/swords-09-nine.png",
+    "published": true
+  },
+  {
+    "name": [
+      "Ten of Swords",
+      "Dix de Épées",
+      "Diez de Espadas"
+    ],
+    "symbol": "⚔",
+    "meaning": [
+      "An ending may also mark a release.",
+      "La vérité, les limites et la clarté invitent à avancer avec discernement.",
+      "La verdad, los límites y la claridad invitan a dar el siguiente paso con intención."
+    ],
+    "art": "images/tarot/swords-10-ten.png",
+    "published": true
+  },
+  {
+    "name": [
+      "Page of Swords",
+      "Valet de Épées",
+      "Sota de Espadas"
+    ],
+    "symbol": "⚔",
+    "meaning": [
+      "Stay curious, observant and open to truth.",
+      "La vérité, les limites et la clarté invitent à avancer avec discernement.",
+      "La verdad, los límites y la claridad invitan a dar el siguiente paso con intención."
+    ],
+    "art": "images/tarot/swords-11-page.png",
+    "published": true
+  },
+  {
+    "name": [
+      "Knight of Swords",
+      "Cavalier de Épées",
+      "Caballero de Espadas"
+    ],
+    "symbol": "⚔",
+    "meaning": [
+      "Move decisively without losing perspective.",
+      "La vérité, les limites et la clarté invitent à avancer avec discernement.",
+      "La verdad, los límites y la claridad invitan a dar el siguiente paso con intención."
+    ],
+    "art": "images/tarot/swords-12-knight.png",
+    "published": true
+  },
+  {
+    "name": [
+      "Queen of Swords",
+      "Reine de Épées",
+      "Reina de Espadas"
+    ],
+    "symbol": "⚔",
+    "meaning": [
+      "Clear boundaries can coexist with compassion.",
+      "La vérité, les limites et la clarté invitent à avancer avec discernement.",
+      "La verdad, los límites y la claridad invitan a dar el siguiente paso con intención."
+    ],
+    "art": "images/tarot/swords-13-queen.png",
+    "published": true
+  },
+  {
+    "name": [
+      "King of Swords",
+      "Roi de Épées",
+      "Rey de Espadas"
+    ],
+    "symbol": "⚔",
+    "meaning": [
+      "Lead with fairness, clarity and reason.",
+      "La vérité, les limites et la clarté invitent à avancer avec discernement.",
+      "La verdad, los límites y la claridad invitan a dar el siguiente paso con intención."
+    ],
+    "art": "images/tarot/swords-14-king.png",
+    "published": true
+  },
+  {
+    "name": [
+      "Ace of Cups",
+      "As de Coupes",
+      "As de Copas"
+    ],
+    "symbol": "♧",
+    "meaning": [
+      "Emotional awareness opens space for connection and compassion.",
+      "La conscience des émotions ouvre un espace de lien et de compassion.",
+      "La conciencia emocional abre espacio para la conexión y la compasión."
+    ],
+    "art": "images/tarot/cups-01-ace.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Two of Cups",
+      "Deux de Coupes",
+      "Dos de Copas"
+    ],
+    "symbol": "♧",
+    "meaning": [
+      "Emotional awareness opens space for connection and compassion.",
+      "La conscience des émotions ouvre un espace de lien et de compassion.",
+      "La conciencia emocional abre espacio para la conexión y la compasión."
+    ],
+    "art": "images/tarot/cups-02-two.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Three of Cups",
+      "Trois de Coupes",
+      "Tres de Copas"
+    ],
+    "symbol": "♧",
+    "meaning": [
+      "Emotional awareness opens space for connection and compassion.",
+      "La conscience des émotions ouvre un espace de lien et de compassion.",
+      "La conciencia emocional abre espacio para la conexión y la compasión."
+    ],
+    "art": "images/tarot/cups-03-three.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Four of Cups",
+      "Quatre de Coupes",
+      "Cuatro de Copas"
+    ],
+    "symbol": "♧",
+    "meaning": [
+      "Emotional awareness opens space for connection and compassion.",
+      "La conscience des émotions ouvre un espace de lien et de compassion.",
+      "La conciencia emocional abre espacio para la conexión y la compasión."
+    ],
+    "art": "images/tarot/cups-04-four.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Five of Cups",
+      "Cinq de Coupes",
+      "Cinco de Copas"
+    ],
+    "symbol": "♧",
+    "meaning": [
+      "Emotional awareness opens space for connection and compassion.",
+      "La conscience des émotions ouvre un espace de lien et de compassion.",
+      "La conciencia emocional abre espacio para la conexión y la compasión."
+    ],
+    "art": "images/tarot/cups-05-five.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Six of Cups",
+      "Six de Coupes",
+      "Seis de Copas"
+    ],
+    "symbol": "♧",
+    "meaning": [
+      "Emotional awareness opens space for connection and compassion.",
+      "La conscience des émotions ouvre un espace de lien et de compassion.",
+      "La conciencia emocional abre espacio para la conexión y la compasión."
+    ],
+    "art": "images/tarot/cups-06-six.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Seven of Cups",
+      "Sept de Coupes",
+      "Siete de Copas"
+    ],
+    "symbol": "♧",
+    "meaning": [
+      "Emotional awareness opens space for connection and compassion.",
+      "La conscience des émotions ouvre un espace de lien et de compassion.",
+      "La conciencia emocional abre espacio para la conexión y la compasión."
+    ],
+    "art": "images/tarot/cups-07-seven.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Eight of Cups",
+      "Huit de Coupes",
+      "Ocho de Copas"
+    ],
+    "symbol": "♧",
+    "meaning": [
+      "Emotional awareness opens space for connection and compassion.",
+      "La conscience des émotions ouvre un espace de lien et de compassion.",
+      "La conciencia emocional abre espacio para la conexión y la compasión."
+    ],
+    "art": "images/tarot/cups-08-eight.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Nine of Cups",
+      "Neuf de Coupes",
+      "Nueve de Copas"
+    ],
+    "symbol": "♧",
+    "meaning": [
+      "Emotional awareness opens space for connection and compassion.",
+      "La conscience des émotions ouvre un espace de lien et de compassion.",
+      "La conciencia emocional abre espacio para la conexión y la compasión."
+    ],
+    "art": "images/tarot/cups-09-nine.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Ten of Cups",
+      "Dix de Coupes",
+      "Diez de Copas"
+    ],
+    "symbol": "♧",
+    "meaning": [
+      "Emotional awareness opens space for connection and compassion.",
+      "La conscience des émotions ouvre un espace de lien et de compassion.",
+      "La conciencia emocional abre espacio para la conexión y la compasión."
+    ],
+    "art": "images/tarot/cups-10-ten.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Page of Cups",
+      "Valet de Coupes",
+      "Sota de Copas"
+    ],
+    "symbol": "♧",
+    "meaning": [
+      "Emotional awareness opens space for connection and compassion.",
+      "La conscience des émotions ouvre un espace de lien et de compassion.",
+      "La conciencia emocional abre espacio para la conexión y la compasión."
+    ],
+    "art": "images/tarot/cups-11-page.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Knight of Cups",
+      "Cavalier de Coupes",
+      "Caballero de Copas"
+    ],
+    "symbol": "♧",
+    "meaning": [
+      "Emotional awareness opens space for connection and compassion.",
+      "La conscience des émotions ouvre un espace de lien et de compassion.",
+      "La conciencia emocional abre espacio para la conexión y la compasión."
+    ],
+    "art": "images/tarot/cups-12-knight.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Queen of Cups",
+      "Reine de Coupes",
+      "Reina de Copas"
+    ],
+    "symbol": "♧",
+    "meaning": [
+      "Emotional awareness opens space for connection and compassion.",
+      "La conscience des émotions ouvre un espace de lien et de compassion.",
+      "La conciencia emocional abre espacio para la conexión y la compasión."
+    ],
+    "art": "images/tarot/cups-13-queen.png",
+    "published": false
+  },
+  {
+    "name": [
+      "King of Cups",
+      "Roi de Coupes",
+      "Rey de Copas"
+    ],
+    "symbol": "♧",
+    "meaning": [
+      "Emotional awareness opens space for connection and compassion.",
+      "La conscience des émotions ouvre un espace de lien et de compassion.",
+      "La conciencia emocional abre espacio para la conexión y la compasión."
+    ],
+    "art": "images/tarot/cups-14-king.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Ace of Wands",
+      "As de Bâtons",
+      "As de Bastos"
+    ],
+    "symbol": "✦",
+    "meaning": [
+      "Creative energy asks for courage, focus and thoughtful action.",
+      "L’énergie créative appelle au courage, à la concentration et à l’action réfléchie.",
+      "La energía creativa pide valor, enfoque y acción consciente."
+    ],
+    "art": "images/tarot/wands-01-ace.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Two of Wands",
+      "Deux de Bâtons",
+      "Dos de Bastos"
+    ],
+    "symbol": "✦",
+    "meaning": [
+      "Creative energy asks for courage, focus and thoughtful action.",
+      "L’énergie créative appelle au courage, à la concentration et à l’action réfléchie.",
+      "La energía creativa pide valor, enfoque y acción consciente."
+    ],
+    "art": "images/tarot/wands-02-two.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Three of Wands",
+      "Trois de Bâtons",
+      "Tres de Bastos"
+    ],
+    "symbol": "✦",
+    "meaning": [
+      "Creative energy asks for courage, focus and thoughtful action.",
+      "L’énergie créative appelle au courage, à la concentration et à l’action réfléchie.",
+      "La energía creativa pide valor, enfoque y acción consciente."
+    ],
+    "art": "images/tarot/wands-03-three.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Four of Wands",
+      "Quatre de Bâtons",
+      "Cuatro de Bastos"
+    ],
+    "symbol": "✦",
+    "meaning": [
+      "Creative energy asks for courage, focus and thoughtful action.",
+      "L’énergie créative appelle au courage, à la concentration et à l’action réfléchie.",
+      "La energía creativa pide valor, enfoque y acción consciente."
+    ],
+    "art": "images/tarot/wands-04-four.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Five of Wands",
+      "Cinq de Bâtons",
+      "Cinco de Bastos"
+    ],
+    "symbol": "✦",
+    "meaning": [
+      "Creative energy asks for courage, focus and thoughtful action.",
+      "L’énergie créative appelle au courage, à la concentration et à l’action réfléchie.",
+      "La energía creativa pide valor, enfoque y acción consciente."
+    ],
+    "art": "images/tarot/wands-05-five.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Six of Wands",
+      "Six de Bâtons",
+      "Seis de Bastos"
+    ],
+    "symbol": "✦",
+    "meaning": [
+      "Creative energy asks for courage, focus and thoughtful action.",
+      "L’énergie créative appelle au courage, à la concentration et à l’action réfléchie.",
+      "La energía creativa pide valor, enfoque y acción consciente."
+    ],
+    "art": "images/tarot/wands-06-six.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Seven of Wands",
+      "Sept de Bâtons",
+      "Siete de Bastos"
+    ],
+    "symbol": "✦",
+    "meaning": [
+      "Creative energy asks for courage, focus and thoughtful action.",
+      "L’énergie créative appelle au courage, à la concentration et à l’action réfléchie.",
+      "La energía creativa pide valor, enfoque y acción consciente."
+    ],
+    "art": "images/tarot/wands-07-seven.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Eight of Wands",
+      "Huit de Bâtons",
+      "Ocho de Bastos"
+    ],
+    "symbol": "✦",
+    "meaning": [
+      "Creative energy asks for courage, focus and thoughtful action.",
+      "L’énergie créative appelle au courage, à la concentration et à l’action réfléchie.",
+      "La energía creativa pide valor, enfoque y acción consciente."
+    ],
+    "art": "images/tarot/wands-08-eight.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Nine of Wands",
+      "Neuf de Bâtons",
+      "Nueve de Bastos"
+    ],
+    "symbol": "✦",
+    "meaning": [
+      "Creative energy asks for courage, focus and thoughtful action.",
+      "L’énergie créative appelle au courage, à la concentration et à l’action réfléchie.",
+      "La energía creativa pide valor, enfoque y acción consciente."
+    ],
+    "art": "images/tarot/wands-09-nine.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Ten of Wands",
+      "Dix de Bâtons",
+      "Diez de Bastos"
+    ],
+    "symbol": "✦",
+    "meaning": [
+      "Creative energy asks for courage, focus and thoughtful action.",
+      "L’énergie créative appelle au courage, à la concentration et à l’action réfléchie.",
+      "La energía creativa pide valor, enfoque y acción consciente."
+    ],
+    "art": "images/tarot/wands-10-ten.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Page of Wands",
+      "Valet de Bâtons",
+      "Sota de Bastos"
+    ],
+    "symbol": "✦",
+    "meaning": [
+      "Creative energy asks for courage, focus and thoughtful action.",
+      "L’énergie créative appelle au courage, à la concentration et à l’action réfléchie.",
+      "La energía creativa pide valor, enfoque y acción consciente."
+    ],
+    "art": "images/tarot/wands-11-page.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Knight of Wands",
+      "Cavalier de Bâtons",
+      "Caballero de Bastos"
+    ],
+    "symbol": "✦",
+    "meaning": [
+      "Creative energy asks for courage, focus and thoughtful action.",
+      "L’énergie créative appelle au courage, à la concentration et à l’action réfléchie.",
+      "La energía creativa pide valor, enfoque y acción consciente."
+    ],
+    "art": "images/tarot/wands-12-knight.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Queen of Wands",
+      "Reine de Bâtons",
+      "Reina de Bastos"
+    ],
+    "symbol": "✦",
+    "meaning": [
+      "Creative energy asks for courage, focus and thoughtful action.",
+      "L’énergie créative appelle au courage, à la concentration et à l’action réfléchie.",
+      "La energía creativa pide valor, enfoque y acción consciente."
+    ],
+    "art": "images/tarot/wands-13-queen.png",
+    "published": false
+  },
+  {
+    "name": [
+      "King of Wands",
+      "Roi de Bâtons",
+      "Rey de Bastos"
+    ],
+    "symbol": "✦",
+    "meaning": [
+      "Creative energy asks for courage, focus and thoughtful action.",
+      "L’énergie créative appelle au courage, à la concentration et à l’action réfléchie.",
+      "La energía creativa pide valor, enfoque y acción consciente."
+    ],
+    "art": "images/tarot/wands-14-king.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Ace of Pentacles",
+      "As de Deniers",
+      "As de Oros"
+    ],
+    "symbol": "✧",
+    "meaning": [
+      "Practical care and steady effort can create lasting foundations.",
+      "Le soin concret et les efforts constants bâtissent des bases durables.",
+      "El cuidado práctico y el esfuerzo constante crean bases duraderas."
+    ],
+    "art": "images/tarot/pentacles-01-ace.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Two of Pentacles",
+      "Deux de Deniers",
+      "Dos de Oros"
+    ],
+    "symbol": "✧",
+    "meaning": [
+      "Practical care and steady effort can create lasting foundations.",
+      "Le soin concret et les efforts constants bâtissent des bases durables.",
+      "El cuidado práctico y el esfuerzo constante crean bases duraderas."
+    ],
+    "art": "images/tarot/pentacles-02-two.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Three of Pentacles",
+      "Trois de Deniers",
+      "Tres de Oros"
+    ],
+    "symbol": "✧",
+    "meaning": [
+      "Practical care and steady effort can create lasting foundations.",
+      "Le soin concret et les efforts constants bâtissent des bases durables.",
+      "El cuidado práctico y el esfuerzo constante crean bases duraderas."
+    ],
+    "art": "images/tarot/pentacles-03-three.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Four of Pentacles",
+      "Quatre de Deniers",
+      "Cuatro de Oros"
+    ],
+    "symbol": "✧",
+    "meaning": [
+      "Practical care and steady effort can create lasting foundations.",
+      "Le soin concret et les efforts constants bâtissent des bases durables.",
+      "El cuidado práctico y el esfuerzo constante crean bases duraderas."
+    ],
+    "art": "images/tarot/pentacles-04-four.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Five of Pentacles",
+      "Cinq de Deniers",
+      "Cinco de Oros"
+    ],
+    "symbol": "✧",
+    "meaning": [
+      "Practical care and steady effort can create lasting foundations.",
+      "Le soin concret et les efforts constants bâtissent des bases durables.",
+      "El cuidado práctico y el esfuerzo constante crean bases duraderas."
+    ],
+    "art": "images/tarot/pentacles-05-five.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Six of Pentacles",
+      "Six de Deniers",
+      "Seis de Oros"
+    ],
+    "symbol": "✧",
+    "meaning": [
+      "Practical care and steady effort can create lasting foundations.",
+      "Le soin concret et les efforts constants bâtissent des bases durables.",
+      "El cuidado práctico y el esfuerzo constante crean bases duraderas."
+    ],
+    "art": "images/tarot/pentacles-06-six.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Seven of Pentacles",
+      "Sept de Deniers",
+      "Siete de Oros"
+    ],
+    "symbol": "✧",
+    "meaning": [
+      "Practical care and steady effort can create lasting foundations.",
+      "Le soin concret et les efforts constants bâtissent des bases durables.",
+      "El cuidado práctico y el esfuerzo constante crean bases duraderas."
+    ],
+    "art": "images/tarot/pentacles-07-seven.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Eight of Pentacles",
+      "Huit de Deniers",
+      "Ocho de Oros"
+    ],
+    "symbol": "✧",
+    "meaning": [
+      "Practical care and steady effort can create lasting foundations.",
+      "Le soin concret et les efforts constants bâtissent des bases durables.",
+      "El cuidado práctico y el esfuerzo constante crean bases duraderas."
+    ],
+    "art": "images/tarot/pentacles-08-eight.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Nine of Pentacles",
+      "Neuf de Deniers",
+      "Nueve de Oros"
+    ],
+    "symbol": "✧",
+    "meaning": [
+      "Practical care and steady effort can create lasting foundations.",
+      "Le soin concret et les efforts constants bâtissent des bases durables.",
+      "El cuidado práctico y el esfuerzo constante crean bases duraderas."
+    ],
+    "art": "images/tarot/pentacles-09-nine.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Ten of Pentacles",
+      "Dix de Deniers",
+      "Diez de Oros"
+    ],
+    "symbol": "✧",
+    "meaning": [
+      "Practical care and steady effort can create lasting foundations.",
+      "Le soin concret et les efforts constants bâtissent des bases durables.",
+      "El cuidado práctico y el esfuerzo constante crean bases duraderas."
+    ],
+    "art": "images/tarot/pentacles-10-ten.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Page of Pentacles",
+      "Valet de Deniers",
+      "Sota de Oros"
+    ],
+    "symbol": "✧",
+    "meaning": [
+      "Practical care and steady effort can create lasting foundations.",
+      "Le soin concret et les efforts constants bâtissent des bases durables.",
+      "El cuidado práctico y el esfuerzo constante crean bases duraderas."
+    ],
+    "art": "images/tarot/pentacles-11-page.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Knight of Pentacles",
+      "Cavalier de Deniers",
+      "Caballero de Oros"
+    ],
+    "symbol": "✧",
+    "meaning": [
+      "Practical care and steady effort can create lasting foundations.",
+      "Le soin concret et les efforts constants bâtissent des bases durables.",
+      "El cuidado práctico y el esfuerzo constante crean bases duraderas."
+    ],
+    "art": "images/tarot/pentacles-12-knight.png",
+    "published": false
+  },
+  {
+    "name": [
+      "Queen of Pentacles",
+      "Reine de Deniers",
+      "Reina de Oros"
+    ],
+    "symbol": "✧",
+    "meaning": [
+      "Practical care and steady effort can create lasting foundations.",
+      "Le soin concret et les efforts constants bâtissent des bases durables.",
+      "El cuidado práctico y el esfuerzo constante crean bases duraderas."
+    ],
+    "art": "images/tarot/pentacles-13-queen.png",
+    "published": false
+  },
+  {
+    "name": [
+      "King of Pentacles",
+      "Roi de Deniers",
+      "Rey de Oros"
+    ],
+    "symbol": "✧",
+    "meaning": [
+      "Practical care and steady effort can create lasting foundations.",
+      "Le soin concret et les efforts constants bâtissent des bases durables.",
+      "El cuidado práctico y el esfuerzo constante crean bases duraderas."
+    ],
+    "art": "images/tarot/pentacles-14-king.png",
+    "published": false
+  }
+];
+const ritualPublishedCards = new Set(ritualMinorManifest.filter(card => card.published).map(card => card.art));
+for (const item of ritualMinorManifest) {
+  ritualDeck.push([item.name[0],item.name[1],item.name[2],item.symbol,item.meaning[0],item.meaning[1],item.meaning[2]]);
+  ritualArtFiles.push(item.art);
+}
+// Only draw cards whose artwork is on GitHub. Update 'published' when new suit packs are uploaded.
+const ritualAvailableDeck = ritualDeck.filter((card,index) => index < 22 || ritualPublishedCards.has(ritualArtFiles[index]));
 const ritualArt = card => ritualArtFiles[ritualDeck.indexOf(card)];
 const ritualOverlay = document.getElementById('ritualOverlay');
 const ritualContent = document.getElementById('ritualContent');
@@ -2389,7 +3239,7 @@ function ritualRender() {
     document.getElementById('ritualQuestionForm').addEventListener('submit',event=>{
       event.preventDefault();ritualQuestion=input.value.trim();
       if(ritualQuestion.length<10){document.getElementById('ritualError').textContent=t.error;input.focus();return;}
-      ritualDraw=[...ritualDeck];
+      ritualDraw=[...ritualAvailableDeck];
       // Fisher–Yates with browser cryptographic randomness where available.
       for(let i=ritualDraw.length-1;i>0;i--){const r=new Uint32Array(1);if(window.crypto?.getRandomValues)window.crypto.getRandomValues(r);else r[0]=Math.floor(Math.random()*4294967296);const j=r[0]%(i+1);[ritualDraw[i],ritualDraw[j]]=[ritualDraw[j],ritualDraw[i]];}
       ritualDraw=ritualDraw.slice(0,7);ritualRevealed=0;ritualStep='cards';ritualRender();
