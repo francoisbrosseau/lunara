@@ -1242,6 +1242,155 @@ footer p {
   content: none !important;
   display: none !important;
 }
+   /* ==========================================
+   LUNARA — CELESTIAL SANCTUARY
+========================================== */
+
+.lunara-sanctuary {
+  position: relative;
+  overflow: hidden;
+  max-width: 920px;
+  margin: auto;
+  padding: 75px 35px;
+  text-align: center;
+  background:
+    radial-gradient(
+      ellipse at 50% 38%,
+      rgba(191,145,67,.15),
+      transparent 55%
+    ),
+    linear-gradient(
+      180deg,
+      #10192d 0%,
+      #050811 100%
+    );
+  border: 1px solid rgba(215,174,96,.45);
+  box-shadow: 0 25px 100px rgba(0,0,0,.55);
+}
+
+.sanctuary-symbol {
+  color: #e5c47e;
+  font-size: 38px;
+  letter-spacing: 15px;
+  margin-bottom: 40px;
+}
+
+.sanctuary-art {
+  position: relative;
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px auto;
+}
+
+.sanctuary-halo {
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  border: 1px solid rgba(226,188,111,.65);
+  box-shadow:
+    0 0 45px rgba(221,166,64,.15),
+    inset 0 0 35px rgba(221,166,64,.08);
+}
+
+.sanctuary-halo::before,
+.sanctuary-halo::after {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border: 1px solid rgba(226,188,111,.25);
+  border-radius: 50%;
+}
+
+.sanctuary-halo::after {
+  inset: 38px;
+}
+
+.sanctuary-cards {
+  position: relative;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.sanctuary-cards span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 155px;
+  color: #e9c983;
+  font-size: 43px;
+  background: linear-gradient(145deg,#15233b,#050812);
+  border: 2px solid #d6ac60;
+  box-shadow: 0 12px 35px rgba(0,0,0,.5);
+}
+
+.sanctuary-cards span:first-child {
+  transform: rotate(-15deg) translateX(15px);
+}
+
+.sanctuary-cards span:last-child {
+  transform: rotate(15deg) translateX(-15px);
+}
+
+.sanctuary-cards span:nth-child(2) {
+  z-index: 2;
+  transform: translateY(-10px);
+}
+
+.sanctuary-label {
+  color: #d8b46f;
+  font-size: 12px;
+  letter-spacing: 4px;
+  margin-top: 35px;
+}
+
+.sanctuary-description {
+  max-width: 500px;
+  margin: 20px auto 35px;
+  line-height: 1.9;
+  color: #b9b8bd;
+}
+
+.currency-label {
+  display: block;
+  margin: 25px 0 12px;
+  color: #d8b46f;
+  font-size: 11px;
+  letter-spacing: 3px;
+}
+
+.currency-select {
+  display: block;
+  width: min(100%, 330px);
+  margin: 0 auto 35px;
+  padding: 15px;
+  background: #101827;
+  color: #e8d3a4;
+  border: 1px solid rgba(215,174,96,.5);
+  text-align: center;
+  cursor: pointer;
+}
+
+@media(max-width:600px) {
+  .lunara-sanctuary {
+    padding: 55px 20px;
+  }
+
+  .sanctuary-cards span {
+    width: 70px;
+    height: 125px;
+  }
+
+  .sanctuary-halo {
+    width: 220px;
+    height: 220px;
+  }
+}
 
 </style>
 </head>
@@ -1457,49 +1606,73 @@ Receive a thoughtful interpretation inspired by your cards and personal question
 ===================================== -->
 
 <section class="oracle-chamber" id="oracle">
+  <div class="container">
 
-<div class="container">
+    <div class="oracle-frame reveal lunara-sanctuary">
 
-<div class="oracle-frame reveal">
+      <div class="sanctuary-symbol" aria-hidden="true">✧ ☾ ✧</div>
 
-<div class="oracle-symbol" aria-hidden="true">✧ ☾ ✧</div>
+      <p class="eyebrow" data-i18n="oracleEyebrow">
+        YOUR JOURNEY BEGINS HERE
+      </p>
 
-<p class="eyebrow" data-i18n="oracleEyebrow">
-Your Journey Begins Here
-</p>
+      <h2 data-i18n="oracleTitle">The Oracle Awaits</h2>
 
-<h2 data-i18n="oracleTitle">
-The Oracle Awaits
-</h2>
+      <div class="gold-line"></div>
 
-<div class="gold-line"></div>
+      <p class="oracle-subtitle" data-i18n="oracleSubtitle">
+        Seven cards. One question. A journey of discovery.
+      </p>
 
-<p class="oracle-subtitle" data-i18n="oracleSubtitle">
-Seven cards. One question. A journey of discovery.
-</p>
+      <div class="sanctuary-art" aria-hidden="true">
+        <div class="sanctuary-halo"></div>
+        <div class="sanctuary-cards">
+          <span>☾</span>
+          <span>✦</span>
+          <span>☼</span>
+        </div>
+      </div>
 
-<div class="price">$18.99</div>
+      <p class="sanctuary-label">YOUR SEVEN-CARD READING</p>
 
-<div class="currency">CAD</div>
+      <p class="sanctuary-description">
+        Explore the symbolism of seven tarot cards
+        and discover new perspectives on your question.
+      </p>
 
-<button class="btn" id="beginReading" type="button" data-i18n="beginButton">
-Begin Your Reading
-</button>
+      <div class="price" id="readingPrice">$9.99</div>
 
-<p class="oracle-note" data-i18n="oracleNote">
-Personalized AI-powered tarot experience.
-</p>
+      <label class="currency-label" for="currencySelect">
+        SELECT YOUR CURRENCY
+      </label>
 
-<p class="oracle-note" data-i18n="previewNote">
-Preview only — payments are not enabled.
-</p>
+      <select id="currencySelect" class="currency-select">
+        <option value="USD">USD — United States Dollar</option>
+        <option value="CAD">CAD — Canadian Dollar</option>
+        <option value="EUR">EUR — Euro</option>
+        <option value="GBP">GBP — British Pound</option>
+        <option value="AUD">AUD — Australian Dollar</option>
+      </select>
 
-</div>
+      <button
+        class="btn"
+        id="beginReading"
+        type="button"
+        data-i18n="beginButton">
+        BEGIN YOUR READING
+      </button>
 
-</div>
+      <p class="oracle-note" data-i18n="oracleNote">
+        Seven cards. One question. A reading shaped around your journey.
+      </p>
 
+      <p class="oracle-note" data-i18n="previewNote">
+        Preview only — payments are not enabled.
+      </p>
+
+    </div>
+  </div>
 </section>
-
 </div>
 
 </main>
