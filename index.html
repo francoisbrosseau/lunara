@@ -7,12 +7,12 @@
 
 <title>LUNARA | The Art of Knowing Yourself</title>
 
-<meta name="description" content="Enter Lunara. An immersive, AI-powered tarot experience for personal reflection and self-discovery.">
+<meta name="description" content="Enter Lunara. An intimate seven-card tarot experience inspired by timeless symbolism, reflection, and discovery.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
@@ -1475,6 +1475,29 @@ footer p {
   }
 }
 
+
+/* LUNARA — CELESTIAL EDITORIAL TYPOGRAPHY */
+:root { --display-font: "Cormorant Garamond", Georgia, serif; --ritual-font: "Cinzel", Georgia, serif; }
+body { font-weight: 300; letter-spacing: .008em; }
+h1, h2, h3, .section-title { font-family: var(--display-font); }
+.section-title { font-size: clamp(3.4rem, 6.5vw, 6.2rem); font-weight: 400; letter-spacing: -.018em; line-height: 1.03; text-wrap: balance; }
+.section-title em { font-style: italic; }
+.eyebrow, .sanctuary-label, .currency-label, .path-link { font-family: var(--ritual-font); font-weight: 500; letter-spacing: .20em; }
+.eyebrow { font-size: .68rem; }
+.section-description { font-size: clamp(1.1rem, 1.7vw, 1.27rem); line-height: 1.85; font-weight: 300; max-width: 730px; text-wrap: pretty; }
+.ritual-step h3 { font-weight: 400; font-size: clamp(2rem, 2.6vw, 2.7rem); }
+.ritual-step p { line-height: 1.85; font-size: .98rem; }
+.nav-links, .languages button, .btn { font-family: var(--ritual-font); }
+.nav-links { font-size: .67rem; letter-spacing: .08em; }
+.btn { font-size: .7rem; letter-spacing: .13em; }
+.sanctuary-label { margin: 10px auto 20px; font-size: .7rem; letter-spacing: .22em; }
+.sanctuary-heading { font-size: clamp(2.8rem, 5vw, 5rem); font-weight: 400; line-height: 1.05; letter-spacing: -.015em; max-width: 850px; margin: 0 auto 22px; text-wrap: balance; }
+.sanctuary-description { font-family: var(--display-font); font-size: clamp(1.25rem, 2vw, 1.65rem); line-height: 1.55; max-width: 700px; margin: 0 auto 30px; color: #cfc6ba; }
+.price { font-size: clamp(4.1rem, 7vw, 5.5rem); }
+.oracle-note { line-height: 1.7; }
+.footer-disclaimer { max-width: 750px; }
+@media(max-width:700px) { .section-title { font-size: clamp(3rem, 11vw, 4.3rem); } .sanctuary-heading { font-size: clamp(2.7rem, 10vw, 4rem); } .eyebrow { letter-spacing: .12em; } }
+
 </style>
 </head>
 
@@ -1699,18 +1722,15 @@ Receive a thoughtful interpretation inspired by your cards and personal question
     loading="lazy"
   >
 </div>
-      <p class="sanctuary-label">YOUR SEVEN-CARD READING</p>
+      <p class="sanctuary-label" data-i18n="sanctuaryLabel">THE SANCTUARY AWAITS</p>
 
-      <p class="sanctuary-description">
-        Explore the symbolism of seven tarot cards
-        and discover new perspectives on your question.
-      </p>
+      <h2 class="sanctuary-heading" data-i18n="sanctuaryHeading">Your Story Is Still Unfolding.</h2>
+
+      <p class="sanctuary-description" data-i18n="sanctuaryDescription">Seven cards. One question. A moment devoted entirely to you. Step beyond the everyday and discover the stories hidden in timeless symbols.</p>
 
       <div class="price" id="readingPrice">$9.99</div>
 
-      <label class="currency-label" for="currencySelect">
-        SELECT YOUR CURRENCY
-      </label>
+      <label class="currency-label" for="currencySelect" data-i18n="currencyLabel">SELECT YOUR CURRENCY</label>
 
       <select id="currencySelect" class="currency-select">
         <option value="USD">USD — United States Dollar</option>
@@ -1781,9 +1801,9 @@ invitationTitle: "Every Question Holds <em>a Story</em>",
 invitationDescription: "Some questions deserve more than a simple answer. Enter a world of timeless symbolism, intuition and reflection. Let the cards illuminate new perspectives on your journey.",
 explore: "Explore Your Path",
 
-pathsEyebrow: "Four Paths. Infinite Possibilities.",
-pathsTitle: "What Does Your <em>Heart Seek?</em>",
-pathsDescription: "Choose the path that resonates with your question.",
+pathsEyebrow: "FOUR PATHS · ONE INNER COMPASS",
+pathsTitle: "Every Path Begins <em>With a Question.</em>",
+pathsDescription: "Some answers are found not by looking farther, but by looking within. Choose the path that calls to you.",
 
 loveTitle: "Love & Relationships",
 loveDesc: "Explore the bonds that shape your heart and the connections that define your journey.",
@@ -1799,31 +1819,35 @@ generalDesc: "When the path is uncertain, discover what new perspectives the car
 
 enterPath: "Enter This Path →",
 
-ritualEyebrow: "The Lunara Experience",
-ritualTitle: "A Ritual of <em>Discovery</em>",
-ritualDescription: "Three simple steps. One deeply personal experience.",
+ritualEyebrow: "AN INVITATION TO LOOK WITHIN",
+ritualTitle: "The Ritual of <em>Revelation</em>",
+ritualDescription: "Three moments. Seven cards. A journey uniquely yours.",
 
 step1Title: "I. The Question",
-step1Desc: "Share what is on your mind and choose the focus of your journey.",
+step1Desc: "Every journey begins with a whisper of curiosity. Bring the question that led you here.",
 
 step2Title: "II. The Cards",
-step2Desc: "Discover seven tarot cards, each carrying its own symbolism and meaning.",
+step2Desc: "Seven cards emerge, each offering a symbol, a story, and another way of seeing.",
 
 step3Title: "III. The Revelation",
-step3Desc: "Receive a thoughtful interpretation inspired by your cards and personal question.",
+step3Desc: "Uncover the threads connecting your cards and your question in a reading made for reflection.",
 
 oracleEyebrow: "Your Journey Begins Here",
 oracleTitle: "The Oracle Awaits",
 oracleSubtitle: "Seven cards. One question. A journey of discovery.",
-beginButton: "Begin Your Reading",
-oracleNote: "Personalized AI-powered tarot experience.",
+beginButton: "Enter the Sanctuary",
+oracleNote: "Seven cards. One question. A new perspective to carry forward.",
 previewNote: "Preview only — payments are not enabled.",
 
 footerTagline: "The Art of Knowing Yourself",
-disclaimer: "Lunara provides tarot interpretations for entertainment and personal reflection. Where ancient symbols meet the questions of the soul.",
+disclaimer: "Where ancient symbols meet the questions of the soul. Tarot interpretations are digitally generated for reflection and entertainment.",
 
-comingSoon: "The interactive tarot experience is coming soon."
+comingSoon: "The interactive tarot experience is coming soon.",
 
+sanctuaryLabel: "✦ THE SANCTUARY AWAITS ✦",
+sanctuaryHeading: "Your Story Is Still Unfolding.",
+sanctuaryDescription: "Seven cards. One question. A moment devoted entirely to you. Step beyond the everyday and explore the stories waiting within timeless symbols.",
+currencyLabel: "CHOOSE YOUR CURRENCY",
 },
 
 fr: {
@@ -1837,9 +1861,9 @@ invitationTitle: "Chaque question raconte <em>une histoire</em>",
 invitationDescription: "Certaines questions méritent plus qu'une simple réponse. Entrez dans un univers de symboles, d'intuition et de réflexion. Laissez les cartes vous offrir de nouvelles perspectives.",
 explore: "Explorer votre voie",
 
-pathsEyebrow: "Quatre voies. Une infinité de possibilités.",
-pathsTitle: "Que recherche <em>votre cœur?</em>",
-pathsDescription: "Choisissez la voie qui correspond à votre question.",
+pathsEyebrow: "QUATRE VOIES · UNE BOUSSOLE INTÉRIEURE",
+pathsTitle: "Chaque voie commence <em>par une question.</em>",
+pathsDescription: "Certaines réponses se découvrent en regardant en soi. Choisissez la voie qui vous appelle.",
 
 loveTitle: "Amour et relations",
 loveDesc: "Explorez les liens affectifs et les relations qui façonnent votre parcours.",
@@ -1855,30 +1879,34 @@ generalDesc: "Lorsque le chemin est incertain, découvrez les perspectives que l
 
 enterPath: "Explorer cette voie →",
 
-ritualEyebrow: "L'expérience Lunara",
-ritualTitle: "Un rituel de <em>découverte</em>",
-ritualDescription: "Trois étapes simples. Une expérience profondément personnelle.",
+ritualEyebrow: "UNE INVITATION À REGARDER EN SOI",
+ritualTitle: "Le rituel de la <em>révélation</em>",
+ritualDescription: "Trois instants. Sept cartes. Un voyage qui n’appartient qu’à vous.",
 
 step1Title: "I. La Question",
-step1Desc: "Partagez vos préoccupations et choisissez le thème de votre tirage.",
+step1Desc: "Tout voyage commence par un murmure de curiosité. Confiez-nous la question qui vous guide.",
 
 step2Title: "II. Les Cartes",
-step2Desc: "Découvrez sept cartes de tarot, chacune porteuse de symboles et de significations.",
+step2Desc: "Sept cartes se dévoilent, chacune porteuse d’un symbole, d’une histoire et d’un nouveau regard.",
 
 step3Title: "III. La Révélation",
-step3Desc: "Recevez une interprétation inspirée de vos cartes et de votre question.",
+step3Desc: "Découvrez les liens entre vos cartes et votre question, dans un tirage conçu pour la réflexion.",
 
 oracleEyebrow: "Votre voyage commence ici",
 oracleTitle: "L'Oracle vous attend",
 oracleSubtitle: "Sept cartes. Une question. Un voyage de découverte.",
-beginButton: "Commencer mon tirage",
-oracleNote: "Une expérience de tarot personnalisée par intelligence artificielle.",
+beginButton: "Entrer dans le sanctuaire",
+oracleNote: "Sept cartes. Une question. Un nouveau regard pour avancer.",
 previewNote: "Aperçu seulement — les paiements sont désactivés.",
 
-footerTagline: "L'art de se connaître",
-disclaimer: "Lunara propose des interprétations de tarot à des fins de divertissement et de réflexion personnelle.",
-comingSoon: "L'expérience interactive de tarot arrive bientôt."
+footerTagline: "L’art de se connaître",
+disclaimer: "Là où les symboles anciens rencontrent les questions de l’âme. Les interprétations sont générées numériquement à des fins de réflexion et de divertissement.",
+comingSoon: "L'expérience interactive de tarot arrive bientôt.",
 
+sanctuaryLabel: "✦ LE SANCTUAIRE VOUS ATTEND ✦",
+sanctuaryHeading: "Votre histoire continue de s’écrire.",
+sanctuaryDescription: "Sept cartes. Une question. Un instant rien qu’à vous. Laissez le quotidien derrière vous et explorez les récits cachés dans les symboles intemporels.",
+currencyLabel: "CHOISISSEZ VOTRE DEVISE",
 },
 
 es: {
@@ -1892,9 +1920,9 @@ invitationTitle: "Cada pregunta guarda <em>una historia</em>",
 invitationDescription: "Algunas preguntas merecen más que una simple respuesta. Entra en un mundo de simbolismo, intuición y reflexión. Deja que las cartas iluminen nuevas perspectivas.",
 explore: "Explora tu camino",
 
-pathsEyebrow: "Cuatro caminos. Infinitas posibilidades.",
-pathsTitle: "¿Qué busca <em>tu corazón?</em>",
-pathsDescription: "Elige el camino que mejor represente tu pregunta.",
+pathsEyebrow: "CUATRO CAMINOS · UNA BRÚJULA INTERIOR",
+pathsTitle: "Cada camino comienza <em>con una pregunta.</em>",
+pathsDescription: "Algunas respuestas no se encuentran mirando más lejos, sino mirando hacia dentro. Elige el camino que te llama.",
 
 loveTitle: "Amor y relaciones",
 loveDesc: "Explora los vínculos emocionales y las relaciones que forman parte de tu vida.",
@@ -1910,31 +1938,35 @@ generalDesc: "Cuando el camino es incierto, descubre las perspectivas que pueden
 
 enterPath: "Explorar este camino →",
 
-ritualEyebrow: "La experiencia Lunara",
-ritualTitle: "Un ritual de <em>descubrimiento</em>",
-ritualDescription: "Tres pasos sencillos. Una experiencia profundamente personal.",
+ritualEyebrow: "UNA INVITACIÓN A MIRAR HACIA DENTRO",
+ritualTitle: "El ritual de la <em>revelación</em>",
+ritualDescription: "Tres momentos. Siete cartas. Un viaje solo tuyo.",
 
 step1Title: "I. La Pregunta",
-step1Desc: "Comparte tus inquietudes y elige el enfoque de tu lectura.",
+step1Desc: "Todo viaje comienza con un susurro de curiosidad. Comparte la pregunta que te ha traído hasta aquí.",
 
 step2Title: "II. Las Cartas",
-step2Desc: "Descubre siete cartas de tarot, cada una con su propio simbolismo.",
+step2Desc: "Siete cartas se revelan, cada una con un símbolo, una historia y una nueva mirada.",
 
 step3Title: "III. La Revelación",
-step3Desc: "Recibe una interpretación inspirada en tus cartas y tu pregunta.",
+step3Desc: "Descubre los hilos que conectan tus cartas y tu pregunta en una lectura para la reflexión.",
 
 oracleEyebrow: "Tu viaje comienza aquí",
 oracleTitle: "El Oráculo te espera",
 oracleSubtitle: "Siete cartas. Una pregunta. Un viaje de descubrimiento.",
-beginButton: "Comenzar mi lectura",
-oracleNote: "Experiencia de tarot personalizada mediante inteligencia artificial.",
+beginButton: "Entrar al santuario",
+oracleNote: "Siete cartas. Una pregunta. Una nueva perspectiva para seguir adelante.",
 previewNote: "Vista previa — los pagos están desactivados.",
 
 footerTagline: "El arte de conocerte",
-disclaimer: "Lunara ofrece interpretaciones de tarot para entretenimiento y reflexión personal.",
+disclaimer: "Donde los símbolos antiguos se encuentran con las preguntas del alma. Las interpretaciones se generan digitalmente para la reflexión y el entretenimiento.",
 
-comingSoon: "La experiencia interactiva de tarot estará disponible pronto."
+comingSoon: "La experiencia interactiva de tarot estará disponible pronto.",
 
+sanctuaryLabel: "✦ EL SANTUARIO TE ESPERA ✦",
+sanctuaryHeading: "Tu historia aún se está escribiendo.",
+sanctuaryDescription: "Siete cartas. Una pregunta. Un momento solo para ti. Deja atrás lo cotidiano y explora las historias ocultas en símbolos atemporales.",
+currencyLabel: "ELIGE TU MONEDA",
 }
 
 };
