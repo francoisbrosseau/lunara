@@ -3410,44 +3410,95 @@ const ritualLore={
   pentacles:['la lenta alquimia del esfuerzo y el cambio','los cimientos tangibles de la libertad','las decisiones que dan forma a tus valores']
  }
 };
-function ritualExpandedMeaning(card,i) {
- const lang=currentLanguage in ritualLore?currentLanguage:'en';const idx=ritualLangIndex();
- const lore=ritualPick(ritualLore[lang][ritualSuit(card)],'lore-'+i);
- const bridge={
-  en:[`In the place of ${ritualT().positions[i].toLowerCase()}, this card speaks of ${lore}.`,`Here, ${card[idx]} illuminates ${lore}.`,`At this threshold, consider ${lore}.`],
-  fr:[`À la place du ${ritualT().positions[i].toLowerCase()}, cette carte évoque ${lore}.`,`Ici, ${card[idx]} révèle ${lore}.`,`À ce seuil, considérez ${lore}.`],
-  es:[`En la posición de ${ritualT().positions[i].toLowerCase()}, esta carta habla de ${lore}.`,`Aquí, ${card[idx]} ilumina ${lore}.`,`En este umbral, considera ${lore}.`]
- }[lang];
- const challenge={
-  en:['What would change if you faced this theme without disguising it?','Where does this symbol already echo in your choices?','Which part of this message asks for courage rather than certainty?'],
-  fr:['Que changerait le fait d’accueillir ce thème sans détour ?','Où ce symbole résonne-t-il déjà dans vos choix ?','Quelle part de ce message demande du courage plutôt que des certitudes ?'],
-  es:['¿Qué cambiaría si afrontaras este tema sin máscaras?','¿Dónde resuena ya este símbolo en tus decisiones?','¿Qué parte de este mensaje pide valor en lugar de certezas?']
- }[lang];
- return `${card[4+idx]} ${ritualPick(bridge,'bridge-'+i)} ${ritualPick(challenge,'challenge-'+i)}`;
+// LUNARA expanded interpretive library: position-specific insight, practical direction,
+// and a seven-card synthesis. All language variants remain local and deterministic per reading.
+const ritualGuidance={
+ en:{
+  position:[
+   ['The present moment asks you to distinguish what is happening from the story you have built around it.','Name the one fact you can verify today, and the one assumption you still need to test.'],
+   ['Beneath the surface, an unspoken need or habit may be influencing the situation.','Notice what repeatedly triggers a strong reaction; ask what that reaction is protecting.'],
+   ['The past is a source of context, not a sentence you must keep serving.','Identify an old pattern you can honor for what it taught you without repeating it.'],
+   ['A turning point rarely announces itself; it appears as a choice you can no longer postpone.','Write down the two paths before you, and what each one would require you to release.'],
+   ['Your resources include more than what you can count: attention, patience, allies, and experience.','Choose one strength you already possess and put it to work in a specific way this week.'],
+   ['The challenge is not merely an obstacle; it shows where your boundaries or beliefs need testing.','Separate what is yours to influence from what belongs to someone else.'],
+   ['The way forward becomes clearer when intention takes the shape of an action.','Choose a small, reversible next step and a date to revisit what you learned.']
+  ],
+  suit:{major:'This is a Major Arcana emblem: consider the wider life chapter, identity shift, or enduring lesson beneath the immediate concern.',swords:'Swords calls for discernment: seek evidence, speak plainly, and resist making a permanent decision from a temporary fear.',cups:'Cups turns toward emotional truth: listen carefully, protect tenderness, and distinguish connection from obligation.',wands:'Wands brings the force of desire and initiative: focus your fire instead of scattering it across every possibility.',pentacles:'Pentacles asks what can be built and sustained: examine time, energy, commitments, and the material foundations of your choice.'},
+  action:'A direction to explore',lens:'What this card illuminates',practice:'A grounded next step',
+  synthesis:[
+   'THE PATTERN BENEATH THE SURFACE','THE PRESSURE AT THE CROSSROADS','WHAT IS WITHIN YOUR POWER','THE PATH YOU CAN BEGIN','THE SEVEN-FOLD THREAD'
+  ],
+  prompts:['If the question is about a relationship, look for reciprocity and honest conversation rather than a promise of what another person will do.','If the question concerns work or purpose, compare the opportunity with your actual priorities, resources, and appetite for change.','If the question is about personal growth, measure progress by choices you can repeat, not by a single dramatic revelation.','If the question is open-ended, focus on the area where clarity would most improve your next decision.']
+ },
+ fr:{
+  position:[
+   ['Le présent vous invite à distinguer les faits du récit que vous en faites.','Nommez un fait vérifiable et une hypothèse qui mérite encore d’être examinée.'],
+   ['Sous la surface, un besoin ou une habitude silencieuse peut peser sur la situation.','Observez ce qui déclenche vos réactions et demandez-vous ce qu’elles cherchent à protéger.'],
+   ['Le passé éclaire votre chemin sans devoir dicter la suite.','Reconnaissez un ancien schéma et la leçon que vous pouvez garder sans le répéter.'],
+   ['Un tournant se présente souvent comme un choix que l’on ne peut plus remettre à demain.','Écrivez les deux voies possibles et ce que chacune demanderait de laisser derrière vous.'],
+   ['Vos ressources comprennent aussi votre attention, votre patience et votre expérience.','Choisissez une force que vous possédez déjà et utilisez-la concrètement cette semaine.'],
+   ['L’obstacle révèle parfois une limite ou une conviction à réexaminer.','Distinguez ce que vous pouvez influencer de ce qui appartient aux autres.'],
+   ['La direction se précise lorsque l’intention devient un geste.','Choisissez un petit pas réversible et un moment pour faire le point.']
+  ],
+  suit:{major:'Cet arcane majeur évoque un chapitre de vie, une transformation intérieure ou une leçon durable.',swords:'Les Épées invitent au discernement : cherchez les faits, parlez clairement et évitez de décider sous l’emprise de la peur.',cups:'Les Coupes parlent de vérité émotionnelle : écoutez, protégez votre sensibilité et distinguez le lien de l’obligation.',wands:'Les Bâtons portent l’élan et le désir : concentrez votre énergie au lieu de la disperser.',pentacles:'Les Deniers interrogent ce qui peut durer : temps, énergie, engagements et bases concrètes.'},
+  action:'Une piste à explorer',lens:'Ce que révèle la carte',practice:'Un geste concret',
+  synthesis:['LE MOTIF SOUS LA SURFACE','LA TENSION AU CARREFOUR','CE QUI DÉPEND DE VOUS','LE CHEMIN À ENTREPRENDRE','LE FIL DES SEPT CARTES'],
+  prompts:['Pour une relation, cherchez la réciprocité et le dialogue plutôt qu’une certitude sur autrui.','Pour le travail ou la vocation, confrontez l’occasion à vos priorités et à vos ressources.','Pour votre évolution personnelle, observez les gestes que vous pouvez répéter.','Pour une question ouverte, privilégiez le domaine où davantage de clarté aiderait votre prochaine décision.']
+ },
+ es:{
+  position:[
+   ['El presente te pide separar los hechos de la historia que construyes sobre ellos.','Nombra un hecho que puedas comprobar y una suposición que debas contrastar.'],
+   ['Bajo la superficie, una necesidad o costumbre no expresada puede influir en la situación.','Observa qué despierta tus reacciones y qué intentan proteger.'],
+   ['El pasado aporta contexto, pero no tiene por qué dictar tu próximo capítulo.','Reconoce un patrón antiguo y conserva su lección sin repetirlo.'],
+   ['Un punto de inflexión suele presentarse como una decisión que ya no admite demora.','Escribe dos caminos posibles y qué exige soltar cada uno.'],
+   ['Tus recursos incluyen atención, paciencia, experiencia y personas de confianza.','Elige una fortaleza que ya tengas y úsala de forma concreta esta semana.'],
+   ['El desafío puede mostrar un límite o una creencia que necesita revisión.','Separa lo que puedes influir de lo que corresponde a otras personas.'],
+   ['El camino se aclara cuando la intención se convierte en acción.','Elige un paso pequeño y reversible y una fecha para revisar lo aprendido.']
+  ],
+  suit:{major:'Este arcano mayor señala un capítulo vital, un cambio de identidad o una lección duradera.',swords:'Las Espadas piden discernimiento: busca hechos, habla con claridad y no decidas desde un miedo pasajero.',cups:'Las Copas hablan de verdad emocional: escucha y distingue el vínculo de la obligación.',wands:'Los Bastos representan impulso y deseo: concentra tu energía en lugar de dispersarla.',pentacles:'Los Oros preguntan qué puede sostenerse: tiempo, energía, compromisos y bases materiales.'},
+  action:'Una dirección que explorar',lens:'Lo que ilumina esta carta',practice:'Un paso concreto',
+  synthesis:['EL PATRÓN BAJO LA SUPERFICIE','LA TENSIÓN EN LA ENCRUCIJADA','LO QUE ESTÁ EN TUS MANOS','EL CAMINO QUE PUEDES INICIAR','EL HILO DE LAS SIETE CARTAS'],
+  prompts:['Si preguntas por una relación, busca reciprocidad y conversación honesta en vez de certezas sobre otra persona.','Si preguntas por trabajo o propósito, contrasta la oportunidad con tus prioridades y recursos.','Si preguntas por crecimiento personal, observa las acciones que puedes repetir.','Si la pregunta es abierta, céntrate en el área donde la claridad ayudaría a decidir.']
+ }
+};
+function ritualExpandedMeaning(card,i){
+ const lang=currentLanguage in ritualGuidance?currentLanguage:'en';
+ const g=ritualGuidance[lang],idx=ritualLangIndex(),base=card[4+idx];
+ const suit=ritualSuit(card),pos=g.position[i];
+ const lore=ritualPick(ritualLore[lang][suit],'deep-lore-'+i);
+ const bridge={en:`Here, ${card[idx]} draws attention to ${lore}.`,fr:`Ici, ${card[idx]} attire votre regard vers ${lore}.`,es:`Aquí, ${card[idx]} dirige tu atención hacia ${lore}.`}[lang];
+ return `${base} ${bridge} ${pos[0]} ${g.suit[suit]} ${g.practice}: ${pos[1]}`;
 }
 function ritualOracleText(){
- const t=ritualT(),idx=ritualLangIndex(),a=ritualDraw[0],b=ritualDraw[3],c=ritualDraw[6];
- const names=[a[idx],b[idx],c[idx]];
- const lang=currentLanguage in ritualLore?currentLanguage:'en';
- const strands=[ritualPick(ritualLore[lang][ritualSuit(a)],'thread-a'),ritualPick(ritualLore[lang][ritualSuit(b)],'thread-b'),ritualPick(ritualLore[lang][ritualSuit(c)],'thread-c')];
- const heads={en:['I · THE VEIL','II · THE CROSSROADS','III · THE CROWN','IV · THE GOLDEN THREAD'],fr:['I · LE VOILE','II · LE CARREFOUR','III · LA COURONNE','IV · LE FIL D’OR'],es:['I · EL VELO','II · LA ENCRUCIJADA','III · LA CORONA','IV · EL HILO DORADO']}[lang];
- const text={
- en:[
-  `The first omen, ${names[0]}, stands at the gate of your question. It draws your attention to ${strands[0]}. Before seeking a verdict, notice what you have already sensed but perhaps not yet named.`,
-  `At the heart of the spread, ${names[1]} marks the turning point. Its image speaks of ${strands[1]}. This is not a command from fate; it is a mirror held before a choice that may deserve a more deliberate answer.`,
-  `The final emblem, ${names[2]}, does not seal your future. It offers a direction: ${strands[2]}. Consider what one honest, concrete step toward that direction would look like in the days ahead.`,
-  `Taken together, these seven cards trace a passage from recognition, through tension, toward agency. Their power lies not in certainty, but in the questions they sharpen. What are you prepared to acknowledge—and what will you choose to do with that knowledge?`
- ],fr:[
-  `Premier présage, ${names[0]} se tient au seuil de votre question. Il attire le regard vers ${strands[0]}. Avant de chercher une réponse définitive, nommez ce que vous pressentez déjà.`,
-  `Au cœur du tirage, ${names[1]} marque le tournant. Son image évoque ${strands[1]}. Ce n’est pas un ordre du destin, mais un miroir tendu devant un choix qui mérite réflexion.`,
-  `Le dernier emblème, ${names[2]}, ne scelle pas votre avenir. Il suggère une direction : ${strands[2]}. Quel premier geste sincère pourrait lui donner vie ?`,
-  `Ensemble, ces sept cartes dessinent un passage : reconnaître, traverser, puis agir. Leur force n’est pas dans la certitude, mais dans la lucidité. Que choisirez-vous de faire de ce que vous voyez désormais ?`
- ],es:[
-  `El primer presagio, ${names[0]}, guarda el umbral de tu pregunta. Dirige tu mirada hacia ${strands[0]}. Antes de buscar una respuesta definitiva, reconoce lo que ya intuyes.`,
-  `En el centro de la tirada, ${names[1]} señala un giro. Su imagen evoca ${strands[1]}. No es una orden del destino, sino un espejo ante una decisión que merece atención.`,
-  `El último emblema, ${names[2]}, no determina tu futuro. Sugiere una dirección: ${strands[2]}. ¿Qué pequeño paso sincero podrías dar hacia ella?`,
-  `Juntas, las siete cartas dibujan un viaje desde el reconocimiento hasta la acción. Su fuerza no está en la certeza, sino en la claridad. ¿Qué elegirás hacer con lo que ahora puedes ver?`
- ]}[lang];
+ const lang=currentLanguage in ritualGuidance?currentLanguage:'en',g=ritualGuidance[lang],idx=ritualLangIndex();
+ const cards=ritualDraw,names=cards.map(c=>c[idx]);
+ const theme=ritualPick(ritualLore[lang][ritualSuit(cards[0])],'theme-opening');
+ const tension=ritualPick(ritualLore[lang][ritualSuit(cards[3])],'theme-turning');
+ const closing=ritualPick(ritualLore[lang][ritualSuit(cards[6])],'theme-closing');
+ const pathway=({love:0,career:1,growth:2,general:3})[ritualPath]??3;
+ const heads=g.synthesis.map((x,i)=>`${['I','II','III','IV','V'][i]} · ${x}`);
+ let text;
+ if(lang==='fr')text=[
+  `Votre question est le point de départ de ce tirage, et non un détail ajouté après coup. ${names[0]} ouvre la lecture sur ${theme}. ${names[1]} indique une influence plus discrète, tandis que ${names[2]} rappelle l’histoire qui vous a conduit jusqu’ici. Ensemble, ces trois cartes invitent à regarder ce qui est visible, ce qui reste implicite et ce qui appartient au passé. ${g.position[0][0]} ${g.position[1][1]}`,
+  `Au centre, ${names[3]} donne sa couleur au tournant : ${tension}. ${names[5]} représente la résistance, la limite ou le doute à traverser. Il ne s’agit pas de forcer une issue, mais de reconnaître le prix de chaque option. ${g.position[3][1]} ${g.position[5][1]}`,
+  `${names[4]} évoque vos ressources, même celles que vous sous-estimez. ${g.suit[ritualSuit(cards[4])]} ${g.position[4][1]} Une décision devient plus solide lorsque vous séparez les faits, les émotions et les éléments sur lesquels vous avez réellement prise.`,
+  `Enfin, ${names[6]} éclaire la direction possible : ${closing}. ${g.suit[ritualSuit(cards[6])]} ${g.position[6][1]} ${g.prompts[pathway]} La carte n’annonce pas une certitude : elle propose une manière plus consciente d’avancer.`,
+  `Le fil des sept cartes relie ${names[0]}, ${names[3]} et ${names[6]} : reconnaître votre situation, affronter le choix et transformer une intention en acte. Prenez trois notes : ce que vous savez, ce que vous devez encore vérifier et l’action modeste que vous pouvez entreprendre. Revenez à votre question après cette action. Ce que vous aurez appris dans le monde réel comptera davantage qu’une prédiction.`
+ ];
+ else if(lang==='es')text=[
+  `Tu pregunta es el punto de partida, no un detalle añadido al final. ${names[0]} abre la lectura con ${theme}. ${names[1]} señala una influencia menos visible, mientras que ${names[2]} recuerda el pasado que te trajo hasta aquí. Juntas invitan a separar lo evidente, lo implícito y lo heredado. ${g.position[0][0]} ${g.position[1][1]}`,
+  `En el centro, ${names[3]} marca el giro: ${tension}. ${names[5]} representa la resistencia o el límite que hay que reconocer. No se trata de forzar un desenlace, sino de entender el precio de cada opción. ${g.position[3][1]} ${g.position[5][1]}`,
+  `${names[4]} ilumina los recursos que ya tienes, incluso los que subestimas. ${g.suit[ritualSuit(cards[4])]} ${g.position[4][1]} Una decisión gana fuerza cuando distingues los hechos, las emociones y aquello sobre lo que sí tienes influencia.`,
+  `Por último, ${names[6]} sugiere una dirección: ${closing}. ${g.suit[ritualSuit(cards[6])]} ${g.position[6][1]} ${g.prompts[pathway]} No es una certeza sobre el futuro, sino una forma más consciente de avanzar.`,
+  `El hilo de las siete cartas une ${names[0]}, ${names[3]} y ${names[6]}: reconocer la situación, afrontar una elección y convertir una intención en un acto. Anota tres cosas: lo que sabes, lo que aún debes comprobar y el pequeño paso que puedes dar. Vuelve a tu pregunta después de actuar: la experiencia real vale más que una predicción.`
+ ];
+ else text=[
+  `Your question is the doorway into this spread, not an afterthought. ${names[0]} opens with ${theme}; ${names[1]} suggests a quieter influence beneath the obvious story, while ${names[2]} points to the history you bring into this moment. Read these three together: what is happening now, what is operating out of sight, and what old experience may be shaping your expectations? ${g.position[0][0]} ${g.position[1][1]}`,
+  `At the heart of the reading, ${names[3]} marks the crossroads: ${tension}. ${names[5]} introduces the friction—the fear, competing desire, boundary, or practical obstacle that makes the choice difficult. These cards do not demand a dramatic leap. They ask you to recognize what each option might cost, and what you are no longer willing to trade away. ${g.position[3][1]} ${g.position[5][1]}`,
+  `${names[4]} is the card of resources in this spread. It points to the strength, support, knowledge, or patience already available to you. ${g.suit[ritualSuit(cards[4])]} ${g.position[4][1]} Before seeking another sign, take inventory of what you can actually influence; a choice becomes steadier when facts, feelings, and responsibilities are not confused with one another.`,
+  `The closing card, ${names[6]}, illuminates a possible way forward: ${closing}. ${g.suit[ritualSuit(cards[6])]} ${g.position[6][1]} ${g.prompts[pathway]} This is not a fixed forecast. It is a direction worth testing against your own values and the evidence of your life.`,
+  `The golden thread running through all seven cards connects ${names[0]}, ${names[3]}, and ${names[6]}: see the situation clearly, face the central choice, and turn intention into action. Make three notes before you leave this sanctuary: what you know for certain, what still needs an honest conversation or more information, and one small step you can take within the next few days. After taking it, return to your original question and notice what changed. The deepest revelation is not what the cards promise; it is what you choose to do with the insight they offer.`
+ ];
  return {heads,text};
 }
 function ritualOpen() {
