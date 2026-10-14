@@ -1897,6 +1897,8 @@ body.lunara-arriving::after{content:"";position:fixed;inset:0;z-index:9998;point
 .lunara-price-period {font-size:.32em;letter-spacing:.02em;color:#cbb98f;white-space:nowrap;vertical-align:middle;}
 .lunara-offer-detail {font-size:16px;color:#d0cbd0;line-height:1.65;min-height:82px;margin:12px 0 23px;}
 .lunara-offer .btn {display:inline-flex;align-items:center;justify-content:center;max-width:100%;min-height:52px;text-decoration:none;box-sizing:border-box;}
+.lunara-email-backup{display:block;width:fit-content;margin:15px auto 0;color:#e1c68d;font-size:14px;text-underline-offset:4px;line-height:1.6;}
+.lunara-email-backup:hover,.lunara-email-backup:focus-visible{color:#fff1c8;}
 .lunara-offer-fine {font-size:12px;color:#a7a3a9;line-height:1.55;margin:16px auto 0;max-width:300px;}
 @media(max-width:680px){.lunara-offers{grid-template-columns:1fr;max-width:420px;gap:18px}.lunara-offer{padding:27px 19px}.lunara-offer-detail{min-height:0}}
 </style>
@@ -2141,8 +2143,9 @@ Receive a thoughtful interpretation inspired by your cards and personal question
           <p class="lunara-offer-kicker" data-i18n="privateKicker">✦ PRIVATE HUMAN ORACLE ✦</p>
           <div class="price">US$37.99 <span class="lunara-price-period" data-i18n="perSession">/ session</span></div>
           <p class="lunara-offer-detail" data-i18n="privateDetail">A personal 30-minute consultation with a human tarot reader. Reach out to inquire about availability.</p>
-          <a class="btn lunara-consultation-btn" id="oracleConsultation" href="#" data-i18n="consultButton">REQUEST A CONSULTATION</a>
-          <p class="lunara-offer-fine" data-i18n="consultNote">Email inquiry only. Scheduling and payment are arranged separately.</p>
+          <a class="btn lunara-consultation-btn" id="oracleConsultation" href="#" target="_blank" rel="noopener noreferrer" data-i18n="consultButton">CONNECT ON WHATSAPP</a>
+          <a class="lunara-email-backup" id="oracleEmail" href="#" data-i18n="emailBackup">Prefer email? Send an inquiry</a>
+          <p class="lunara-offer-fine" data-i18n="consultNote">WhatsApp or email inquiry. Scheduling and payment are arranged separately.</p>
         </div>
       </div>
 
@@ -2259,8 +2262,9 @@ memberPreview: "Membership payments and monthly limits are not active yet — ex
 privateKicker: "✦ PRIVATE HUMAN ORACLE ✦",
 perSession: "/ session",
 privateDetail: "A personal 30-minute consultation with a human tarot reader. Reach out to inquire about availability.",
-consultButton: "REQUEST A CONSULTATION",
-consultNote: "Email inquiry only. Scheduling and payment are arranged separately.",
+consultButton: "CONNECT ON WHATSAPP",
+emailBackup: "Prefer email? Send an inquiry",
+consultNote: "WhatsApp or email inquiry. Scheduling and payment are arranged separately.",
 currencyLabel: "CHOOSE YOUR CURRENCY",
 },
 
@@ -2327,8 +2331,9 @@ memberPreview: "Les paiements et limites mensuelles ne sont pas encore activés 
 privateKicker: "✦ ORACLE HUMAIN PRIVÉ ✦",
 perSession: "/ séance",
 privateDetail: "Une consultation personnelle de 30 minutes avec un véritable praticien du tarot. Contactez-nous pour les disponibilités.",
-consultButton: "DEMANDER UNE CONSULTATION",
-consultNote: "Demande par courriel uniquement. Réservation et paiement organisés séparément.",
+consultButton: "CONTACTER SUR WHATSAPP",
+emailBackup: "Vous préférez le courriel ? Écrivez-nous",
+consultNote: "Demande par WhatsApp ou courriel. Réservation et paiement organisés séparément.",
 currencyLabel: "CHOISISSEZ VOTRE DEVISE",
 },
 
@@ -2396,8 +2401,9 @@ memberPreview: "Los pagos y límites mensuales aún no están activos — explor
 privateKicker: "✦ ORÁCULO HUMANO PRIVADO ✦",
 perSession: "/ sesión",
 privateDetail: "Una consulta personal de 30 minutos con un lector de tarot. Pregunta por la disponibilidad.",
-consultButton: "SOLICITAR UNA CONSULTA",
-consultNote: "Consulta por correo electrónico. Reserva y pago por separado.",
+consultButton: "CONTACTAR POR WHATSAPP",
+emailBackup: "¿Prefieres el correo? Escríbenos",
+consultNote: "Consulta por WhatsApp o correo. Reserva y pago por separado.",
 currencyLabel: "ELIGE TU MONEDA",
 }
 
@@ -2545,16 +2551,19 @@ document.querySelectorAll(".path-card").forEach(card => {
 // Interactive ritual handler is installed below.
 /* ==========================================
    LUNARA — PRIVATE ORACLE CONTACT
-   Replace the email below with the address where you want inquiries.
-   The membership is a preview until a verified payment backend is added.
+   WhatsApp is the primary booking inquiry; email is the backup.
+   Booking and payment are arranged separately.
 */
 const LUNARA_ORACLE_EMAIL = "hayvnstudio@gmail.com";
+const LUNARA_ORACLE_WHATSAPP = "14432922342";
 const oracleConsultation = document.getElementById("oracleConsultation");
+const oracleEmail = document.getElementById("oracleEmail");
 function updateOracleContact() {
   const lang = typeof currentLanguage !== "undefined" ? currentLanguage : "en";
   const subject = {en:"LUNARA — 30-minute private oracle consultation",fr:"LUNARA — Consultation privée de 30 minutes",es:"LUNARA — Consulta privada de 30 minutos"}[lang] || "LUNARA — Private oracle consultation";
-  const body = {en:"Hello, I would like to inquire about a 30-minute private oracle consultation (US$37.99). Please let me know your availability and how to book.",fr:"Bonjour, je souhaite me renseigner sur une consultation privée de 30 minutes (37,99 $ US). Quelles sont vos disponibilités ?",es:"Hola, quisiera consultar sobre una sesión privada de 30 minutos (37,99 USD). ¿Cuál es su disponibilidad?"}[lang];
-  oracleConsultation.href = "mailto:" + LUNARA_ORACLE_EMAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+  const body = {en:"Hello! I discovered LUNARA and would love to book a 30-minute Private Oracle consultation for US$37.99. Could you please share your availability?",fr:"Bonjour ! J'ai découvert LUNARA et j'aimerais réserver une consultation privée de 30 minutes à 37,99 $ US. Quelles sont vos disponibilités ?",es:"¡Hola! Descubrí LUNARA y me gustaría reservar una consulta privada de 30 minutos por 37,99 USD. ¿Podrían indicarme su disponibilidad?"}[lang] || "Hello! I would like to book a LUNARA Private Oracle consultation.";
+  if (oracleConsultation) oracleConsultation.href = "https://wa.me/" + LUNARA_ORACLE_WHATSAPP + "?text=" + encodeURIComponent(body);
+  if (oracleEmail) oracleEmail.href = "mailto:" + LUNARA_ORACLE_EMAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
 }
 updateOracleContact();
 document.addEventListener("click", event => { if (event.target.closest("[data-lang]")) setTimeout(updateOracleContact, 0); });
